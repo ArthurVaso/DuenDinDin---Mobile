@@ -23,6 +23,9 @@
     <string name="txt_usuario_cadastro_cidade">CIDADE</string>
     <string name="txt_usuario_cadastro_email">E-MAIL *</string>
     <string name="txt_usuario_cadastro_senha">SENHA *</string>
+    <string name="btn_main_entrar">ENTRE</string>
+    <string name="btn_main_cadastrar">CADASTRE-SE</string>
+    <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
 
 
     <!-- nomes das Unidades Federativas do Brasil -->

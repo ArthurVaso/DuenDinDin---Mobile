@@ -8,11 +8,26 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/seta_voltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:src="@drawable/setinha_voltar"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
         android:orientation="vertical"
         android:gravity="center">
@@ -60,11 +75,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
-            android:hint="@string/hint_usuario_cadastro_email"
-            android:textColorHint="@color/border_color"
-            android:fontFamily="@font/roboto_regular"
             android:background="@drawable/item_background"
-            android:inputType="textEmailAddress" />
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_usuario_cadastro_email"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColorHint="@color/border_color" />
 
 
         <TextView
@@ -76,30 +92,31 @@
             android:text="@string/txt_usuario_cadastro_senha" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txt_edit_password"
+            android:id="@+id/txt_edit_senha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
-            android:hint="@string/hint_usuario_cadastro_senha"
-            android:textColorHint="@color/border_color"
-            android:fontFamily="@font/roboto_regular"
             android:background="@drawable/item_background"
-            android:inputType="textPassword" />
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_usuario_cadastro_senha"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColorHint="@color/border_color" />
 
 
-        <Button android:id="@+id/btn_user_register"
+        <Button
+            android:id="@+id/btn_usuario_cadastro_cadastrar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="@string/btn_usuario_cadastro_continuar"
-            android:backgroundTint="@color/secondary_color"
+            android:text="@string/btn_usuario_cadastro_cadastrar"
             android:textColor="@color/white"
-
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"/>
     </LinearLayout>
 
 
