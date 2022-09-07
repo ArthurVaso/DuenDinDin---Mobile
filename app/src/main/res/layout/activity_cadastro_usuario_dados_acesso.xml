@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UsuarioCadastroDadosAcessoActivity"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textSize="36sp"
+            android:fontFamily="@font/comfortaa_regular"
+            android:textColor="@color/border_color"
+            android:text="@string/txt_usuario_cadastro_titulo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/comfortaa_regular"
+            android:textColor="@color/border_color"
+            android:text="@string/txt_usuario_cadastro_dados_acesso_subtitulo"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="@string/txt_usuario_cadastro_email" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:hint="@string/hint_usuario_cadastro_email"
+            android:textColorHint="@color/border_color"
+            android:fontFamily="@font/roboto_regular"
+            android:background="@drawable/item_background"
+            android:inputType="textEmailAddress" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="@string/txt_usuario_cadastro_senha" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:hint="@string/hint_usuario_cadastro_senha"
+            android:textColorHint="@color/border_color"
+            android:fontFamily="@font/roboto_regular"
+            android:background="@drawable/item_background"
+            android:inputType="textPassword" />
+
+
+        <Button android:id="@+id/btn_user_register"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/btn_usuario_cadastro_continuar"
+            android:backgroundTint="@color/secondary_color"
+            android:textColor="@color/white"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+    </LinearLayout>
+
+
+</LinearLayout>

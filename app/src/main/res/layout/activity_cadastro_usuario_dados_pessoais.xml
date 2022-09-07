@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".UsuarioCadastroDadosPessoaisActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/txt_usuario_cadastro_titulo"
+            android:textColor="@color/border_color"
+            android:fontFamily="@font/comfortaa_regular"
+            android:textSize="36sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/txt_usuario_cadastro_dados_pessoais_subtitulo"
+            android:fontFamily="@font/comfortaa_regular"
+            android:textColor="@color/border_color"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="@string/txt_usuario_cadastro_nome_completo" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_edit_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:hint="@string/hint_usuario_cadastro_nome"
+            android:textColorHint="@color/border_color"
+            android:fontFamily="@font/roboto_regular"
+            android:background="@drawable/item_background"
+            android:inputType="textCapWords" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="@string/txt_usuario_cadastro_data_de_nascimento" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_edit_data_nasc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:hint="@string/hint_usuario_cadastro_data_nasc"
+            android:textColorHint="@color/border_color"
+            android:background="@drawable/item_background"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="@string/txt_usuario_cadastro_estado" />
+            <Spinner
+                android:id="@+id/sp_uf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/item_background"
+                android:entries="@array/spUf"
+                app:boxStrokeColor="@color/secondary_color" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="@string/txt_usuario_cadastro_cidade" />
+
+            <Spinner
+                android:id="@+id/sp_cidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/item_background"
+                android:entries="@array/spUf"
+                app:boxStrokeColor="@color/secondary_color" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="@string/txt_usuario_cadastro_renda_fixa" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_edit_renda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:hint="@string/hint_usuario_cadastro_renda"
+            android:textColorHint="@color/border_color"
+            android:background="@drawable/item_background"
+            android:inputType="textCapWords" />
+
+        <android.support.design.button.MaterialButton
+            android:id="@+id/btn_user_register"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            android:text="@string/btn_usuario_cadastro_continuar"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>
