@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:src="@drawable/setinha_voltar" />
+            android:src="@drawable/icon_setinha_voltar" />
     </LinearLayout>
 
     <ScrollView
@@ -81,7 +81,7 @@
                     android:textColor="@color/black" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_edit_nome"
+                    android:id="@+id/edt_nome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -103,9 +103,8 @@
                     android:text="@string/txt_usuario_cadastro_data_de_nascimento"
                     android:textColor="@color/black" />
 
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_edit_data_nasc"
+                <TextView
+                    android:id="@+id/txt_data_nasc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -113,9 +112,13 @@
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
                     android:hint="@string/hint_usuario_cadastro_data_nasc"
-                    android:inputType="textCapWords"
+                    android:inputType="none"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color" />
+                    android:textColorHint="@color/border_color"
+                    android:textColor="@color/border_color"
+                    android:drawableRight="@drawable/icon_calendar"
+                    android:textSize="18sp"/>
+
 
                 <TextView
                     android:layout_width="match_parent"
@@ -132,7 +135,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
-                    android:background="@drawable/item_background"
+                    android:background="@drawable/spinner_background"
                     android:entries="@array/spUf"
                     android:minHeight="48dp"
                     app:boxStrokeColor="@color/secondary_color" />
@@ -153,10 +156,10 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
-                    android:background="@drawable/item_background"
+                    android:background="@drawable/spinner_background"
                     android:entries="@array/spCidade"
                     android:minHeight="48dp"
-                    app:boxStrokeColor="@color/secondary_color" />
+                    app:boxStrokeColor="@color/secondary_color"/>
 
 
                 <TextView
@@ -169,7 +172,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_edit_renda"
+                    android:id="@+id/edt_renda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
