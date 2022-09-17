@@ -1,3 +1,68 @@
 <resources>
     <string name="app_name">DuenDinDin</string>
+
+
+
+    <string name="btn_usuario_cadastro_continuar">Continuar</string>
+    <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
+    <string name="hint_usuario_cadastro_email">duen@dindin.com</string>
+    <string name="hint_usuario_cadastro_senha">***********</string>
+    <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
+    <string name="txt_usuario_cadastro_dados_pessoais_subtitulo">Dados Pessoais</string>
+    <string name="txt_usuario_cadastro_dados_acesso_subtitulo">Dados Acesso</string>
+
+    <string name="hint_usuario_cadastro_nome">Duen Din Din</string>
+    <string name="hint_usuario_cadastro_data_nasc">dd/mm/aaaa</string>
+    <string name="hint_usuario_cadastro_estado">Selecione uma opção</string>
+    <string name="hint_usuario_cadastro_renda">2000,00</string>
+
+    <string name="txt_usuario_cadastro_nome_completo">NOME COMPLETO *</string>
+    <string name="txt_usuario_cadastro_estado">ESTADO</string>
+    <string name="txt_usuario_cadastro_renda_fixa">RENDA FIXA</string>
+    <string name="txt_usuario_cadastro_data_de_nascimento">DATA DE NASCIMENTO</string>
+    <string name="txt_usuario_cadastro_cidade">CIDADE</string>
+    <string name="txt_usuario_cadastro_email">E-MAIL *</string>
+    <string name="txt_usuario_cadastro_senha">SENHA *</string>
+    <string name="btn_main_entrar">ENTRE</string>
+    <string name="btn_main_cadastrar">CADASTRE-SE</string>
+    <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
+
+
+    <!-- nomes das Unidades Federativas do Brasil -->
+    <string-array name="spUf">
+        <item>Selecione uma opção...</item>
+        <item>Acre (AC)</item>
+        <item>Alagoas (AL)</item>
+        <item>Amapá (AP)</item>
+        <item>Amazonas (AM)</item>
+        <item>Bahia (BA)</item>
+        <item>Ceará (CE)</item>
+        <item>Distrito Federal (DF)</item>
+        <item>Espírito Santo (ES)</item>
+        <item>Goias (GO)</item>
+        <item>Maranhão (MA)</item>
+        <item>Mato Grosso (MT)</item>
+        <item>Mato Grosso do Sul (MS)</item>
+        <item>Minas Gerais (MG)</item>
+        <item>Pará (PA)</item>
+        <item>Paraíba (PB)</item>
+        <item>Paraná (PR)</item>
+        <item>Pernambuco (PE)</item>
+        <item>Piauí (PI)</item>
+        <item>Rio de Janeiro (RJ)</item>
+        <item>Rio Grande do Norte (RN)</item>
+        <item>Rio Grande do Sul (RS)</item>
+        <item>Rondônia (RO)</item>
+        <item>Roraima (RR)</item>
+        <item>Santa Catarina (SC)</item>
+        <item>São Paulo (SP)</item>
+        <item>Sergipe (SE)</item>
+        <item>Tocantins (TO)</item>
+    </string-array>
+
+    <!-- nomes das Unidades Federativas do Brasil -->
+    <string-array name="spCidade">
+        <item>Selecione uma opção...</item>
+        <item>Araraquara</item>
+    </string-array>
 </resources>
