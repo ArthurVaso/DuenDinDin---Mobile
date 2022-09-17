@@ -101,7 +101,7 @@
             android:id="@+id/txt_usuario_perfil_edit_data_de_nascimento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:text="@string/txt_usuario_perfil_edit_data_de_nascimento"
             android:textColor="@color/button_color"
             app:layout_constraintEnd_toEndOf="parent"
@@ -135,12 +135,11 @@
             android:id="@+id/txt_usuario_perfil_cidade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
             android:layout_marginTop="24dp"
             android:text="@string/txt_usuario_perfil_cidade"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_estado"
             app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_data_de_nascimento" />
 
