@@ -27,6 +27,9 @@
     <string name="btn_main_cadastrar">CADASTRE-SE</string>
     <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
     <string name="msg_data_invalida">Data de nascimento inválida, idade deve ser maior que 10 anos e menor que 110 anos!</string>
+    <string name="txt_usuario_cadastro_cep">CEP:</string>
+    <string name="txt_usuario_cadastro_esqueci_cep">Esqueci o CEP</string>
+    <string name="edt_usuario_cadastro_cep">Informe o CEP</string>
 
 
     <!-- nomes das Unidades Federativas do Brasil -->

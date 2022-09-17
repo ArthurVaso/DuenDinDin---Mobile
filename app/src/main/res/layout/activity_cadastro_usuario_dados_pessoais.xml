@@ -78,6 +78,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/txt_usuario_cadastro_nome_completo"
+                    android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -101,6 +102,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/txt_usuario_cadastro_data_de_nascimento"
+                    android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -111,14 +113,60 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
+                    android:drawableRight="@drawable/icon_calendar"
                     android:hint="@string/hint_usuario_cadastro_data_nasc"
+                    android:fontFamily="@font/roboto_regular"
                     android:inputType="none"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color"
                     android:textColor="@color/border_color"
-                    android:drawableRight="@drawable/icon_calendar"
-                    android:textSize="18sp"/>
+                    android:textColorHint="@color/border_color"
+                    android:textSize="18sp" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@string/txt_usuario_cadastro_cep"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/txt_esqueci_cep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/txt_usuario_cadastro_esqueci_cep"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/secondary_color" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_cep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/item_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/edt_usuario_cadastro_cep"
+                    android:inputType="number"
+                    android:maxLength="8"
+                    android:textColorHint="@color/border_color" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -126,6 +174,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/txt_usuario_cadastro_estado"
+                    android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
                 <Spinner
@@ -159,7 +208,7 @@
                     android:background="@drawable/spinner_background"
                     android:entries="@array/spCidade"
                     android:minHeight="48dp"
-                    app:boxStrokeColor="@color/secondary_color"/>
+                    app:boxStrokeColor="@color/secondary_color" />
 
 
                 <TextView
@@ -168,6 +217,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/txt_usuario_cadastro_renda_fixa"
+                    android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
 
@@ -180,6 +230,7 @@
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
                     android:hint="@string/hint_usuario_cadastro_renda"
+                    android:fontFamily="@font/roboto_regular"
                     android:inputType="textCapWords"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color" />
@@ -191,9 +242,12 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
+                    android:backgroundTint="@color/secondary_color"
+                    android:backgroundTintMode="add"
                     android:text="@string/btn_usuario_cadastro_continuar"
+                    android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/white"
-                    app:strokeColor="@color/black"
+                    app:strokeColor="@color/border_color"
                     app:strokeWidth="2dp" />
             </LinearLayout>
 

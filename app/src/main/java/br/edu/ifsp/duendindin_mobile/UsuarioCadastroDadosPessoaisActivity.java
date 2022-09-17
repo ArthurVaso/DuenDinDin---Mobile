@@ -2,6 +2,7 @@ package br.edu.ifsp.duendindin_mobile;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,8 +23,11 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private ImageView imgSetaVoltar;
     private TextInputEditText edtNome;
     private TextView txtDataNasc;
+    private TextView txtEsqueciCEP;
     private DatePickerDialog datePickerDialog;
     private TextInputEditText edtRendaFixa;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,17 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
                             }
                         }, anoAtual, mesAtual, diaAtual);
                 datePickerDialog.show();
+            }
+        });
+
+        txtEsqueciCEP = findViewById(R.id.txt_esqueci_cep);
+        txtEsqueciCEP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri parsedUrl = Uri.parse("https://buscacepinter.correios.com.br/app/endereco/index.php");
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(parsedUrl);
+                startActivity(intent);
             }
         });
 
