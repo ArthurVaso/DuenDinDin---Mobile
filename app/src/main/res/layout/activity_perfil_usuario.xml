@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UsuarioPerfilActivity">
+
+    <TextView
+        android:id="@+id/msg_usario_perfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:text="@string/msg_usuario_perfil"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="32sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/msg_usuario_perfil_dados"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_pessoais"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="@string/txt_usario_perfil_pessoais"
+            android:textColor="@color/border_color"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/img_usuario_perfil_edit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="209dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/cd_usuario_perfil_img_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_pessoais"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_edit_button"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_nome_completo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_nome_completo"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_pessoais" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_nome_completo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_edit_nome_completo"
+            android:textColor="@color/border_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_nome_completo" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_data_de_nascimento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_data_de_nascimento"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.716"
+            app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_nome_completo"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_pessoais" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_data_de_nascimento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_edit_data_de_nascimento"
+            android:textColor="@color/border_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.096"
+            app:layout_constraintStart_toStartOf="@+id/txt_usuario_perfil_data_de_nascimento"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_data_de_nascimento" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_estado"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_nome_completo" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_edit_estado"
+            android:textColor="@color/border_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_estado" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_cidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_cidade"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_estado"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_data_de_nascimento" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_cidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_edit_cidade"
+            android:textColor="@color/border_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.072"
+            app:layout_constraintStart_toStartOf="@+id/txt_usuario_perfil_cidade"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_cidade" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_acesso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="@string/txt_usuario_perfil_acesso"
+            android:textColor="@color/border_color"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_estado" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_email"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_acesso" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_edit_email"
+            android:textColor="@color/border_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_email" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_senha"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_email" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_edit_senha"
+            android:textColor="@color/border_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_senha" />
+
+        <TextView
+            android:id="@+id/msg_usuario_perfil_esqueceu_sua_senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/msg_usuario_perfil_esqueceu_sua_senha"
+            android:textColor="@color/border_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.846"
+            app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_edit_senha"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_senha" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_financeiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="@string/txt_usuario_perfil_financeiro"
+            android:textColor="@color/border_color"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_senha" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_salario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_salario"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_financeiro" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_salario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_edit_salario"
+            android:textColor="@color/border_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_salario" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_limite_de_gasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_limite_de_gasto"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_salario" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_limite_de_gasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_edit_limite_de_gasto"
+            android:textColor="@color/border_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_limite_de_gasto" />
+
+        <ImageView
+            android:id="@+id/img_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:tooltipText="@string/txt_usuario_perfil_tooltip_help"
+            app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_limite_de_gasto"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_salario"
+            app:srcCompat="@drawable/img_tooltip"
+            android:contentDescription="Imagem de Ajuda" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
