@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,9 +36,9 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         int anoAtual = c.get(Calendar.YEAR);
         int mesAtual = c.get(Calendar.MONTH);
         int diaAtual = c.get(Calendar.DAY_OF_MONTH);
-        edtNome = findViewById(R.id.edt_nome);
-        edtRendaFixa = findViewById(R.id.edt_renda);
-        txtDataNasc = findViewById(R.id.txt_data_nasc);
+        edtNome = findViewById(R.id.edt_nome_usuario);
+        edtRendaFixa = findViewById(R.id.edt_renda_usuario);
+        txtDataNasc = findViewById(R.id.txt_data_nasc_usuario);
         txtDataNasc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

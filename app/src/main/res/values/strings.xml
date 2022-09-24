@@ -2,35 +2,37 @@
     <string name="app_name">DuenDinDin</string>
 
 
+    <!-- Tela inicial -->
+    <string name="btn_main_entrar">ENTRE</string>
+    <string name="btn_main_cadastrar">CADASTRE-SE</string>
 
-    <string name="btn_usuario_cadastro_continuar">Continuar</string>
-    <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
-    <string name="hint_usuario_cadastro_email">duen@dindin.com</string>
-    <string name="hint_usuario_cadastro_senha">***********</string>
+    <!-- Tela cadastro e alteração de usuário -->
+
     <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
     <string name="txt_usuario_cadastro_dados_pessoais_subtitulo">Dados Pessoais</string>
     <string name="txt_usuario_cadastro_dados_acesso_subtitulo">Dados Acesso</string>
 
-    <string name="hint_usuario_cadastro_nome">Duen Din Din</string>
-    <string name="hint_usuario_cadastro_data_nasc">dd/mm/aaaa</string>
-    <string name="hint_usuario_cadastro_estado">Selecione uma opção</string>
-    <string name="hint_usuario_cadastro_renda">2000,00</string>
-
     <string name="txt_usuario_cadastro_nome_completo">NOME COMPLETO *</string>
+    <string name="hint_usuario_cadastro_nome">Duen Din Din</string>
     <string name="txt_usuario_cadastro_estado">ESTADO</string>
+    <string name="hint_usuario_cadastro_estado">Selecione uma opção</string>
     <string name="txt_usuario_cadastro_renda_fixa">RENDA FIXA</string>
+    <string name="hint_usuario_cadastro_renda">2000,00</string>
     <string name="txt_usuario_cadastro_data_de_nascimento">DATA DE NASCIMENTO</string>
+    <string name="hint_usuario_cadastro_data_nasc">dd/mm/aaaa</string>
     <string name="txt_usuario_cadastro_cidade">CIDADE</string>
     <string name="txt_usuario_cadastro_email">E-MAIL *</string>
+    <string name="hint_usuario_cadastro_email">duen@dindin.com</string>
     <string name="txt_usuario_cadastro_senha">SENHA *</string>
-    <string name="btn_main_entrar">ENTRE</string>
-    <string name="btn_main_cadastrar">CADASTRE-SE</string>
+    <string name="hint_usuario_cadastro_senha">***********</string>
     <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
     <string name="msg_data_invalida">Data de nascimento inválida, idade deve ser maior que 10 anos e menor que 110 anos!</string>
-    <string name="txt_usuario_cadastro_cep">CEP:</string>
+    <string name="txt_usuario_cadastro_cep">CEP</string>
     <string name="txt_usuario_cadastro_esqueci_cep">Esqueci o CEP</string>
     <string name="edt_usuario_cadastro_cep">Informe o CEP</string>
 
+    <string name="btn_usuario_cadastro_continuar">Continuar</string>
+    <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
 
     <!-- nomes das Unidades Federativas do Brasil -->
     <string-array name="spUf">
@@ -69,4 +71,33 @@
         <item>Selecione uma opção...</item>
         <item>Araraquara</item>
     </string-array>
+
+
+    <!-- Tela cadastro e alteração de categoria -->
+    <string name="txt_categoria_cadastro_titulo">Cadastro de Categoria</string>
+    <string name="txt_categoria_cadastro_subtitulo">Dados da Categoria</string>
+    <string name="txt_categoria_cadastro_nome">NOME *</string>
+    <string name="hint_categoria_cadastro_nome">Categoria</string>
+    <string name="txt_categoria_cadastro_descricao">DESCRIÇÃO</string>
+    <string name="hint_categoria_cadastro_descricao">Descrição</string>
+    <string name="txt_categoria_cadastro_tipo">TIPO *</string>
+    <string name="txt_categoria_cadastro_recorrente">RECORRENTE *</string>
+    <string name="txt_categoria_cadastro_periodo">PERÍODO DE RECORRÊNCIA</string>
+    <string name="hint_categoria_cadastro_periodo">0</string>
+
+    <string name="btn_categoria_cadastro_salvar">Salvar</string>
+    <!-- opções tipo categoria -->
+    <string-array name="spTipoCategoria">
+        <item>Selecione uma opção...</item>
+        <item>Fixo</item>
+        <item>Variável</item>
+    </string-array>
+
+    <!-- opções categoria recorrente -->
+    <string-array name="spRecorrenteCategoria">
+        <item>Selecione uma opção...</item>
+        <item>SIM</item>
+        <item>NÃO</item>
+    </string-array>
+
 </resources>

@@ -21,9 +21,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
                 Intent intent = new Intent(MainActivity.this, UsuarioCadastroDadosPessoaisActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnEntrar = findViewById(R.id.btn_main_entrar);
+        btnEntrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CategoriaCadastroActivity.class);
                 startActivity(intent);
             }
         });
