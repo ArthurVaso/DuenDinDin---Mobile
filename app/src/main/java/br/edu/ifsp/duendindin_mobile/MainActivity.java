@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnEntrar;
     private Button btnCadastrar;
+
+    private Button btnCategoria;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
         btnEntrar = findViewById(R.id.btn_main_entrar);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CategoriaCadastroActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCategoria = findViewById(R.id.btn_main_categoria);
+        btnCategoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CategoriaCadastroActivity.class);
