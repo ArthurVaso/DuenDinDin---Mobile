@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".GastoCadastroActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/seta_voltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:src="@drawable/icon_setinha_voltar" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:text="@string/txt_gasto_cadastro_titulo"
+                    android:textColor="@color/border_color"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:text="@string/txt_gasto_cadastro_subtitulo"
+                    android:textColor="@color/border_color"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_gasto_cadastro_nome"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_nome_gasto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/item_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/hint_gasto_cadastro_nome"
+                    android:inputType="textCapWords"
+                    android:minHeight="48dp"
+                    android:textColorHint="@color/border_color" />
+
+                <TextView
+                    android:id="@+id/txt_categoria_gasto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_gasto_cadastro_categoria"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/sp_categoria_gasto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/spinner_background"
+                    android:entries="@array/spCategoriaGastoGanho"
+                    android:minHeight="48dp"
+                    app:boxStrokeColor="@color/secondary_color" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_gasto_cadastro_data_de_vencimento"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/txt_data_venc_gasto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/item_background"
+                    android:drawableRight="@drawable/icon_calendar"
+                    android:hint="@string/hint_gasto_cadastro_data_venc"
+                    android:fontFamily="@font/roboto_regular"
+                    android:inputType="none"
+                    android:minHeight="48dp"
+                    android:textColor="@color/border_color"
+                    android:textColorHint="@color/border_color"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_gasto_cadastro_descricao"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_descricao_gasto"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:inputType="text|textMultiLine"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/item_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/hint_gasto_cadastro_descricao"
+                    android:minHeight="48dp"
+
+                    android:textColorHint="@color/border_color" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_gasto_cadastro_valor"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black" />
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_valor_gasto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/item_background"
+                    android:hint="@string/hint_gasto_cadastro_valor"
+                    android:fontFamily="@font/roboto_regular"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:textColorHint="@color/border_color" />
+
+                <Button
+                    android:id="@+id/btn_gasto_cadastro_salvar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="@color/secondary_color"
+                    android:backgroundTintMode="add"
+                    android:text="@string/btn_gasto_cadastro_salvar"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/white"
+                    app:strokeColor="@color/border_color"
+                    app:strokeWidth="2dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

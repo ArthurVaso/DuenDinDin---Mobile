@@ -28,7 +28,7 @@
     <string name="txt_usuario_cadastro_senha">SENHA *</string>
     <string name="hint_usuario_cadastro_senha">***********</string>
     <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
-    <string name="msg_data_invalida">Data de nascimento inválida, idade deve ser maior que 10 anos e menor que 110 anos!</string>
+    <string name="msg_data_nasc_invalida">Data de nascimento inválida, idade deve ser maior que 10 anos e menor que 110 anos!</string>
     <string name="txt_usuario_cadastro_cep">CEP</string>
     <string name="txt_usuario_cadastro_esqueci_cep">Esqueci o CEP</string>
     <string name="edt_usuario_cadastro_cep">Informe o CEP</string>
@@ -101,5 +101,29 @@
         <item>SIM</item>
         <item>NÃO</item>
     </string-array>
+
+    <!-- Tela cadastro e alteração de gasto -->
+    <string name="txt_gasto_cadastro_titulo">Cadastro de Gasto</string>
+    <string name="txt_gasto_cadastro_subtitulo">Dados da Gasto</string>
+    <string name="txt_gasto_cadastro_nome">NOME *</string>
+    <string name="hint_gasto_cadastro_nome">Conta de Água</string>
+    <string name="txt_gasto_cadastro_data_de_vencimento">DATA DO VENCIMENTO</string>
+    <string name="hint_gasto_cadastro_data_venc">dd/mm/aaaa</string>
+    <string name="txt_gasto_cadastro_descricao">DESCRIÇÃO</string>
+    <string name="hint_gasto_cadastro_descricao">Descrição</string>
+    <string name="txt_gasto_cadastro_categoria">CATEGORIA *</string>
+    <string name="txt_gasto_cadastro_valor">VALOR</string>
+    <string name="hint_gasto_cadastro_valor">11,34</string>
+
+    <string name="btn_gasto_cadastro_salvar">Salvar</string>
+
+    <!-- opções de categoria de gasto/ganho-->
+    <string-array name="spCategoriaGastoGanho">
+        <item>Selecione uma opção...</item>
+        <item>Categoria 1</item>
+        <item>Categoria 2</item>
+    </string-array>
+
+    <string name="msg_data_venc_invalida">Data de vencimento inválida!</string>
 
 </resources>
