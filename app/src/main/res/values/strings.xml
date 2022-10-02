@@ -8,12 +8,39 @@
     <string name="btn_main_entrar">ENTRE</string>
     <string name="btn_main_cadastrar">CADASTRE-SE</string>
 
-    <!-- Tela cadastro e alteração de usuário -->
+    <!--    TEXTOS DOS DADOS PESSOAIS-->
+    <string name="txt_usario_perfil_pessoais">Pessoais:</string>
+    <string name="cd_usuario_perfil_img_edit">Botão para ir para a tela de alteração dos dados do usuário.</string>
 
+    <string name="txt_usuario_perfil_nome_completo">NOME COMPLETO</string>
+    <string name="txt_usuario_perfil_edit_nome_completo">Duen Din Din</string>
+    <string name="txt_usuario_perfil_data_de_nascimento">DATA DE NASCIMENTO</string>
+    <string name="txt_usuario_perfil_edit_data_de_nascimento">01/01/2001</string>
+    <string name="txt_usuario_perfil_estado">ESTADO</string>
+    <string name="txt_usuario_perfil_edit_estado">Estado</string>
+    <string name="txt_usuario_perfil_cidade">CIDADE</string>
+    <string name="txt_usuario_perfil_edit_cidade">Cidade</string>
+
+    <!--    TEXTOS DOS DADOS DE ACESSO-->
+    <string name="txt_usuario_perfil_acesso">Acesso:</string>
+    <string name="txt_usuario_perfil_email">EMAIL</string>
+    <string name="txt_usuario_perfil_edit_email">duend@dindin.com</string>
+    <string name="txt_usuario_perfil_senha">SENHA</string>
+    <string name="txt_usuario_perfil_edit_senha">************</string>
+    <string name="msg_usuario_perfil_esqueceu_sua_senha"><u>Esqueceu sua senha?</u></string>
+
+    <!--    TEXTOS DOS DADOS FINANCEIROS-->
+    <string name="txt_usuario_perfil_financeiro">Financeiro:</string>
+    <string name="txt_usuario_perfil_salario">SALÁRIO</string>
+    <string name="txt_usuario_perfil_edit_salario">R$2000,00</string>
+    <string name="txt_usuario_perfil_limite_de_gasto">LIMITE DE GASTO</string>
+    <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
+    <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
+
+    <!-- Tela cadastro e alteração de usuário -->
     <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
     <string name="txt_usuario_cadastro_dados_pessoais_subtitulo">Dados Pessoais</string>
     <string name="txt_usuario_cadastro_dados_acesso_subtitulo">Dados Acesso</string>
-
     <string name="txt_usuario_cadastro_nome_completo">NOME COMPLETO *</string>
     <string name="hint_usuario_cadastro_nome">Duen Din Din</string>
     <string name="txt_usuario_cadastro_estado">ESTADO</string>
@@ -114,8 +141,21 @@
     <string name="txt_gasto_cadastro_categoria">CATEGORIA *</string>
     <string name="txt_gasto_cadastro_valor">VALOR</string>
     <string name="hint_gasto_cadastro_valor">11,34</string>
-
     <string name="btn_gasto_cadastro_salvar">Salvar</string>
+
+    <!-- Tela cadastro e alteração de ganho -->
+    <string name="txt_ganho_cadastro_titulo">Cadastro de Ganho</string>
+    <string name="txt_ganho_cadastro_subtitulo">Dados da Ganho</string>
+    <string name="txt_ganho_cadastro_nome">NOME *</string>
+    <string name="hint_ganho_cadastro_nome">Freelance</string>
+    <string name="txt_ganho_cadastro_data_de_recebimento">DATA DO RECEBIMENTO</string>
+    <string name="hint_ganho_cadastro_data_receb">dd/mm/aaaa</string>
+    <string name="txt_ganho_cadastro_descricao">DESCRIÇÃO</string>
+    <string name="hint_ganho_cadastro_descricao">Descrição</string>
+    <string name="txt_ganho_cadastro_categoria">CATEGORIA *</string>
+    <string name="txt_ganho_cadastro_valor">VALOR</string>
+    <string name="hint_ganho_cadastro_valor">11,34</string>
+    <string name="btn_ganho_cadastro_salvar">Salvar</string>
 
     <!-- opções de categoria de gasto/ganho-->
     <string-array name="spCategoriaGastoGanho">
@@ -125,5 +165,6 @@
     </string-array>
 
     <string name="msg_data_venc_invalida">Data de vencimento inválida!</string>
+    <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
 
 </resources>

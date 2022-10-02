@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCadastrar;
 
     private Button btnCategoria;
+    private Button btnGasto;
+    private Button btnGanho;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, UsuarioCadastroDadosPessoaisActivity.class);
+                Intent intent = new Intent(MainActivity.this, GastoCadastroActivity.class);
                 startActivity(intent);
             }
         });
@@ -42,6 +44,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CategoriaCadastroActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnGasto = findViewById(R.id.btn_main_gasto);
+        btnGasto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GastoCadastroActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnGanho = findViewById(R.id.btn_main_ganho);
+        btnGanho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GanhoCadastroActivity.class);
                 startActivity(intent);
             }
         });

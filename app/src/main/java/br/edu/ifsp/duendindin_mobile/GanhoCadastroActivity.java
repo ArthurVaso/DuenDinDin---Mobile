@@ -18,13 +18,13 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 
-public class GastoCadastroActivity extends AppCompatActivity {
+public class GanhoCadastroActivity extends AppCompatActivity {
 
     private Button btnSalvar;
     private ImageView imgSetaVoltar;
 
     private TextView txtCategoria;
-    private TextView txtDataVenc;
+    private TextView txtDataReceb;
     private DatePickerDialog datePickerDialog;
     private TextInputEditText edtNome;
     private TextInputEditText edtDescricao;
@@ -34,10 +34,10 @@ public class GastoCadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_gasto);
-        edtNome = findViewById(R.id.edt_nome_gasto);
-        edtDescricao = findViewById(R.id.edt_descricao_gasto);
-        edtValor = findViewById(R.id.edt_valor_gasto);
+        setContentView(R.layout.activity_cadastro_ganho);
+        edtNome = findViewById(R.id.edt_nome_ganho);
+        edtDescricao = findViewById(R.id.edt_descricao_ganho);
+        edtValor = findViewById(R.id.edt_valor_ganho);
         txtCategoria = findViewById(R.id.txt_tipo_categoria);
         spnCategoria = (Spinner) findViewById(R.id.sp_tipo_categoria);
 
@@ -45,11 +45,11 @@ public class GastoCadastroActivity extends AppCompatActivity {
         int anoAtual = c.get(Calendar.YEAR);
         int mesAtual = c.get(Calendar.MONTH);
         int diaAtual = c.get(Calendar.DAY_OF_MONTH);
-        txtDataVenc = findViewById(R.id.txt_data_venc_gasto);
-        txtDataVenc.setOnClickListener(new View.OnClickListener() {
+        txtDataReceb = findViewById(R.id.txt_data_receb_ganho);
+        txtDataReceb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                datePickerDialog = new DatePickerDialog(GastoCadastroActivity.this,
+                datePickerDialog = new DatePickerDialog(GanhoCadastroActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
 
                             @Override
@@ -68,7 +68,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
 
         });
 
-        btnSalvar = findViewById(R.id.btn_gasto_cadastro_salvar);
+        btnSalvar = findViewById(R.id.btn_ganho_cadastro_salvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +76,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
 
                 //TODO conferir obrigatoriedade dos campos
                 if (validate()) {
-                    Intent intent = new Intent(GastoCadastroActivity.this, MainActivity.class);
+                    Intent intent = new Intent(GanhoCadastroActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
@@ -89,7 +89,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
 
                 //TODO conferir obrigatoriedade dos campos
 
-                Intent intent = new Intent(GastoCadastroActivity.this, MainActivity.class);
+                Intent intent = new Intent(GanhoCadastroActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -111,14 +111,14 @@ public class GastoCadastroActivity extends AppCompatActivity {
         } else {
             txtCategoria.setError(null);
         }
-        if (txtDataVenc.getText().toString().trim().isEmpty()) {
-            txtDataVenc.setError("Preencha o campo Data Vencimento");
+        if (txtDataReceb.getText().toString().trim().isEmpty()) {
+            txtDataReceb.setError("Preencha o campo Data Recebimento");
             isValid = false;
         } else {
-            txtDataVenc.setError(null);
+            txtDataReceb.setError(null);
         }
         if (edtValor.getText().toString().trim().isEmpty()) {
-            edtValor.setError("Preencha o campo Data Vencimento");
+            edtValor.setError("Preencha o campo Data Recebimento");
             isValid = false;
         } else {
             edtValor.setError(null);
@@ -139,13 +139,13 @@ public class GastoCadastroActivity extends AppCompatActivity {
         }
         */
         if (false) {
-            txtDataVenc.setError(getString(R.string.msg_data_venc_invalida));
-            txtDataVenc.setText("");
-            Toast.makeText(GastoCadastroActivity.this, R.string.msg_data_venc_invalida, Toast.LENGTH_LONG).show();
+            txtDataReceb.setError(getString(R.string.msg_data_receb_invalida));
+            txtDataReceb.setText("");
+            Toast.makeText(GanhoCadastroActivity.this, R.string.msg_data_receb_invalida, Toast.LENGTH_LONG).show();
             return;
         }
-        txtDataVenc.setError(null);
-        txtDataVenc.setText(diaS + "/" + (mesS + 1) + "/" + anoS);
+        txtDataReceb.setError(null);
+        txtDataReceb.setText(diaS + "/" + (mesS + 1) + "/" + anoS);
 
     }
 }
