@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="@string/btn_main_entrar"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -50,6 +50,20 @@
             android:backgroundTint="@color/border_color"
             android:backgroundTintMode="add"
             app:strokeColor="@color/secondary_color"
+            app:strokeWidth="2dp"/>
+
+        <Button
+            android:id="@+id/btn_main_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="CATEGORIA"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/secondary_color"
+            android:backgroundTintMode="add"
+            app:strokeColor="@color/border_color"
             app:strokeWidth="2dp"/>
 
     </LinearLayout>

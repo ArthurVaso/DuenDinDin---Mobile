@@ -20,6 +20,9 @@
             android:name=".UsuarioCadastroDadosPessoaisActivity"
             android:exported="false" />
         <activity
+            android:name=".CategoriaCadastroActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

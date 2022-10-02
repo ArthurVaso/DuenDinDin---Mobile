@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:src="@drawable/setinha_voltar"/>
+            android:src="@drawable/icon_setinha_voltar"/>
     </LinearLayout>
 
     <LinearLayout
@@ -115,7 +115,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            app:strokeColor="@color/black"
+            android:backgroundTint="@color/secondary_color"
+            android:backgroundTintMode="add"
+            app:strokeColor="@color/border_color"
             app:strokeWidth="2dp"/>
     </LinearLayout>
 
