@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">DuenDinDin</string>
 
+    <string name="msg_usuario_perfil">Olá, Duen Din Din!</string>
+    <string name="msg_usuario_perfil_dados">ESSES SÃO SEUS DADOS</string>
 
     <!-- Tela inicial -->
     <string name="btn_main_entrar">ENTRE</string>
