@@ -117,6 +117,14 @@
     <string name="hint_categoria_cadastro_periodo">0</string>
 
     <string name="btn_categoria_cadastro_salvar">Salvar</string>
+
+    <!--    TELA LISTAGEM GANHOS-->
+    <string name="msg_ganho_listagem">Olá, Duen Din Din!</string>
+    <string name="msg_ganho_listagem_dados">ESSES SÃO TODOS OS SEUS GANHOS</string>
+    <string name="btn_ganho_listagem_novo_recebimento">NOVO RECEBIMENTO</string>
+    <string name="txt_ganho_listagem_data">dd/mm/aaaa</string>
+
+
     <!-- opções tipo categoria -->
     <string-array name="spTipoCategoria">
         <item>Selecione uma opção...</item>
