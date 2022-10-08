@@ -111,8 +111,6 @@
     <string name="hint_categoria_cadastro_descricao">Descrição</string>
     <string name="txt_categoria_cadastro_tipo">TIPO *</string>
     <string name="txt_categoria_cadastro_recorrente">RECORRENTE *</string>
-    <string name="txt_categoria_cadastro_periodo">PERÍODO DE RECORRÊNCIA</string>
-    <string name="hint_categoria_cadastro_periodo">0</string>
 
     <string name="btn_categoria_cadastro_salvar">Salvar</string>
     <!-- opções tipo categoria -->
