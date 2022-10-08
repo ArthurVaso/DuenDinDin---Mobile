@@ -190,6 +190,51 @@
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color" />
 
+                <TextView
+                    android:id="@+id/txt_recorrente_ganho"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_categoria_cadastro_recorrente"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/sp_recorrente_ganho"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/spinner_background"
+                    android:entries="@array/spRecorrenteCategoria"
+                    android:minHeight="48dp"
+                    app:boxStrokeColor="@color/secondary_color" />
+
+                <TextView
+                    android:id="@+id/txt_tipo_ganho"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_categoria_cadastro_tipo"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/sp_tipo_ganho"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/spinner_background"
+                    android:entries="@array/spTipoCategoria"
+                    android:minHeight="48dp"
+                    app:boxStrokeColor="@color/secondary_color" />
+
+
+
                 <Button
                     android:id="@+id/btn_ganho_cadastro_salvar"
                     android:layout_width="match_parent"
