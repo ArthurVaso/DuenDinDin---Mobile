@@ -28,11 +28,6 @@
     <string name="txt_usuario_perfil_senha">SENHA</string>
     <string name="txt_usuario_perfil_edit_senha">************</string>
     <string name="msg_usuario_perfil_esqueceu_sua_senha"><u>Esqueceu sua senha?</u></string>
-<<<<<<< HEAD
-
-    <!--    TEXTOS DOS DADOS FINANCEIROS-->
-    <string name="txt_usuario_perfil_financeiro">Financeiro:</string>
-=======
 
     <!--    TEXTOS DOS DADOS FINANCEIROS-->
     <string name="txt_usuario_perfil_financeiro">Financeiro:</string>
@@ -42,34 +37,13 @@
     <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
     <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
 
-    <!-- Tela cadastro e alteração de usuário -->
-
-    <string name="txt_usuario_perfil_email">EMAIL</string>
-    <string name="txt_usuario_perfil_edit_email">duend@dindin.com</string>
-    <string name="txt_usuario_perfil_senha">SENHA</string>
-    <string name="txt_usuario_perfil_edit_senha">************</string>
-    <string name="msg_usuario_perfil_esqueceu_sua_senha"><u>Esqueceu sua senha?</u></string>
-
-    <!--    TEXTOS DOS DADOS FINANCEIROS-->
-    <string name="txt_usuario_perfil_financeiro">Financeiro:</string>
-
->>>>>>> remotes/origin/develop
-    <string name="txt_usuario_perfil_salario">SALÁRIO</string>
-    <string name="txt_usuario_perfil_edit_salario">R$2000,00</string>
-    <string name="txt_usuario_perfil_limite_de_gasto">LIMITE DE GASTO</string>
-    <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
-<<<<<<< HEAD
-    <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
-
-    <!-- Tela cadastro e alteração de usuário -->
-=======
-
-<!--    TELA CADASTRO USUARIO-->
+    <!-- TELA CADASTRO USUARIO-->
     <string name="btn_usuario_cadastro_continuar">Continuar</string>
     <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
     <string name="hint_usuario_cadastro_email">duen@dindin.com</string>
     <string name="hint_usuario_cadastro_senha">***********</string>
->>>>>>> remotes/origin/develop
+    
+    <!-- Tela cadastro e alteração de usuário -->
     <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
     <string name="txt_usuario_cadastro_dados_pessoais_subtitulo">Dados Pessoais</string>
     <string name="txt_usuario_cadastro_dados_acesso_subtitulo">Dados Acesso</string>
@@ -94,6 +68,7 @@
 
     <string name="btn_usuario_cadastro_continuar">Continuar</string>
     <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
+
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
     <string name="msg_categoria_listagem_dados">ESSES SÃO SUAS CATEGORIAS</string>
