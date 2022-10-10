@@ -68,7 +68,7 @@
 
     <string name="btn_usuario_cadastro_continuar">Continuar</string>
     <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
-
+    
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
     <string name="msg_categoria_listagem_dados">ESSES SÃO SUAS CATEGORIAS</string>
@@ -124,6 +124,7 @@
     <string name="txt_categoria_cadastro_recorrente">RECORRENTE *</string>
 
     <string name="btn_categoria_cadastro_salvar">Salvar</string>
+    
     <!-- opções tipo categoria -->
     <string-array name="spTipoCategoria">
         <item>Selecione uma opção...</item>
