@@ -29,6 +29,12 @@
             android:name=".CategoriaCadastroActivity"
             android:exported="false" />
         <activity
+            android:name=".GastoCadastroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GanhoCadastroActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

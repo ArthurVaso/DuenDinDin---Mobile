@@ -109,9 +109,9 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
             }
         }
         if(idade > 110 || idade < 10) {
-            txtDataNasc.setError(getString(R.string.msg_data_invalida));
+            txtDataNasc.setError(getString(R.string.msg_data_nasc_invalida));
             txtDataNasc.setText("");
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, R.string.msg_data_invalida, Toast.LENGTH_LONG).show();
+            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, R.string.msg_data_nasc_invalida, Toast.LENGTH_LONG).show();
             return;
         }
         txtDataNasc.setError(null);
