@@ -1,4 +1,4 @@
-package br.edu.ifsp.duendindin_mobile;
+package br.edu.ifsp.duendindin_mobile.view;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
+
+import br.edu.ifsp.duendindin_mobile.R;
 
 public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private Button btnContinuar;

@@ -1,4 +1,4 @@
-package br.edu.ifsp.duendindin_mobile;
+package br.edu.ifsp.duendindin_mobile.view;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +20,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class GastoCadastroActivity extends AppCompatActivity {
+import br.edu.ifsp.duendindin_mobile.R;
+
+public class GanhoCadastroActivity extends AppCompatActivity {
 
     private Button btnSalvar;
     private ImageView imgSetaVoltar;
@@ -29,7 +30,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
     private TextView txtTipo;
     private TextView txtRecorrente;
     private TextView txtCategoria;
-    private TextView txtDataVenc;
+    private TextView txtDataReceb;
     private DatePickerDialog datePickerDialog;
     private TextInputEditText edtNome;
     private TextInputEditText edtDescricao;
@@ -41,18 +42,18 @@ public class GastoCadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_gasto);
-        edtNome = findViewById(R.id.edt_nome_gasto);
-        edtDescricao = findViewById(R.id.edt_descricao_gasto);
-        edtValor = findViewById(R.id.edt_valor_gasto);
-        txtCategoria = findViewById(R.id.txt_categoria_gasto);
-        spnCategoria = (Spinner) findViewById(R.id.sp_categoria_gasto);
-        txtTipo = findViewById(R.id.txt_tipo_gasto);
-        spnTipo = (Spinner) findViewById(R.id.sp_tipo_gasto);
-        txtRecorrente = findViewById(R.id.txt_recorrente_gasto);
-        spnRecorrente = (Spinner) findViewById(R.id.sp_recorrente_gasto);
+        setContentView(R.layout.activity_cadastro_ganho);
+        edtNome = findViewById(R.id.edt_nome_ganho);
+        edtDescricao = findViewById(R.id.edt_descricao_ganho);
+        edtValor = findViewById(R.id.edt_valor_ganho);
+        txtCategoria = findViewById(R.id.txt_categoria_ganho);
+        spnCategoria = (Spinner) findViewById(R.id.sp_categoria_ganho);
+        txtTipo = findViewById(R.id.txt_tipo_ganho);
+        spnTipo = (Spinner) findViewById(R.id.sp_tipo_ganho);
+        txtRecorrente = findViewById(R.id.txt_recorrente_ganho);
+        spnRecorrente = (Spinner) findViewById(R.id.sp_recorrente_ganho);
 
-        txtDataVenc = findViewById(R.id.txt_data_venc_gasto);
+        txtDataReceb = findViewById(R.id.txt_data_receb_ganho);
         Calendar dataSelecionada = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -67,25 +68,23 @@ public class GastoCadastroActivity extends AppCompatActivity {
             private void updateCalendar(){
                 String Format = "dd/MM/yyyy";
                 SimpleDateFormat sdf = new SimpleDateFormat(Format, Locale.getDefault());
-                txtDataVenc.setText(sdf.format(dataSelecionada.getTime()));
+                txtDataReceb.setText(sdf.format(dataSelecionada.getTime()));
             }
         };
-        txtDataVenc.setOnClickListener(new View.OnClickListener() {
+        txtDataReceb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(GastoCadastroActivity.this, date,dataSelecionada.get(Calendar.YEAR), dataSelecionada.get(Calendar.MONTH), dataSelecionada.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(GanhoCadastroActivity.this, date,dataSelecionada.get(Calendar.YEAR), dataSelecionada.get(Calendar.MONTH), dataSelecionada.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
-        btnSalvar = findViewById(R.id.btn_gasto_cadastro_salvar);
+        btnSalvar = findViewById(R.id.btn_ganho_cadastro_salvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-                //TODO conferir obrigatoriedade dos campos
                 if (validate()) {
-                    Intent intent = new Intent(GastoCadastroActivity.this, MainActivity.class);
+                    Intent intent = new Intent(GanhoCadastroActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
@@ -98,10 +97,11 @@ public class GastoCadastroActivity extends AppCompatActivity {
 
                 //TODO conferir obrigatoriedade dos campos
 
-                Intent intent = new Intent(GastoCadastroActivity.this, MainActivity.class);
+                Intent intent = new Intent(GanhoCadastroActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
+
         spnRecorrente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -125,7 +125,6 @@ public class GastoCadastroActivity extends AppCompatActivity {
 
     }
 
-
     private boolean validate() {
         boolean isValid = true;
         if (edtNome.getText().toString().trim().isEmpty()) {
@@ -140,20 +139,31 @@ public class GastoCadastroActivity extends AppCompatActivity {
         } else {
             txtCategoria.setError(null);
         }
-        if (txtDataVenc.getText().toString().trim().isEmpty()) {
-            txtDataVenc.setError("Preencha o campo Data Vencimento");
+        if (txtDataReceb.getText().toString().trim().isEmpty()) {
+            txtDataReceb.setError("Preencha o campo Data Recebimento");
             isValid = false;
         } else {
-            txtDataVenc.setError(null);
+            txtDataReceb.setError(null);
         }
         if (edtValor.getText().toString().trim().isEmpty()) {
-            edtValor.setError("Preencha o campo Data Vencimento");
+            edtValor.setError("Preencha o campo Data Recebimento");
             isValid = false;
         } else {
             edtValor.setError(null);
         }
+        if (spnTipo.getSelectedItemPosition() == 0) {
+            txtTipo.setError("Selecione um tipo!");
+            isValid = false;
+        } else {
+            txtTipo.setError(null);
+        }
+        if (spnRecorrente.getSelectedItemPosition() == 0) {
+            txtRecorrente.setError("Informe se a categoria é recorrente!");
+            isValid = false;
+        } else {
+            txtRecorrente.setError(null);
+        }
         return isValid;
     }
-
 
 }

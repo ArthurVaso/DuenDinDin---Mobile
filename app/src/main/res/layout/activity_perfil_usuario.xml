@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UsuarioPerfilActivity">
+    tools:context=".view.UsuarioPerfilActivity">
 
     <TextView
         android:id="@+id/msg_usario_perfil"
@@ -120,16 +120,40 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_data_de_nascimento" />
 
         <TextView
+            android:id="@+id/txt_usuario_perfil_CEP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/txt_usuario_perfil_CEP"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_nome_completo" />
+
+        <TextView
+            android:id="@+id/txt_usuario_perfil_edit_CEP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/border_color"
+            android:text="@string/txt_usuario_perfil_edit_CEP"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_CEP" />
+
+        <TextView
             android:id="@+id/txt_usuario_perfil_estado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/txt_usuario_perfil_estado"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_nome_completo" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_CEP" />
 
         <TextView
             android:id="@+id/txt_usuario_perfil_edit_estado"
@@ -147,14 +171,14 @@
             android:id="@+id/txt_usuario_perfil_cidade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/txt_usuario_perfil_cidade"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintHorizontal_bias="0.477"
             app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_estado"
-            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_data_de_nascimento" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_CEP" />
 
         <TextView
             android:id="@+id/txt_usuario_perfil_edit_cidade"

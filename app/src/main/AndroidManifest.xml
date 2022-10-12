@@ -14,28 +14,31 @@
         android:theme="@style/Theme.DuenDinDinMobile"
         tools:targetApi="31">
         <activity
-            android:name=".adapter.CategoriasAdapter"
+            android:name=".view.GastoListagemActivity"
             android:exported="false" />
         <activity
-            android:name=".CategoriaListagemActivity"
+            android:name=".view.GanhoListagemActivity"
             android:exported="false" />
         <activity
-            android:name=".UsuarioCadastroDadosAcessoActivity"
+            android:name=".view.CategoriaListagemActivity"
             android:exported="false" />
         <activity
-            android:name=".UsuarioCadastroDadosPessoaisActivity"
+            android:name=".view.UsuarioCadastroDadosAcessoActivity"
             android:exported="false" />
         <activity
-            android:name=".CategoriaCadastroActivity"
+            android:name=".view.UsuarioCadastroDadosPessoaisActivity"
             android:exported="false" />
         <activity
-            android:name=".GastoCadastroActivity"
+            android:name=".view.CategoriaCadastroActivity"
             android:exported="false" />
         <activity
-            android:name=".GanhoCadastroActivity"
+            android:name=".view.GastoCadastroActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.GanhoCadastroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UsuarioPerfilActivity"
+            android:name=".view.UsuarioPerfilActivity"
             android:exported="false" />
     </application>
 
