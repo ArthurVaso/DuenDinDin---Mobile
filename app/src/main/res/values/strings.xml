@@ -37,12 +37,16 @@
     <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
     <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
 
+    <!-- TELA CADASTRO USUARIO-->
+    <string name="btn_usuario_cadastro_continuar">Continuar</string>
+    <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
+    <string name="hint_usuario_cadastro_email">duen@dindin.com</string>
+    <string name="hint_usuario_cadastro_senha">***********</string>
+    
     <!-- Tela cadastro e alteração de usuário -->
-
     <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
     <string name="txt_usuario_cadastro_dados_pessoais_subtitulo">Dados Pessoais</string>
     <string name="txt_usuario_cadastro_dados_acesso_subtitulo">Dados Acesso</string>
-
     <string name="txt_usuario_cadastro_nome_completo">NOME COMPLETO *</string>
     <string name="hint_usuario_cadastro_nome">Duen Din Din</string>
     <string name="txt_usuario_cadastro_estado">ESTADO</string>
@@ -57,13 +61,18 @@
     <string name="txt_usuario_cadastro_senha">SENHA *</string>
     <string name="hint_usuario_cadastro_senha">***********</string>
     <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
-    <string name="msg_data_invalida">Data de nascimento inválida, idade deve ser maior que 10 anos e menor que 110 anos!</string>
+    <string name="msg_data_nasc_invalida">Data de nascimento inválida, idade deve ser maior que 10 anos e menor que 110 anos!</string>
     <string name="txt_usuario_cadastro_cep">CEP</string>
     <string name="txt_usuario_cadastro_esqueci_cep">Esqueci o CEP</string>
     <string name="edt_usuario_cadastro_cep">Informe o CEP</string>
 
     <string name="btn_usuario_cadastro_continuar">Continuar</string>
     <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
+    
+    <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
+    <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
+    <string name="msg_categoria_listagem_dados">ESSES SÃO SUAS CATEGORIAS</string>
+
 
     <!-- nomes das Unidades Federativas do Brasil -->
     <string-array name="spUf">
@@ -113,8 +122,6 @@
     <string name="hint_categoria_cadastro_descricao">Descrição</string>
     <string name="txt_categoria_cadastro_tipo">TIPO *</string>
     <string name="txt_categoria_cadastro_recorrente">RECORRENTE *</string>
-    <string name="txt_categoria_cadastro_periodo">PERÍODO DE RECORRÊNCIA</string>
-    <string name="hint_categoria_cadastro_periodo">0</string>
 
     <string name="btn_categoria_cadastro_salvar">Salvar</string>
 
@@ -131,6 +138,7 @@
     <string name="txt_usuario_perfil_edit_CEP">14801-600</string>
 
 
+    
     <!-- opções tipo categoria -->
     <string-array name="spTipoCategoria">
         <item>Selecione uma opção...</item>
@@ -144,5 +152,43 @@
         <item>SIM</item>
         <item>NÃO</item>
     </string-array>
+
+    <!-- Tela cadastro e alteração de gasto -->
+    <string name="txt_gasto_cadastro_titulo">Cadastro de Gasto</string>
+    <string name="txt_gasto_cadastro_subtitulo">Dados da Gasto</string>
+    <string name="txt_gasto_cadastro_nome">NOME *</string>
+    <string name="hint_gasto_cadastro_nome">Conta de Água</string>
+    <string name="txt_gasto_cadastro_data_de_vencimento">DATA DO VENCIMENTO</string>
+    <string name="hint_gasto_cadastro_data_venc">dd/mm/aaaa</string>
+    <string name="txt_gasto_cadastro_descricao">DESCRIÇÃO</string>
+    <string name="hint_gasto_cadastro_descricao">Descrição</string>
+    <string name="txt_gasto_cadastro_categoria">CATEGORIA *</string>
+    <string name="txt_gasto_cadastro_valor">VALOR</string>
+    <string name="hint_gasto_cadastro_valor">11,34</string>
+    <string name="btn_gasto_cadastro_salvar">Salvar</string>
+
+    <!-- Tela cadastro e alteração de ganho -->
+    <string name="txt_ganho_cadastro_titulo">Cadastro de Ganho</string>
+    <string name="txt_ganho_cadastro_subtitulo">Dados da Ganho</string>
+    <string name="txt_ganho_cadastro_nome">NOME *</string>
+    <string name="hint_ganho_cadastro_nome">Freelance</string>
+    <string name="txt_ganho_cadastro_data_de_recebimento">DATA DO RECEBIMENTO</string>
+    <string name="hint_ganho_cadastro_data_receb">dd/mm/aaaa</string>
+    <string name="txt_ganho_cadastro_descricao">DESCRIÇÃO</string>
+    <string name="hint_ganho_cadastro_descricao">Descrição</string>
+    <string name="txt_ganho_cadastro_categoria">CATEGORIA *</string>
+    <string name="txt_ganho_cadastro_valor">VALOR</string>
+    <string name="hint_ganho_cadastro_valor">11,34</string>
+    <string name="btn_ganho_cadastro_salvar">Salvar</string>
+
+    <!-- opções de categoria de gasto/ganho-->
+    <string-array name="spCategoriaGastoGanho">
+        <item>Selecione uma opção...</item>
+        <item>Categoria 1</item>
+        <item>Categoria 2</item>
+    </string-array>
+
+    <string name="msg_data_venc_invalida">Data de vencimento inválida!</string>
+    <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
 
 </resources>
