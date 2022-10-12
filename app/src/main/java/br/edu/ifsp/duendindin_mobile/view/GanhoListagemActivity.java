@@ -1,8 +1,10 @@
-package br.edu.ifsp.duendindin_mobile;
+package br.edu.ifsp.duendindin_mobile.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import br.edu.ifsp.duendindin_mobile.R;
 
 public class GanhoListagemActivity extends AppCompatActivity {
 

@@ -16,6 +16,8 @@
     <string name="txt_usuario_perfil_edit_nome_completo">Duen Din Din</string>
     <string name="txt_usuario_perfil_data_de_nascimento">DATA DE NASCIMENTO</string>
     <string name="txt_usuario_perfil_edit_data_de_nascimento">01/01/2001</string>
+    <string name="txt_usuario_perfil_CEP">CEP</string>
+    <string name="txt_usuario_perfil_edit_CEP">14801-600</string>
     <string name="txt_usuario_perfil_estado">ESTADO</string>
     <string name="txt_usuario_perfil_edit_estado">Estado</string>
     <string name="txt_usuario_perfil_cidade">CIDADE</string>
@@ -36,12 +38,6 @@
     <string name="txt_usuario_perfil_limite_de_gasto">LIMITE DE GASTO</string>
     <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
     <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
-
-    <!-- TELA CADASTRO USUARIO-->
-    <string name="btn_usuario_cadastro_continuar">Continuar</string>
-    <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
-    <string name="hint_usuario_cadastro_email">duen@dindin.com</string>
-    <string name="hint_usuario_cadastro_senha">***********</string>
     
     <!-- Tela cadastro e alteração de usuário -->
     <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
@@ -72,7 +68,6 @@
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
     <string name="msg_categoria_listagem_dados">ESSES SÃO SUAS CATEGORIAS</string>
-
 
     <!-- nomes das Unidades Federativas do Brasil -->
     <string-array name="spUf">
@@ -112,7 +107,6 @@
         <item>Araraquara</item>
     </string-array>
 
-
     <!-- Tela cadastro e alteração de categoria -->
     <string name="txt_categoria_cadastro_titulo">Cadastro de Categoria</string>
     <string name="txt_categoria_cadastro_subtitulo">Dados da Categoria</string>
@@ -125,20 +119,18 @@
 
     <string name="btn_categoria_cadastro_salvar">Salvar</string>
 
-    <!--    TELA LISTAGEM GANHOS-->
+    <!--TELA LISTAGEM GANHOS-->
     <string name="msg_ganho_listagem">Olá, Duen Din Din!</string>
     <string name="msg_ganho_listagem_dados">ESSES SÃO TODOS OS SEUS GANHOS</string>
     <string name="btn_ganho_listagem_novo_recebimento">NOVO RECEBIMENTO</string>
     <string name="txt_ganho_listagem_data">dd/mm/aaaa</string>
-    <string name="txt_gasto_listagem_data">dd/mm/aaaa</string>
-    <string name="btn_gasto_listagem_novo_vencimento">NOVO VENCIMENTO</string>
+
+    <!--TELA LISTAGEM GASTOS-->
     <string name="msg_gasto_listagem_dados">ESSES SÃO TODOS OS SEUS GASTOS</string>
+    <string name="btn_gasto_listagem_novo_vencimento">NOVO VENCIMENTO</string>
+    <string name="txt_gasto_listagem_data">dd/mm/aaaa</string>
     <string name="msg_gasto_listagem">Olá, Duen Din Din!</string>
-    <string name="txt_usuario_perfil_CEP">CEP</string>
-    <string name="txt_usuario_perfil_edit_CEP">14801-600</string>
 
-
-    
     <!-- opções tipo categoria -->
     <string-array name="spTipoCategoria">
         <item>Selecione uma opção...</item>
@@ -166,6 +158,7 @@
     <string name="txt_gasto_cadastro_valor">VALOR</string>
     <string name="hint_gasto_cadastro_valor">11,34</string>
     <string name="btn_gasto_cadastro_salvar">Salvar</string>
+    <string name="msg_data_venc_invalida">Data de vencimento inválida!</string>
 
     <!-- Tela cadastro e alteração de ganho -->
     <string name="txt_ganho_cadastro_titulo">Cadastro de Ganho</string>
@@ -180,6 +173,7 @@
     <string name="txt_ganho_cadastro_valor">VALOR</string>
     <string name="hint_ganho_cadastro_valor">11,34</string>
     <string name="btn_ganho_cadastro_salvar">Salvar</string>
+    <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
 
     <!-- opções de categoria de gasto/ganho-->
     <string-array name="spCategoriaGastoGanho">
@@ -188,7 +182,5 @@
         <item>Categoria 2</item>
     </string-array>
 
-    <string name="msg_data_venc_invalida">Data de vencimento inválida!</string>
-    <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
 
 </resources>

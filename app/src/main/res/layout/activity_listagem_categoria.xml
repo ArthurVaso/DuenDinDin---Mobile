@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CategoriaListagemActivity">
+    tools:context=".view.CategoriaListagemActivity">
 
     <TextView
         android:id="@+id/msg_usario_perfil"
