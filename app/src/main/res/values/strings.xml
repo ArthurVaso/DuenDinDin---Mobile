@@ -38,7 +38,7 @@
     <string name="txt_usuario_perfil_limite_de_gasto">LIMITE DE GASTO</string>
     <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
     <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
-    
+
     <!-- Tela cadastro e alteração de usuário -->
     <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
     <string name="txt_usuario_cadastro_dados_pessoais_subtitulo">Dados Pessoais</string>
@@ -64,7 +64,7 @@
 
     <string name="btn_usuario_cadastro_continuar">Continuar</string>
     <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
-    
+
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
     <string name="msg_categoria_listagem_dados">ESSES SÃO SUAS CATEGORIAS</string>
@@ -175,12 +175,25 @@
     <string name="btn_ganho_cadastro_salvar">Salvar</string>
     <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
 
+
     <!-- opções de categoria de gasto/ganho-->
     <string-array name="spCategoriaGastoGanho">
         <item>Selecione uma opção...</item>
         <item>Categoria 1</item>
         <item>Categoria 2</item>
     </string-array>
+
+    <!-- Tela Home -->
+    <string name="txt_home_titulo">Suas Finanças</string>
+    <string name="txt_home_acoes_rapidas">AÇÕES RÁPIDAS</string>
+    <string name="btn_home_adicionar_recebimentos">Adicionar Recebimentos</string>
+    <string name="btn_home_adicionar_vencimentos">Adicionar Vencimentos</string>
+    <string name="btn_home_adicionar_categoria">Adicionar Categoria</string>
+    <string name="btn_home_ver_perfil">Ver Perfil</string>
+    <string name="txt_home_graficos">GRÁFICOS</string>
+    <string name="txt_home_vencimentos_proximos">VENCIMENTOS PRÓXIMOS</string>
+    <string name="txt_home_outras_opcoes">OUTRAS OPÇÕES</string>
+    <string name="txt_home_todos_os_vencimentos">Todos os Vencimentos</string>
 
 
 </resources>
