@@ -124,6 +124,20 @@
     <string name="txt_categoria_cadastro_recorrente">RECORRENTE *</string>
 
     <string name="btn_categoria_cadastro_salvar">Salvar</string>
+
+    <!--    TELA LISTAGEM GANHOS-->
+    <string name="msg_ganho_listagem">Olá, Duen Din Din!</string>
+    <string name="msg_ganho_listagem_dados">ESSES SÃO TODOS OS SEUS GANHOS</string>
+    <string name="btn_ganho_listagem_novo_recebimento">NOVO RECEBIMENTO</string>
+    <string name="txt_ganho_listagem_data">dd/mm/aaaa</string>
+    <string name="txt_gasto_listagem_data">dd/mm/aaaa</string>
+    <string name="btn_gasto_listagem_novo_vencimento">NOVO VENCIMENTO</string>
+    <string name="msg_gasto_listagem_dados">ESSES SÃO TODOS OS SEUS GASTOS</string>
+    <string name="msg_gasto_listagem">Olá, Duen Din Din!</string>
+    <string name="txt_usuario_perfil_CEP">CEP</string>
+    <string name="txt_usuario_perfil_edit_CEP">14801-600</string>
+
+
     
     <!-- opções tipo categoria -->
     <string-array name="spTipoCategoria">
