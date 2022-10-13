@@ -67,7 +67,12 @@
 
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
-    <string name="msg_categoria_listagem_dados">ESSES SÃO SUAS CATEGORIAS</string>
+    <string name="msg_categoria_listagem_dados">ESSAS SÃO SUAS CATEGORIAS</string>
+        <!-- Item Categoria -->
+    <string name="txt_categoria_item_nome">Nome da Categoria - Fixo ou Variável</string>
+    <string name="txt_categoria_item_descricao">Descrição</string>
+    <string name="txt_categoria_item_periodo">Periodo de recorrência</string>
+
 
     <!-- nomes das Unidades Federativas do Brasil -->
     <string-array name="spUf">
@@ -194,6 +199,8 @@
     <string name="txt_home_vencimentos_proximos">VENCIMENTOS PRÓXIMOS</string>
     <string name="txt_home_outras_opcoes">OUTRAS OPÇÕES</string>
     <string name="txt_home_todos_os_vencimentos">Todos os Vencimentos</string>
-
+    <string name="btn_categoria_listagem_nova_categoria">Nova Categoria</string>
+    <string name="cd_categoria_item_img_edit">Imagem Button para editar uma categoria</string>
+    <string name="cd_categoria_item_img_remove">Imagem Button para remover uma categoria</string>
 
 </resources>
