@@ -65,7 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_pessoais"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_edit_button"
+            app:srcCompat="@drawable/img_edit_button_20"
             tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
