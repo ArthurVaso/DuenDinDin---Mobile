@@ -19,9 +19,9 @@
     <string name="txt_usuario_perfil_CEP">CEP</string>
     <string name="txt_usuario_perfil_edit_CEP">14801-600</string>
     <string name="txt_usuario_perfil_estado">ESTADO</string>
-    <string name="txt_usuario_perfil_edit_estado">Estado</string>
+    <string name="txt_usuario_perfil_edit_estado">São Paulo</string>
     <string name="txt_usuario_perfil_cidade">CIDADE</string>
-    <string name="txt_usuario_perfil_edit_cidade">Cidade</string>
+    <string name="txt_usuario_perfil_edit_cidade">Araraquara</string>
 
     <!--    TEXTOS DOS DADOS DE ACESSO-->
     <string name="txt_usuario_perfil_acesso">Acesso:</string>
@@ -29,7 +29,7 @@
     <string name="txt_usuario_perfil_edit_email">duend@dindin.com</string>
     <string name="txt_usuario_perfil_senha">SENHA</string>
     <string name="txt_usuario_perfil_edit_senha">************</string>
-    <string name="msg_usuario_perfil_esqueceu_sua_senha"><u>Esqueceu sua senha?</u></string>
+    <string name="msg_usuario_perfil_esqueceu_sua_senha"><u>Redefinir senha</u></string>
 
     <!--    TEXTOS DOS DADOS FINANCEIROS-->
     <string name="txt_usuario_perfil_financeiro">Financeiro:</string>
@@ -67,7 +67,14 @@
 
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
-    <string name="msg_categoria_listagem_dados">ESSES SÃO SUAS CATEGORIAS</string>
+    <string name="msg_categoria_listagem_dados">ESSAS SÃO SUAS CATEGORIAS</string>
+        <!-- Item Categoria -->
+    <string name="txt_categoria_item_nome">Nome da Categoria - Fixo ou Variável</string>
+    <string name="txt_categoria_item_descricao">Descrição</string>
+    <string name="txt_categoria_item_periodo">Periodo de recorrência</string>
+    <string name="cd_categoria_item_img_edit">Imagem Button para editar uma categoria</string>
+    <string name="cd_categoria_item_img_remove">Imagem Button para remover uma categoria</string>
+
 
     <!-- nomes das Unidades Federativas do Brasil -->
     <string-array name="spUf">
@@ -124,12 +131,18 @@
     <string name="msg_ganho_listagem_dados">ESSES SÃO TODOS OS SEUS GANHOS</string>
     <string name="btn_ganho_listagem_novo_recebimento">NOVO RECEBIMENTO</string>
     <string name="txt_ganho_listagem_data">dd/mm/aaaa</string>
+        <!-- Item Ganho -->
+    <string name="txt_ganho_item_nome">Nome da Conta -R$ valor</string>
+    <string name="txt_ganho_item_descricao">Descrição</string>
 
     <!--TELA LISTAGEM GASTOS-->
     <string name="msg_gasto_listagem_dados">ESSES SÃO TODOS OS SEUS GASTOS</string>
     <string name="btn_gasto_listagem_novo_vencimento">NOVO VENCIMENTO</string>
     <string name="txt_gasto_listagem_data">dd/mm/aaaa</string>
     <string name="msg_gasto_listagem">Olá, Duen Din Din!</string>
+        <!-- Item Gasto -->
+    <string name="txt_gasto_item_nome">Nome da Conta -R$ valor</string>
+    <string name="txt_gasto_item_descricao">Descrição</string>
 
     <!-- opções tipo categoria -->
     <string-array name="spTipoCategoria">
@@ -194,6 +207,5 @@
     <string name="txt_home_vencimentos_proximos">VENCIMENTOS PRÓXIMOS</string>
     <string name="txt_home_outras_opcoes">OUTRAS OPÇÕES</string>
     <string name="txt_home_todos_os_vencimentos">Todos os Vencimentos</string>
-
-
+    <string name="btn_categoria_listagem_nova_categoria">Nova Categoria</string>
 </resources>

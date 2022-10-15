@@ -31,7 +31,6 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15sp" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,6 +38,21 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="40dp">
+
+        <Button
+            android:id="@+id/btn_categoria_listagem_nova_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/secondary_color"
+            android:backgroundTintMode="add"
+            android:text="@string/btn_categoria_listagem_nova_categoria"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/border_color"
+            app:strokeWidth="2dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_categorias"
@@ -48,13 +62,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_categoria_listagem_nova_categoria"
             app:layout_constraintVertical_bias="0.0"
-            tools:listitem="@layout/category_item"/>
+            tools:listitem="@layout/category_item">
 
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </LinearLayout>
