@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.HomeActivity">
+    tools:context=".view.HomeActivity"
+    android:orientation="vertical">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,6 +60,7 @@
 
                     <Button
                         android:id="@+id/btn_home_adicionar_recebimentos"
+                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_marginTop="8dp"
@@ -65,11 +71,11 @@
                         android:text="@string/btn_home_adicionar_recebimentos"
                         android:textColor="@color/white"
                         app:strokeColor="@color/border_color"
-                        app:strokeWidth="2dp"
-                        style="?android:attr/buttonBarButtonStyle" />
+                        app:strokeWidth="2dp" />
 
                     <Button
                         android:id="@+id/btn_home_adicionar_vencimentos"
+                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_marginTop="8dp"
@@ -80,8 +86,7 @@
                         android:text="@string/btn_home_adicionar_vencimentos"
                         android:textColor="@color/white"
                         app:strokeColor="@color/border_color"
-                        app:strokeWidth="2dp"
-                        style="?android:attr/buttonBarButtonStyle" />
+                        app:strokeWidth="2dp" />
 
                 </LinearLayout>
 
@@ -94,6 +99,7 @@
 
                     <Button
                         android:id="@+id/btn_home_adicionar_categoria"
+                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_marginEnd="8dp"
@@ -103,11 +109,11 @@
                         android:text="@string/btn_home_adicionar_categoria"
                         android:textColor="@color/white"
                         app:strokeColor="@color/border_color"
-                        app:strokeWidth="2dp"
-                        style="?android:attr/buttonBarButtonStyle" />
+                        app:strokeWidth="2dp" />
 
                     <Button
                         android:id="@+id/btn_home_ver_perfil"
+                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_marginTop="8dp"
@@ -118,8 +124,7 @@
                         android:text="@string/btn_home_ver_perfil"
                         android:textColor="@color/white"
                         app:strokeColor="@color/border_color"
-                        app:strokeWidth="2dp"
-                        style="?android:attr/buttonBarButtonStyle" />
+                        app:strokeWidth="2dp" />
 
                 </LinearLayout>
 
@@ -205,7 +210,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="348dp"
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -225,12 +230,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
-                        android:layout_marginBottom="50dp"
                         android:fontFamily="@font/roboto_bold"
                         android:gravity="center"
                         android:text="@string/txt_home_todos_os_vencimentos"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -239,4 +244,11 @@
 
     </ScrollView>
 
-</LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/scrollView"
+        android:gravity="center"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

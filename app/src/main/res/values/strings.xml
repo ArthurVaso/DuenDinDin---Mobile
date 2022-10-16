@@ -38,6 +38,7 @@
     <string name="txt_usuario_perfil_limite_de_gasto">LIMITE DE GASTO</string>
     <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
     <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
+    <string name="cd_usuario_perfil_img_tooltip">Imagem do botão de ajuda sobre o limite de gasto do usuário</string>
 
     <!-- Tela cadastro e alteração de usuário -->
     <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
@@ -131,7 +132,7 @@
     <string name="msg_ganho_listagem_dados">ESSES SÃO TODOS OS SEUS GANHOS</string>
     <string name="btn_ganho_listagem_novo_recebimento">NOVO RECEBIMENTO</string>
     <string name="txt_ganho_listagem_data">dd/mm/aaaa</string>
-        <!-- Item Ganho -->
+    <!-- Item Ganho -->
     <string name="txt_ganho_item_nome">Nome da Conta -R$ valor</string>
     <string name="txt_ganho_item_descricao">Descrição</string>
 
@@ -140,7 +141,7 @@
     <string name="btn_gasto_listagem_novo_vencimento">NOVO VENCIMENTO</string>
     <string name="txt_gasto_listagem_data">dd/mm/aaaa</string>
     <string name="msg_gasto_listagem">Olá, Duen Din Din!</string>
-        <!-- Item Gasto -->
+    <!-- Item Gasto -->
     <string name="txt_gasto_item_nome">Nome da Conta -R$ valor</string>
     <string name="txt_gasto_item_descricao">Descrição</string>
 
@@ -208,4 +209,12 @@
     <string name="txt_home_outras_opcoes">OUTRAS OPÇÕES</string>
     <string name="txt_home_todos_os_vencimentos">Todos os Vencimentos</string>
     <string name="btn_categoria_listagem_nova_categoria">Nova Categoria</string>
+
+    <!-- Tab Bar -->
+    <string name="txt_bottom_nav_home">Home</string>
+    <string name="txt_bottom_nav_calendario">Calendário</string>
+    <string name="txt_bottom_nav_recebimentos">Recebimentos</string>
+    <string name="txt_bottom_nav_categorias">Categorias</string>
+    <string name="txt_bottom_nav_perfil">Perfil</string>
+
 </resources>
