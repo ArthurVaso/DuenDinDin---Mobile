@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnEntrar;
     private Button btnCadastrar;
 
+    private Button btnHome;
     private Button btnCategoria;
     private Button btnGasto;
     private Button btnGanho;
@@ -36,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, GastoCadastroActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnHome = findViewById(R.id.btn_main_home);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

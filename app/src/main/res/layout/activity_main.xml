@@ -57,6 +57,20 @@
                 app:strokeWidth="2dp" />
 
             <Button
+                android:id="@+id/btn_main_home"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="8dp"
+                android:backgroundTint="@color/secondary_color"
+                android:backgroundTintMode="add"
+                android:text="HOME"
+                android:textColor="@color/black"
+                app:strokeColor="@color/border_color"
+                app:strokeWidth="2dp" />
+
+            <Button
                 android:id="@+id/btn_main_categoria"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -91,6 +105,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/secondary_color"
                 android:backgroundTintMode="add"
                 android:text="GANHO"
