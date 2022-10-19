@@ -42,6 +42,19 @@
             android:name=".view.GanhoCadastroActivity"
             android:exported="false" />
         <activity
+            android:name=".view.UsuarioEntrarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.RecuperarSenhaEnviaEmailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.RecuperarSenhaInformaCodigoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.RecuperarSenhaNovaSenhaActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>

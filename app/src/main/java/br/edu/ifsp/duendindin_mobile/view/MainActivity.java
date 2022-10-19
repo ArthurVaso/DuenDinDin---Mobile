@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, GastoCadastroActivity.class);
+                Intent intent = new Intent(MainActivity.this, UsuarioEntrarActivity.class);
                 startActivity(intent);
             }
         });
