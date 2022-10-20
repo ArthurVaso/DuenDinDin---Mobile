@@ -36,7 +36,7 @@ public class RecuperarSenhaNovaSenhaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (validate()) {
                     Toast.makeText(RecuperarSenhaNovaSenhaActivity.this, "Senha Redefinida com sucesso!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RecuperarSenhaNovaSenhaActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RecuperarSenhaNovaSenhaActivity.this, UsuarioEntrarActivity.class);
                     startActivity(intent);
                 }
 

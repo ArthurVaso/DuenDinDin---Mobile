@@ -32,7 +32,7 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validate()) {
-                    Intent intent = new Intent(CategoriaCadastroActivity.this, MainActivity.class);
+                    Intent intent = new Intent(CategoriaCadastroActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
             }
@@ -45,7 +45,7 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
 
                 //TODO conferir obrigatoriedade dos campos
 
-                Intent intent = new Intent(CategoriaCadastroActivity.this, MainActivity.class);
+                Intent intent = new Intent(CategoriaCadastroActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

@@ -36,6 +36,8 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (validate()) {
                     Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, R.string.msg_cadastrado_sucesso, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(UsuarioCadastroDadosAcessoActivity.this, UsuarioEntrarActivity.class);
+                    startActivity(intent);
                 }
 
             }
@@ -45,8 +47,6 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //TODO conferir obrigatoriedade dos campos
 
                 Intent intent = new Intent(UsuarioCadastroDadosAcessoActivity.this, UsuarioCadastroDadosPessoaisActivity.class);
                 startActivity(intent);

@@ -186,7 +186,8 @@
                     android:background="@drawable/item_background"
                     android:hint="@string/hint_gasto_cadastro_valor"
                     android:fontFamily="@font/roboto_regular"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
+                    android:digits="0123456789,"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color" />
 

@@ -14,10 +14,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnEntrar;
     private Button btnCadastrar;
 
-    private Button btnHome;
-    private Button btnCategoria;
-    private Button btnGasto;
-    private Button btnGanho;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,41 +37,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnHome = findViewById(R.id.btn_main_home);
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnCategoria = findViewById(R.id.btn_main_categoria);
-        btnCategoria.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CategoriaCadastroActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnGasto = findViewById(R.id.btn_main_gasto);
-        btnGasto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, GastoCadastroActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnGanho = findViewById(R.id.btn_main_ganho);
-        btnGanho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, GanhoCadastroActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 }

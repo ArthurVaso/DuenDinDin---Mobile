@@ -84,7 +84,7 @@ public class GanhoCadastroActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (validate()) {
-                    Intent intent = new Intent(GanhoCadastroActivity.this, MainActivity.class);
+                    Intent intent = new Intent(GanhoCadastroActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
             }
@@ -97,7 +97,7 @@ public class GanhoCadastroActivity extends AppCompatActivity {
 
                 //TODO conferir obrigatoriedade dos campos
 
-                Intent intent = new Intent(GanhoCadastroActivity.this, MainActivity.class);
+                Intent intent = new Intent(GanhoCadastroActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

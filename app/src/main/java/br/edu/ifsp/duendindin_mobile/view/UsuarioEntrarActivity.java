@@ -38,6 +38,8 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (validate()) {
                     Toast.makeText(UsuarioEntrarActivity.this, "login efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(UsuarioEntrarActivity.this, HomeActivity.class);
+                    startActivity(intent);
                 }
 
             }
