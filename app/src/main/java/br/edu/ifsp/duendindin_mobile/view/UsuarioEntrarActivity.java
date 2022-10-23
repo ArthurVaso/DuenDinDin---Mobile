@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,29 +15,30 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import br.edu.ifsp.duendindin_mobile.R;
 
-public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
+public class UsuarioEntrarActivity extends AppCompatActivity {
 
-    private Button btnCadastrar;
+    private Button btnEntrar;
     private ImageView imgSetaVoltar;
     private TextInputEditText txtEmail;
     private TextInputEditText txtSenha;
+    private TextView txtEsqueceuSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_usuario_dados_acesso);
+        setContentView(R.layout.activity_usuario_entrar);
 
-        txtEmail = findViewById(R.id.txt_edit_usuario_cadastro_email);
-        txtSenha = findViewById(R.id.txt_edit_senha);
+        txtEmail = findViewById(R.id.txt_edit_usuario_entrar_email);
+        txtSenha = findViewById(R.id.txt_edit_usuario_entrar_senha);
 
-        btnCadastrar = findViewById(R.id.btn_usuario_cadastro_cadastrar);
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+        btnEntrar = findViewById(R.id.btn_usuario_entrar);
+        btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
                 if (validate()) {
-                    Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, R.string.msg_cadastrado_sucesso, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UsuarioCadastroDadosAcessoActivity.this, UsuarioEntrarActivity.class);
+                    Toast.makeText(UsuarioEntrarActivity.this, "login efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(UsuarioEntrarActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
 
@@ -48,7 +50,18 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(UsuarioCadastroDadosAcessoActivity.this, UsuarioCadastroDadosPessoaisActivity.class);
+                Intent intent = new Intent(UsuarioEntrarActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        txtEsqueceuSenha = findViewById(R.id.txt_esqueceu_senha);
+        txtEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(UsuarioEntrarActivity.this, RecuperarSenhaEnviaEmailActivity.class);
                 startActivity(intent);
 
 

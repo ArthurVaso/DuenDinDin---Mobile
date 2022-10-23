@@ -175,7 +175,6 @@
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_valor_ganho"
                     android:layout_width="match_parent"
@@ -184,9 +183,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
-                    android:hint="@string/hint_ganho_cadastro_valor"
                     android:fontFamily="@font/roboto_regular"
-                    android:inputType="number"
+                    android:hint="@string/hint_ganho_cadastro_valor"
+                    android:inputType="numberDecimal"
+                    android:digits="0123456789,"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color" />
 

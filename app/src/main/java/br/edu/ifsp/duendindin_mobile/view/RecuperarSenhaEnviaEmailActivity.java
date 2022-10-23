@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,29 +15,27 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import br.edu.ifsp.duendindin_mobile.R;
 
-public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
+public class RecuperarSenhaEnviaEmailActivity extends AppCompatActivity {
 
-    private Button btnCadastrar;
+    private Button btnEnviar;
     private ImageView imgSetaVoltar;
     private TextInputEditText txtEmail;
-    private TextInputEditText txtSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_usuario_dados_acesso);
+        setContentView(R.layout.activity_recuperar_senha_envia_email);
 
-        txtEmail = findViewById(R.id.txt_edit_usuario_cadastro_email);
-        txtSenha = findViewById(R.id.txt_edit_senha);
+        txtEmail = findViewById(R.id.txt_edit_recuperar_senha_email);
 
-        btnCadastrar = findViewById(R.id.btn_usuario_cadastro_cadastrar);
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+        btnEnviar = findViewById(R.id.btn_recuperar_senha_enviar);
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
                 if (validate()) {
-                    Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, R.string.msg_cadastrado_sucesso, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UsuarioCadastroDadosAcessoActivity.this, UsuarioEntrarActivity.class);
+                    Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "E-mail enviado com sucesso", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RecuperarSenhaEnviaEmailActivity.this, RecuperarSenhaInformaCodigoActivity.class);
                     startActivity(intent);
                 }
 
@@ -48,7 +47,8 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(UsuarioCadastroDadosAcessoActivity.this, UsuarioCadastroDadosPessoaisActivity.class);
+
+                Intent intent = new Intent(RecuperarSenhaEnviaEmailActivity.this, UsuarioEntrarActivity.class);
                 startActivity(intent);
 
 
@@ -67,12 +67,6 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
             isValid = false;
         } else {
             txtEmail.setError(null);
-        }
-        if (txtSenha.getText().toString().trim().isEmpty()) {
-            txtSenha.setError("Preencha o campo senha");
-            isValid = false;
-        } else {
-            txtSenha.setError(null);
         }
         return isValid;
     }

@@ -2,9 +2,11 @@ package br.edu.ifsp.duendindin_mobile.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,29 +14,30 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import br.edu.ifsp.duendindin_mobile.R;
 
-public class CategoriaCadastroActivity extends AppCompatActivity {
+public class RecuperarSenhaInformaCodigoActivity extends AppCompatActivity {
 
-    private Button btnSalvar;
+    private Button btnProximo;
     private ImageView imgSetaVoltar;
-    private TextInputEditText edtNome;
-    private TextInputEditText edtDescricao;
+    private TextInputEditText txtCodigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recuperar_senha_informa_codigo);
 
-        setContentView(R.layout.activity_cadastro_categoria);
-        edtNome = findViewById(R.id.edt_nome_categoria);
-        edtDescricao = findViewById(R.id.edt_descricao_categoria);
+        txtCodigo = findViewById(R.id.txt_edit_recuperar_senha_codigo);
 
-        btnSalvar = findViewById(R.id.btn_categoria_cadastro_salvar);
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+        btnProximo = findViewById(R.id.btn_recuperar_senha_proximo);
+        btnProximo.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
                 if (validate()) {
-                    Intent intent = new Intent(CategoriaCadastroActivity.this, HomeActivity.class);
+                    Toast.makeText(RecuperarSenhaInformaCodigoActivity.this, "Código validado com sucesso!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RecuperarSenhaInformaCodigoActivity.this, RecuperarSenhaNovaSenhaActivity.class);
                     startActivity(intent);
                 }
+
             }
         });
 
@@ -43,10 +46,11 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO conferir obrigatoriedade dos campos
 
-                Intent intent = new Intent(CategoriaCadastroActivity.this, HomeActivity.class);
+                Intent intent = new Intent(RecuperarSenhaInformaCodigoActivity.this, RecuperarSenhaEnviaEmailActivity.class);
                 startActivity(intent);
+
+
             }
         });
 
@@ -54,13 +58,13 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
 
     private boolean validate() {
         boolean isValid = true;
-        if (edtNome.getText().toString().trim().isEmpty()) {
-            edtNome.setError("Preencha o campo nome");
+        if (txtCodigo.getText().toString().trim().isEmpty()) {
+            txtCodigo.setError("Preencha o campo email");
             isValid = false;
-        } else {
-            edtNome.setError(null);
+        }  else {
+            txtCodigo.setError(null);
         }
         return isValid;
     }
-}
 
+}
