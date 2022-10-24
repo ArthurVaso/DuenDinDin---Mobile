@@ -43,21 +43,21 @@ public class HomeActivity extends AppCompatActivity {
         btnAdicionarRecebimentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, GanhoListagemActivity.class);
+                Intent intent = new Intent(HomeActivity.this, GanhoCadastroActivity.class);
                 startActivity(intent);
             }
         });
         btnAdicionarVencimentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, GastoListagemActivity.class);
+                Intent intent = new Intent(HomeActivity.this, GastoCadastroActivity.class);
                 startActivity(intent);
             }
         });
         btnAdicionarCategoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, CategoriaListagemActivity.class);
+                Intent intent = new Intent(HomeActivity.this, CategoriaCadastroActivity.class);
                 startActivity(intent);
             }
         });

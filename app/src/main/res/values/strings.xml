@@ -69,7 +69,7 @@
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
     <string name="msg_categoria_listagem_dados">ESSAS SÃO SUAS CATEGORIAS</string>
-        <!-- Item Categoria -->
+    <!-- Item Categoria -->
     <string name="txt_categoria_item_nome">Nome da Categoria - Fixo ou Variável</string>
     <string name="txt_categoria_item_descricao">Descrição</string>
     <string name="txt_categoria_item_periodo">Periodo de recorrência</string>
