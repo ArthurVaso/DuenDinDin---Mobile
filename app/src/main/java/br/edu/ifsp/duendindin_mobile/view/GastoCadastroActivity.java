@@ -83,10 +83,9 @@ public class GastoCadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 //TODO conferir obrigatoriedade dos campos
                 if (validate()) {
-                    Intent intent = new Intent(GastoCadastroActivity.this, MainActivity.class);
+                    Intent intent = new Intent(GastoCadastroActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
             }
@@ -99,7 +98,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
 
                 //TODO conferir obrigatoriedade dos campos
 
-                Intent intent = new Intent(GastoCadastroActivity.this, MainActivity.class);
+                Intent intent = new Intent(GastoCadastroActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
