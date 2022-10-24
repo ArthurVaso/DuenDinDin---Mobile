@@ -1,12 +1,15 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.highsoft.highcharts.common.hichartsclasses.*;
 import com.highsoft.highcharts.core.*;
 
@@ -25,6 +28,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private HIChartView hcGrafico;
 
+    private BottomNavigationView bnvHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,21 +43,21 @@ public class HomeActivity extends AppCompatActivity {
         btnAdicionarRecebimentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, GanhoCadastroActivity.class);
+                Intent intent = new Intent(HomeActivity.this, GanhoListagemActivity.class);
                 startActivity(intent);
             }
         });
         btnAdicionarVencimentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, GastoCadastroActivity.class);
+                Intent intent = new Intent(HomeActivity.this, GastoListagemActivity.class);
                 startActivity(intent);
             }
         });
         btnAdicionarCategoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, CategoriaCadastroActivity.class);
+                Intent intent = new Intent(HomeActivity.this, CategoriaListagemActivity.class);
                 startActivity(intent);
             }
         });
@@ -81,5 +86,31 @@ public class HomeActivity extends AppCompatActivity {
         options.setSeries(new ArrayList<>(Collections.singletonList(series)));
         hcGrafico.setOptions(options);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bnvHome = findViewById(R.id.bnv_home);
+        bnvHome.setSelectedItemId(R.id.bottom_nav_menu_home);
+
+        bnvHome.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                CharSequence title = item.getTitle();
+                if ("Calendário".equals(title)) {
+                    startActivity(new Intent(HomeActivity.this, GastoListagemActivity.class));
+                } else if ("Recebimentos".equals(title)) {
+                    startActivity(new Intent(HomeActivity.this, GanhoListagemActivity.class));
+                } else if ("Categorias".equals(title)) {
+                    startActivity(new Intent(HomeActivity.this, CategoriaListagemActivity.class));
+                } else if ("Perfil".equals(title)) {
+                    startActivity(new Intent(HomeActivity.this, UsuarioPerfilActivity.class));
+                } else {
+                    throw new IllegalStateException("Unexpected value: " + item.getItemId());
+                }
+                return false;
+            }
+        });
     }
 }
