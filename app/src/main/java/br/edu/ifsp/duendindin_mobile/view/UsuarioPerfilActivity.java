@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +25,12 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
         ImageButton btnEditUsuario = findViewById(R.id.img_usuario_perfil_edit);
         btnEditUsuario.setOnClickListener(view -> {
-            //todo ir para a tela de atualizar perfil do usuário
+            startActivity(new Intent(UsuarioPerfilActivity.this, UsuarioCadastroDadosPessoaisActivity.class));
+        });
+
+        TextView txtRedefinir = findViewById(R.id.msg_usuario_perfil_esqueceu_sua_senha);
+        txtRedefinir.setOnClickListener(view -> {
+            startActivity(new Intent(UsuarioPerfilActivity.this, RecuperarSenhaEnviaEmailActivity.class));
         });
     }
 
