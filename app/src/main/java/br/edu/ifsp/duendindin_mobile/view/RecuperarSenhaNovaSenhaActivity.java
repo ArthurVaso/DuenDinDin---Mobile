@@ -61,10 +61,12 @@ public class RecuperarSenhaNovaSenhaActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtNovaSenha.getText().toString().trim().isEmpty()) {
-            txtNovaSenha.setError("Preencha o campo email");
+            txtNovaSenha.setError("");
+            Toast.makeText(RecuperarSenhaNovaSenhaActivity.this, "Preencha o campo email", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (!txtNovaSenha.getText().toString().equals(txtConfirmaSenha.getText().toString())) {
-            txtNovaSenha.setError("As senhas não correspondem");
+            txtNovaSenha.setError("");
+            Toast.makeText(RecuperarSenhaNovaSenhaActivity.this, "As senhas não correspondem", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtNovaSenha.setError(null);

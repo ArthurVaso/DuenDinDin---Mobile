@@ -60,10 +60,12 @@ public class RecuperarSenhaEnviaEmailActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtEmail.getText().toString().trim().isEmpty()) {
-            txtEmail.setError("Preencha o campo email");
+            txtEmail.setError("");
+            Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "Preencha o campo email", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString()).matches()) {
-            txtEmail.setError("Preencha um email válido");
+            txtEmail.setError("");
+            Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "Informe um email válido", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtEmail.setError(null);

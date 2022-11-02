@@ -73,16 +73,19 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtEmail.getText().toString().trim().isEmpty()) {
-            txtEmail.setError("Preencha o campo email");
+            txtEmail.setError("");
+            Toast.makeText(UsuarioEntrarActivity.this, "Preencha o campo email!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString()).matches()) {
-            txtEmail.setError("Preencha um email válido");
+            txtEmail.setError("");
+            Toast.makeText(UsuarioEntrarActivity.this, "Informe um email válido!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtEmail.setError(null);
         }
         if (txtSenha.getText().toString().trim().isEmpty()) {
-            txtSenha.setError("Preencha o campo senha");
+            txtSenha.setError("");
+            Toast.makeText(UsuarioEntrarActivity.this, "Preencha o campo senha!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtSenha.setError(null);

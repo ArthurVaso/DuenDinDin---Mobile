@@ -10,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -128,37 +129,43 @@ public class GanhoCadastroActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (edtNome.getText().toString().trim().isEmpty()) {
-            edtNome.setError("Preencha o campo nome");
+            edtNome.setError("");
+            Toast.makeText(GanhoCadastroActivity.this, "Preencha o campo nome", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             edtNome.setError(null);
         }
         if (spnCategoria.getSelectedItemPosition() == 0) {
-            txtCategoria.setError("Selecione um tipo!");
+            txtCategoria.setError("");
+            Toast.makeText(GanhoCadastroActivity.this, "Selecione um tipo!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtCategoria.setError(null);
         }
         if (txtDataReceb.getText().toString().trim().isEmpty()) {
-            txtDataReceb.setError("Preencha o campo Data Recebimento");
+            txtDataReceb.setError("");
+            Toast.makeText(GanhoCadastroActivity.this, "Preencha o campo Data Recebimento", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtDataReceb.setError(null);
         }
         if (edtValor.getText().toString().trim().isEmpty()) {
-            edtValor.setError("Preencha o campo Data Recebimento");
+            edtValor.setError("");
+            Toast.makeText(GanhoCadastroActivity.this, "Preencha o campo Data Recebimento", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             edtValor.setError(null);
         }
         if (spnTipo.getSelectedItemPosition() == 0) {
-            txtTipo.setError("Selecione um tipo!");
+            txtTipo.setError("");
+            Toast.makeText(GanhoCadastroActivity.this, "Selecione um tipo!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtTipo.setError(null);
         }
         if (spnRecorrente.getSelectedItemPosition() == 0) {
-            txtRecorrente.setError("Informe se a categoria é recorrente!");
+            txtRecorrente.setError("");
+            Toast.makeText(GanhoCadastroActivity.this, "Informe se a categoria é recorrente!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtRecorrente.setError(null);

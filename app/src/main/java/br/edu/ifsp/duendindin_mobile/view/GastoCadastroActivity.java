@@ -10,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -129,25 +130,29 @@ public class GastoCadastroActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (edtNome.getText().toString().trim().isEmpty()) {
-            edtNome.setError("Preencha o campo nome");
+            edtNome.setError("");
+            Toast.makeText(GastoCadastroActivity.this, "Preencha o campo nome", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             edtNome.setError(null);
         }
         if (spnCategoria.getSelectedItemPosition() == 0) {
-            txtCategoria.setError("Selecione um tipo!");
+            txtCategoria.setError("");
+            Toast.makeText(GastoCadastroActivity.this, "Selecione um tipo!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtCategoria.setError(null);
         }
         if (txtDataVenc.getText().toString().trim().isEmpty()) {
-            txtDataVenc.setError("Preencha o campo Data Vencimento");
+            txtDataVenc.setError("");
+            Toast.makeText(GastoCadastroActivity.this, "Preencha o campo Data Vencimento", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             txtDataVenc.setError(null);
         }
         if (edtValor.getText().toString().trim().isEmpty()) {
-            edtValor.setError("Preencha o campo Data Vencimento");
+            edtValor.setError("");
+            Toast.makeText(GastoCadastroActivity.this, "Preencha o campo Data Vencimento!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             edtValor.setError(null);

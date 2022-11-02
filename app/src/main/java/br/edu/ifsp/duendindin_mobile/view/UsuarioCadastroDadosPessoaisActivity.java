@@ -29,7 +29,6 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private TextInputEditText edtRendaFixa;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +73,6 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                //TODO conferir obrigatoriedade dos campos
                 if (validate()) {
                     Intent intent = new Intent(UsuarioCadastroDadosPessoaisActivity.this, UsuarioCadastroDadosAcessoActivity.class);
                     startActivity(intent);
@@ -95,7 +91,6 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
-
         });
 
     }
@@ -103,14 +98,14 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private void calcularIdade(int diaS, int mesS, int anoS, int diaAtual, int mesAtual, int anoAtual) {
         int idade = 0;
         idade = anoAtual - anoS;
-        if(mesS > mesAtual) {
+        if (mesS > mesAtual) {
             idade--;
-        } else if(mesAtual == mesS) {
-            if(diaS > diaAtual) {
-                idade --;
+        } else if (mesAtual == mesS) {
+            if (diaS > diaAtual) {
+                idade--;
             }
         }
-        if(idade > 110 || idade < 10) {
+        if (idade > 110 || idade < 10) {
             txtDataNasc.setError(getString(R.string.msg_data_nasc_invalida));
             txtDataNasc.setText("");
             Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, R.string.msg_data_nasc_invalida, Toast.LENGTH_LONG).show();
@@ -120,10 +115,16 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         txtDataNasc.setText(diaS + "/" + (mesS + 1) + "/" + anoS);
 
     }
+
     private boolean validate() {
         boolean isValid = true;
         if (edtNome.getText().toString().trim().isEmpty()) {
-            edtNome.setError("Preencha o campo nome");
+            edtNome.setError("");
+            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O campo Nome deve ser preenchido!", Toast.LENGTH_LONG).show();
+            isValid = false;
+        } else if (edtNome.getText().toString().trim().length() > 30) {
+            edtNome.setError("");
+            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O campo Nome não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else {
             edtNome.setError(null);
