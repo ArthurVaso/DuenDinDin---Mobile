@@ -19,7 +19,12 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
         btnEditUsuario = findViewById(R.id.img_usuario_perfil_edit);
         btnEditUsuario.setOnClickListener(view -> {
-            //todo ir para a tela de atualizar perfil do usuário
+            //TODO ir para a tela de atualizar perfil do usuário
+
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

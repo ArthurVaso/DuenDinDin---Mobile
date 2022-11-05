@@ -45,12 +45,7 @@ public class RecuperarSenhaInformaCodigoActivity extends AppCompatActivity {
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                Intent intent = new Intent(RecuperarSenhaInformaCodigoActivity.this, RecuperarSenhaEnviaEmailActivity.class);
-                startActivity(intent);
-
-
+                onBackPressed();
             }
         });
 
@@ -59,12 +54,14 @@ public class RecuperarSenhaInformaCodigoActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtCodigo.getText().toString().trim().isEmpty()) {
-            txtCodigo.setError("Preencha o campo email");
+            Toast.makeText(RecuperarSenhaInformaCodigoActivity.this, "Preencha o campo Email!", Toast.LENGTH_LONG).show();
             isValid = false;
-        }  else {
-            txtCodigo.setError(null);
         }
         return isValid;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

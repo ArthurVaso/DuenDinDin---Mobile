@@ -82,4 +82,8 @@ public class HomeActivity extends AppCompatActivity {
         hcGrafico.setOptions(options);
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
