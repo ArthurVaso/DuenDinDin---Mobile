@@ -19,7 +19,7 @@ import java.util.Calendar;
 
 import br.edu.ifsp.duendindin_mobile.R;
 
-public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
+public class UsuarioAlterarActivity extends AppCompatActivity {
     private Button btnContinuar;
     private ImageView imgSetaVoltar;
     private TextInputEditText edtNome;
@@ -32,7 +32,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_usuario_dados_pessoais);
+        setContentView(R.layout.activity_alterar_usuario);
         final Calendar c = Calendar.getInstance();
         int anoAtual = c.get(Calendar.YEAR);
         int mesAtual = c.get(Calendar.MONTH);
@@ -43,7 +43,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         txtDataNasc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                datePickerDialog = new DatePickerDialog(UsuarioCadastroDadosPessoaisActivity.this,
+                datePickerDialog = new DatePickerDialog(UsuarioAlterarActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
 
                             @Override
@@ -74,7 +74,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validate()) {
-                    Intent intent = new Intent(UsuarioCadastroDadosPessoaisActivity.this, UsuarioCadastroDadosAcessoActivity.class);
+                    Intent intent = new Intent(UsuarioAlterarActivity.this, UsuarioCadastroDadosAcessoActivity.class);
                     startActivity(intent);
                 }
             }
@@ -101,9 +101,9 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
                 idade--;
             }
         }
-        if (idade > 110 || idade < 10) {
+        if (idade < 10) {
             txtDataNasc.setText("");
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, R.string.msg_data_nasc_invalida, Toast.LENGTH_LONG).show();
+            Toast.makeText(UsuarioAlterarActivity.this, R.string.msg_data_nasc_invalida, Toast.LENGTH_LONG).show();
             return;
         }
         txtDataNasc.setText(diaS + "/" + (mesS + 1) + "/" + anoS);
@@ -113,10 +113,10 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (edtNome.getText().toString().trim().isEmpty()) {
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O campo Nome deve ser preenchido!", Toast.LENGTH_LONG).show();
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Nome deve ser preenchido!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (edtNome.getText().toString().trim().length() > 30) {
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O campo Nome não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Nome não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
             isValid = false;
         }
         return isValid;

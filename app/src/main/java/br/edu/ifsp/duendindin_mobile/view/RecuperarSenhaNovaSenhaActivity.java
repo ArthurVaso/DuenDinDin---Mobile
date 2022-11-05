@@ -47,12 +47,7 @@ public class RecuperarSenhaNovaSenhaActivity extends AppCompatActivity {
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                Intent intent = new Intent(RecuperarSenhaNovaSenhaActivity.this, RecuperarSenhaInformaCodigoActivity.class);
-                startActivity(intent);
-
-
+                onBackPressed();
             }
         });
 
@@ -61,17 +56,17 @@ public class RecuperarSenhaNovaSenhaActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtNovaSenha.getText().toString().trim().isEmpty()) {
-            txtNovaSenha.setError("");
-            Toast.makeText(RecuperarSenhaNovaSenhaActivity.this, "Preencha o campo email", Toast.LENGTH_LONG).show();
+            Toast.makeText(RecuperarSenhaNovaSenhaActivity.this, "Preencha o campo Email", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (!txtNovaSenha.getText().toString().equals(txtConfirmaSenha.getText().toString())) {
-            txtNovaSenha.setError("");
-            Toast.makeText(RecuperarSenhaNovaSenhaActivity.this, "As senhas não correspondem", Toast.LENGTH_LONG).show();
+            Toast.makeText(RecuperarSenhaNovaSenhaActivity.this, "As senhas não correspondem!", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtNovaSenha.setError(null);
         }
         return isValid;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

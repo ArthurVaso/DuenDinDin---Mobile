@@ -46,12 +46,7 @@ public class RecuperarSenhaEnviaEmailActivity extends AppCompatActivity {
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                Intent intent = new Intent(RecuperarSenhaEnviaEmailActivity.this, UsuarioEntrarActivity.class);
-                startActivity(intent);
-
-
+                onBackPressed();
             }
         });
 
@@ -60,17 +55,17 @@ public class RecuperarSenhaEnviaEmailActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtEmail.getText().toString().trim().isEmpty()) {
-            txtEmail.setError("");
-            Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "Preencha o campo email", Toast.LENGTH_LONG).show();
+            Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "Preencha o campo Email", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString()).matches()) {
-            txtEmail.setError("");
-            Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "Informe um email válido", Toast.LENGTH_LONG).show();
+            Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "Informe um Email válido", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtEmail.setError(null);
         }
         return isValid;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

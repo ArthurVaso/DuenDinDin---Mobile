@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+    }
+    @Override
+    public void onBackPressed() {
+        //TODO tem certeza que deseja finalizar o sistema?
+        System.exit(0);
     }
 }

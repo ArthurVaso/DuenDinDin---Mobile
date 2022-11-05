@@ -43,11 +43,7 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //TODO conferir obrigatoriedade dos campos
-
-                Intent intent = new Intent(CategoriaCadastroActivity.this, HomeActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
@@ -56,13 +52,15 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (edtNome.getText().toString().trim().isEmpty()) {
-            edtNome.setError("");
-            Toast.makeText(CategoriaCadastroActivity.this, "Preencha o campo nome", Toast.LENGTH_LONG).show();
+            Toast.makeText(CategoriaCadastroActivity.this, "Preencha o campo Nome", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            edtNome.setError(null);
         }
         return isValid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
 

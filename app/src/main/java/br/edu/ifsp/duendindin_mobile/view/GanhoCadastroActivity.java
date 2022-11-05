@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -53,8 +55,26 @@ public class GanhoCadastroActivity extends AppCompatActivity {
         spnTipo = (Spinner) findViewById(R.id.sp_tipo_ganho);
         txtRecorrente = findViewById(R.id.txt_recorrente_ganho);
         spnRecorrente = (Spinner) findViewById(R.id.sp_recorrente_ganho);
-
         txtDataReceb = findViewById(R.id.txt_data_receb_ganho);
+        btnSalvar = findViewById(R.id.btn_ganho_cadastro_salvar);
+        imgSetaVoltar = findViewById(R.id.seta_voltar);
+
+        //ArrayList<Categoria> listaCategoria = response.json()
+        ArrayList<String> listaTeste = new ArrayList<String>();
+        listaTeste.add(getString(R.string.spinner_selecione_uma_opcao));
+        //for each item: listaCategoria
+        //listaTeste.add(item.getNome());
+        listaTeste.add("Salário");
+        listaTeste.add("Bônus");
+
+        //spnCategoria = (Spinner) findViewById(R.id.sp_categoria_ganho);
+        ArrayAdapter<String> spCategoriaAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, listaTeste);
+        spCategoriaAdapter.setDropDownViewResource( android.R.layout.simple_dropdown_item_1line );
+
+        spnCategoria.setAdapter(spCategoriaAdapter);
+
+
         Calendar dataSelecionada = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -79,11 +99,10 @@ public class GanhoCadastroActivity extends AppCompatActivity {
             }
         });
 
-        btnSalvar = findViewById(R.id.btn_ganho_cadastro_salvar);
+
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (validate()) {
                     Intent intent = new Intent(GanhoCadastroActivity.this, HomeActivity.class);
                     startActivity(intent);
@@ -91,15 +110,10 @@ public class GanhoCadastroActivity extends AppCompatActivity {
             }
         });
 
-        imgSetaVoltar = findViewById(R.id.seta_voltar);
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //TODO conferir obrigatoriedade dos campos
-
-                Intent intent = new Intent(GanhoCadastroActivity.this, HomeActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
@@ -129,48 +143,30 @@ public class GanhoCadastroActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (edtNome.getText().toString().trim().isEmpty()) {
-            edtNome.setError("");
-            Toast.makeText(GanhoCadastroActivity.this, "Preencha o campo nome", Toast.LENGTH_LONG).show();
+            Toast.makeText(GanhoCadastroActivity.this, "Preencha o campo Nome", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            edtNome.setError(null);
-        }
-        if (spnCategoria.getSelectedItemPosition() == 0) {
-            txtCategoria.setError("");
-            Toast.makeText(GanhoCadastroActivity.this, "Selecione um tipo!", Toast.LENGTH_LONG).show();
+        } else if (spnCategoria.getSelectedItemPosition() == 0) {
+            Toast.makeText(GanhoCadastroActivity.this, "Selecione uma Categoria!", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtCategoria.setError(null);
-        }
-        if (txtDataReceb.getText().toString().trim().isEmpty()) {
-            txtDataReceb.setError("");
+        } else if (txtDataReceb.getText().toString().trim().isEmpty()) {
             Toast.makeText(GanhoCadastroActivity.this, "Preencha o campo Data Recebimento", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtDataReceb.setError(null);
-        }
-        if (edtValor.getText().toString().trim().isEmpty()) {
-            edtValor.setError("");
-            Toast.makeText(GanhoCadastroActivity.this, "Preencha o campo Data Recebimento", Toast.LENGTH_LONG).show();
+        } else if (edtValor.getText().toString().trim().isEmpty()) {
+            Toast.makeText(GanhoCadastroActivity.this, "Preencha o campo Valor", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            edtValor.setError(null);
-        }
-        if (spnTipo.getSelectedItemPosition() == 0) {
-            txtTipo.setError("");
-            Toast.makeText(GanhoCadastroActivity.this, "Selecione um tipo!", Toast.LENGTH_LONG).show();
+        } else if (spnRecorrente.getSelectedItemPosition() == 0) {
+            Toast.makeText(GanhoCadastroActivity.this, "Escolha se o ganho é Recorrente!", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtTipo.setError(null);
-        }
-        if (spnRecorrente.getSelectedItemPosition() == 0) {
-            txtRecorrente.setError("");
-            Toast.makeText(GanhoCadastroActivity.this, "Informe se a categoria é recorrente!", Toast.LENGTH_LONG).show();
+        } else if (spnTipo.getSelectedItemPosition() == 0) {
+            Toast.makeText(GanhoCadastroActivity.this, "Selecione um Tipo!", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtRecorrente.setError(null);
         }
         return isValid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }
