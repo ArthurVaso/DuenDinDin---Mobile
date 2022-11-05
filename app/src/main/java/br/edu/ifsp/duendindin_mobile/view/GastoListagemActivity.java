@@ -2,6 +2,8 @@ package br.edu.ifsp.duendindin_mobile.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,14 +13,30 @@ import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 import br.edu.ifsp.duendindin_mobile.R;
+import br.edu.ifsp.duendindin_mobile.adapter.CategoriasAdapter;
+import br.edu.ifsp.duendindin_mobile.adapter.GastosAdapter;
 
 public class GastoListagemActivity extends AppCompatActivity {
+
+    RecyclerView rvGastos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_gasto);
+
+        rvGastos = findViewById(R.id.rv_gasto);
+        ArrayList<String> listGastos = new ArrayList();
+        listGastos.add("Academia");
+        listGastos.add("Presente Vitória");
+        listGastos.add("Uber");
+
+        rvGastos.setLayoutManager(new LinearLayoutManager(this));
+        GastosAdapter gastosAdapter = new GastosAdapter(this.getLayoutInflater(), listGastos);
+        rvGastos.setAdapter(gastosAdapter);
 
         Button btnNovoVencimento = findViewById(R.id.btn_gasto_listagem_novo_vencimento);
         btnNovoVencimento.setOnClickListener(new View.OnClickListener() {
