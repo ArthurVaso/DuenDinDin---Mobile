@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    //inserido por causa do Retrofit
+    //inserido por conta do Retrofit
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

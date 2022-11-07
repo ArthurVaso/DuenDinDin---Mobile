@@ -2,29 +2,29 @@ package br.edu.ifsp.duendindin_mobile.model;
 
 import java.util.Date;
 
-public class Gasto {
+public class Ganho {
 
     private Integer id;
     private Integer categoriaId;
     private String nome;
-    private Boolean recorrencia;
-    private Date vencimento;
+    private Date data;
     private Double valor;
     private String descricao;
-    private Date dataPagamento;
+    private Boolean recorrencia;
 
-    public Gasto() {
+
+    public Ganho() {
+
     }
 
-    public Gasto(Integer id, Integer categoriaId, String nome, Boolean recorrencia, Date vencimento, Double valor, String descricao, Date dataPagamento) {
+    public Ganho(Integer id, Integer categoriaId, String nome, Date data, Double valor, String descricao, Boolean recorrencia) {
         this.id = id;
         this.categoriaId = categoriaId;
         this.nome = nome;
-        this.recorrencia = recorrencia;
-        this.vencimento = vencimento;
+        this.data = data;
         this.valor = valor;
         this.descricao = descricao;
-        this.dataPagamento = dataPagamento;
+        this.recorrencia = recorrencia;
     }
 
     public Integer getId() {
@@ -51,20 +51,12 @@ public class Gasto {
         this.nome = nome;
     }
 
-    public Boolean getRecorrencia() {
-        return recorrencia;
+    public Date getData() {
+        return data;
     }
 
-    public void setRecorrencia(Boolean recorrencia) {
-        this.recorrencia = recorrencia;
-    }
-
-    public Date getVencimento() {
-        return vencimento;
-    }
-
-    public void setVencimento(Date vencimento) {
-        this.vencimento = vencimento;
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public Double getValor() {
@@ -83,12 +75,11 @@ public class Gasto {
         this.descricao = descricao;
     }
 
-    public Date getDataPagamento() {
-        return dataPagamento;
+    public Boolean getRecorrencia() {
+        return recorrencia;
     }
 
-    public void setDataPagamento(Date dataPagamento) {
-        this.dataPagamento = dataPagamento;
+    public void setRecorrencia(Boolean recorrencia) {
+        this.recorrencia = recorrencia;
     }
 }
-

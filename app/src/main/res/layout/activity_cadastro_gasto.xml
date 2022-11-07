@@ -112,7 +112,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/spinner_background"
-                    android:entries="@array/spCategoriaGastoGanho"
                     android:minHeight="48dp"
                     app:boxStrokeColor="@color/secondary_color" />
 

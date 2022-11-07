@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -118,9 +117,6 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                //TODO conferir obrigatoriedade dos campos
                 if (validate()) {
                     Intent intent = new Intent(UsuarioCadastroDadosPessoaisActivity.this, UsuarioCadastroDadosAcessoActivity.class);
                     startActivity(intent);
@@ -132,13 +128,8 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //TODO conferir obrigatoriedade dos campos
-
-                Intent intent = new Intent(UsuarioCadastroDadosPessoaisActivity.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
-
 
         });
 
@@ -195,12 +186,10 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
             }
         }
         if (idade > 110 || idade < 10) {
-            txtDataNasc.setError(getString(R.string.msg_data_nasc_invalida));
             txtDataNasc.setText("");
             Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, R.string.msg_data_nasc_invalida, Toast.LENGTH_LONG).show();
             return;
         }
-        txtDataNasc.setError(null);
         txtDataNasc.setText(diaS + "/" + (mesS + 1) + "/" + anoS);
 
     }
@@ -211,15 +200,11 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         isValid = validateCep(); // chamando a validação do cep
 
         if (edtNome.getText().toString().trim().isEmpty()) {
-            edtNome.setError("");
             Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O campo Nome deve ser preenchido!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (edtNome.getText().toString().trim().length() > 30) {
-            edtCep.setError(null);
             Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O campo Nome não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            edtNome.setError(null);
         }
         return isValid;
     }
@@ -239,5 +224,10 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
             edtCep.setError(null);
         }
         return isValid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

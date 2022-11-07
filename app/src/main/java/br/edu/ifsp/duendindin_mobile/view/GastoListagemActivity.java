@@ -1,22 +1,21 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 import br.edu.ifsp.duendindin_mobile.R;
-import br.edu.ifsp.duendindin_mobile.adapter.CategoriasAdapter;
 import br.edu.ifsp.duendindin_mobile.adapter.GastosAdapter;
 
 public class GastoListagemActivity extends AppCompatActivity {
@@ -71,5 +70,10 @@ public class GastoListagemActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
