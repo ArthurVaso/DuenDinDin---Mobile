@@ -101,9 +101,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 CharSequence title = item.getTitle();
-                if ("Gastos".equals(title)) {
+                if ("Vencimentos".equals(title)) {
                     startActivity(new Intent(HomeActivity.this, GastoListagemActivity.class));
-                } else if ("Ganhos".equals(title)) {
+                } else if ("Recebimento".equals(title)) {
                     startActivity(new Intent(HomeActivity.this, GanhoListagemActivity.class));
                 } else if("Categorias".equals(title)){
                     startActivity(new Intent(HomeActivity.this, CategoriaListagemActivity.class));
