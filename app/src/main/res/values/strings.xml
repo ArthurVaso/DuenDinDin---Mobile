@@ -212,8 +212,8 @@
 
     <!-- Tab Bar -->
     <string name="txt_bottom_nav_home">Home</string>
-    <string name="txt_bottom_nav_calendario">Calendário</string>
-    <string name="txt_bottom_nav_recebimentos">Recebimentos</string>
+    <string name="txt_bottom_nav_gastos">Gastos</string>
+    <string name="txt_bottom_nav_ganhos">Ganhos</string>
     <string name="txt_bottom_nav_categorias">Categorias</string>
     <string name="txt_bottom_nav_perfil">Perfil</string>
 

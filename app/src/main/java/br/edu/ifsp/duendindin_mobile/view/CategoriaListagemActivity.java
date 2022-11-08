@@ -48,14 +48,12 @@ public class CategoriaListagemActivity extends AppCompatActivity {
                 CharSequence title = item.getTitle();
                 if ("Home".equals(title)) {
                     startActivity(new Intent(CategoriaListagemActivity.this, HomeActivity.class));
-                } else if ("Calendário".equals(title)) {
+                } else if ("Gastos".equals(title)) {
                     startActivity(new Intent(CategoriaListagemActivity.this, GastoListagemActivity.class));
-                } else if ("Recebimentos".equals(title)) {
+                } else if ("Ganhos".equals(title)) {
                     startActivity(new Intent(CategoriaListagemActivity.this, GanhoListagemActivity.class));
                 } else if ("Perfil".equals(title)) {
                     startActivity(new Intent(CategoriaListagemActivity.this, UsuarioPerfilActivity.class));
-                } else {
-                    throw new IllegalStateException("Unexpected value: " + bnvCategoria.getSelectedItemId());
                 }
                 return false;
             }

@@ -30,7 +30,7 @@ public class GastoListagemActivity extends AppCompatActivity {
         rvGastos = findViewById(R.id.rv_gasto);
         ArrayList<String> listGastos = new ArrayList();
         listGastos.add("Academia");
-        listGastos.add("Presente Vitória");
+        listGastos.add("Presente");
         listGastos.add("Uber");
 
         rvGastos.setLayoutManager(new LinearLayoutManager(this));
@@ -51,21 +51,19 @@ public class GastoListagemActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         BottomNavigationView bnvGasto = findViewById(R.id.bnv_gasto);
-        bnvGasto.setSelectedItemId(R.id.bottom_nav_menu_calendario);
+        bnvGasto.setSelectedItemId(R.id.bottom_nav_menu_gastos);
         bnvGasto.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 CharSequence title = item.getTitle();
                 if ("Home".equals(title)) {
                     startActivity(new Intent(GastoListagemActivity.this, HomeActivity.class));
-                } else if ("Recebimentos".equals(title)) {
+                } else if ("Ganhos".equals(title)) {
                     startActivity(new Intent(GastoListagemActivity.this, GanhoListagemActivity.class));
-                } else if ("Categorias".equals(title)) {
+                } else if("Categorias".equals(title)){
                     startActivity(new Intent(GastoListagemActivity.this, CategoriaListagemActivity.class));
                 } else if ("Perfil".equals(title)) {
                     startActivity(new Intent(GastoListagemActivity.this, UsuarioPerfilActivity.class));
-                } else {
-                    throw new IllegalStateException("Unexpected value: " + bnvGasto.getSelectedItemId());
                 }
                 return false;
             }
