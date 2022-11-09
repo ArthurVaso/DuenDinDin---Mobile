@@ -3,6 +3,12 @@ plugins {
 }
 
 android {
+    //inserido por conta do Retrofit
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     compileSdk 32
 
     defaultConfig {
@@ -38,5 +44,11 @@ dependencies {
 
     implementation 'com.github.highcharts:highcharts-android:10.2.0'
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
+    //cep
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
 }
