@@ -42,9 +42,9 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
                 CharSequence title = item.getTitle();
                 if ("Home".equals(title)) {
                     startActivity(new Intent(UsuarioPerfilActivity.this, HomeActivity.class));
-                } else if ("Gastos".equals(title)) {
+                } else if ("Vencimentos".equals(title)) {
                     startActivity(new Intent(UsuarioPerfilActivity.this, GastoListagemActivity.class));
-                } else if ("Ganhos".equals(title)) {
+                } else if ("Recebimento".equals(title)) {
                     startActivity(new Intent(UsuarioPerfilActivity.this, GanhoListagemActivity.class));
                 } else if("Categorias".equals(title)){
                     startActivity(new Intent(UsuarioPerfilActivity.this, CategoriaListagemActivity.class));

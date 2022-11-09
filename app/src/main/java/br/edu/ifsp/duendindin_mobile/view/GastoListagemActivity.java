@@ -58,7 +58,7 @@ public class GastoListagemActivity extends AppCompatActivity {
                 CharSequence title = item.getTitle();
                 if ("Home".equals(title)) {
                     startActivity(new Intent(GastoListagemActivity.this, HomeActivity.class));
-                } else if ("Ganhos".equals(title)) {
+                } else if ("Recebimento".equals(title)) {
                     startActivity(new Intent(GastoListagemActivity.this, GanhoListagemActivity.class));
                 } else if("Categorias".equals(title)){
                     startActivity(new Intent(GastoListagemActivity.this, CategoriaListagemActivity.class));

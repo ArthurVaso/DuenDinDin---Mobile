@@ -48,9 +48,9 @@ public class CategoriaListagemActivity extends AppCompatActivity {
                 CharSequence title = item.getTitle();
                 if ("Home".equals(title)) {
                     startActivity(new Intent(CategoriaListagemActivity.this, HomeActivity.class));
-                } else if ("Gastos".equals(title)) {
+                } else if ("Vencimentos".equals(title)) {
                     startActivity(new Intent(CategoriaListagemActivity.this, GastoListagemActivity.class));
-                } else if ("Ganhos".equals(title)) {
+                } else if ("Recebimento".equals(title)) {
                     startActivity(new Intent(CategoriaListagemActivity.this, GanhoListagemActivity.class));
                 } else if ("Perfil".equals(title)) {
                     startActivity(new Intent(CategoriaListagemActivity.this, UsuarioPerfilActivity.class));
