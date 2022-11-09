@@ -47,11 +47,7 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(UsuarioCadastroDadosAcessoActivity.this, UsuarioCadastroDadosPessoaisActivity.class);
-                startActivity(intent);
-
-
+                onBackPressed();
             }
         });
 
@@ -60,21 +56,26 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtEmail.getText().toString().trim().isEmpty()) {
-            txtEmail.setError("Preencha o campo email");
+            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "Preencha o campo Email", Toast.LENGTH_LONG).show();
+            isValid = false;
+        } else if (txtEmail.getText().toString().trim().length() > 30) {
+            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "O campo Email não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString()).matches()) {
-            txtEmail.setError("Preencha um email válido");
+            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "Informe um email válido", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtEmail.setError(null);
-        }
-        if (txtSenha.getText().toString().trim().isEmpty()) {
-            txtSenha.setError("Preencha o campo senha");
+        } else if (txtSenha.getText().toString().trim().isEmpty()) {
+            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "O campo Senha não pode estar vazio!", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtSenha.setError(null);
+        } else if (txtSenha.getText().toString().trim().length() > 50) {
+            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "O campo Senha não deve ter mais de 50 caracteres!", Toast.LENGTH_LONG).show();
+            isValid = false;
         }
         return isValid;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

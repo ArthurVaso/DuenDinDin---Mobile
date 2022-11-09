@@ -1,14 +1,20 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.highsoft.highcharts.common.hichartsclasses.*;
-import com.highsoft.highcharts.core.*;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.highsoft.highcharts.common.hichartsclasses.HIChart;
+import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
+import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HITitle;
+import com.highsoft.highcharts.core.HIChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +30,8 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnVerPerfil;
 
     private HIChartView hcGrafico;
+
+    private BottomNavigationView bnvHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,5 +89,34 @@ public class HomeActivity extends AppCompatActivity {
         options.setSeries(new ArrayList<>(Collections.singletonList(series)));
         hcGrafico.setOptions(options);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bnvHome = findViewById(R.id.bnv_home);
+        bnvHome.setSelectedItemId(R.id.bottom_nav_menu_home);
+
+        bnvHome.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                CharSequence title = item.getTitle();
+                if ("Vencimentos".equals(title)) {
+                    startActivity(new Intent(HomeActivity.this, GastoListagemActivity.class));
+                } else if ("Recebimento".equals(title)) {
+                    startActivity(new Intent(HomeActivity.this, GanhoListagemActivity.class));
+                } else if("Categorias".equals(title)){
+                    startActivity(new Intent(HomeActivity.this, CategoriaListagemActivity.class));
+                } else if ("Perfil".equals(title)) {
+                    startActivity(new Intent(HomeActivity.this, UsuarioPerfilActivity.class));
+                }
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

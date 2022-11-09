@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".view.GanhoCadastroActivity">
+    tools:context=".view.UsuarioAlterarActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/txt_ganho_cadastro_titulo"
+                    android:text="@string/txt_usuario_cadastro_titulo"
                     android:textColor="@color/border_color"
                     android:textSize="36sp" />
 
@@ -58,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/txt_ganho_cadastro_subtitulo"
+                    android:text="@string/txt_usuario_cadastro_dados_pessoais_subtitulo"
                     android:textColor="@color/border_color"
                     android:textSize="20sp" />
 
@@ -76,12 +77,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/txt_ganho_cadastro_nome"
+                    android:text="@string/txt_usuario_cadastro_nome_completo"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_nome_ganho"
+                    android:id="@+id/edt_nome_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -89,43 +90,23 @@
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
                     android:fontFamily="@font/roboto_regular"
-                    android:hint="@string/hint_ganho_cadastro_nome"
+                    android:hint="@string/hint_usuario_cadastro_nome"
                     android:inputType="textCapWords"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color" />
 
+
                 <TextView
-                    android:id="@+id/txt_categoria_ganho"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/txt_ganho_cadastro_categoria"
+                    android:text="@string/txt_usuario_cadastro_data_de_nascimento"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
-                <Spinner
-                    android:id="@+id/sp_categoria_ganho"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@drawable/spinner_background"
-                    android:minHeight="48dp"
-                    app:boxStrokeColor="@color/secondary_color" />
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/txt_ganho_cadastro_data_de_recebimento"
-                    android:textColor="@color/black" />
-
-
-                <TextView
-                    android:id="@+id/txt_data_receb_ganho"
+                    android:id="@+id/txt_data_nasc_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -133,7 +114,7 @@
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
                     android:drawableRight="@drawable/icon_calendar"
-                    android:hint="@string/hint_ganho_cadastro_data_receb"
+                    android:hint="@string/hint_usuario_cadastro_data_nasc"
                     android:fontFamily="@font/roboto_regular"
                     android:inputType="none"
                     android:minHeight="48dp"
@@ -141,28 +122,50 @@
                     android:textColorHint="@color/border_color"
                     android:textSize="18sp" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/txt_ganho_cadastro_descricao"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textColor="@color/black" />
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@string/txt_usuario_cadastro_cep"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/txt_esqueci_cep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/txt_usuario_cadastro_esqueci_cep"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/secondary_color" />
+                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_descricao_ganho"
+                    android:id="@+id/edt_cep"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:inputType="text|textMultiLine"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
                     android:fontFamily="@font/roboto_regular"
-                    android:hint="@string/hint_ganho_cadastro_descricao"
-                    android:minHeight="48dp"
-
+                    android:hint="@string/edt_usuario_cadastro_cep"
+                    android:inputType="number"
+                    android:maxLength="8"
                     android:textColorHint="@color/border_color" />
 
                 <TextView
@@ -170,72 +173,70 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/txt_ganho_cadastro_valor"
+                    android:text="@string/txt_usuario_cadastro_estado"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
+                <Spinner
+                    android:id="@+id/sp_uf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/spinner_background"
+                    android:entries="@array/spUf"
+                    android:minHeight="48dp"
+                    app:boxStrokeColor="@color/secondary_color" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_usuario_cadastro_cidade"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/sp_cidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/spinner_background"
+                    android:entries="@array/spCidade"
+                    android:minHeight="48dp"
+                    app:boxStrokeColor="@color/secondary_color" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txt_usuario_cadastro_renda_fixa"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black" />
+
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_valor_ganho"
+                    android:id="@+id/edt_renda_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
+                    android:hint="@string/hint_usuario_cadastro_renda"
                     android:fontFamily="@font/roboto_regular"
-                    android:hint="@string/hint_ganho_cadastro_valor"
-                    android:inputType="numberDecimal"
-                    android:digits="0123456789,"
+                    android:inputType="textCapWords"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color" />
-
-                <TextView
-                    android:id="@+id/txt_recorrente_ganho"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/txt_categoria_cadastro_recorrente"
-                    android:textColor="@color/black" />
-
-                <Spinner
-                    android:id="@+id/sp_recorrente_ganho"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@drawable/spinner_background"
-                    android:entries="@array/spRecorrenteCategoria"
-                    android:minHeight="48dp"
-                    app:boxStrokeColor="@color/secondary_color" />
-
-                <TextView
-                    android:id="@+id/txt_tipo_ganho"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/txt_categoria_cadastro_tipo"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textColor="@color/black" />
-
-                <Spinner
-                    android:id="@+id/sp_tipo_ganho"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@drawable/spinner_background"
-                    android:entries="@array/spTipoCategoria"
-                    android:minHeight="48dp"
-                    app:boxStrokeColor="@color/secondary_color" />
-
-
 
                 <Button
-                    android:id="@+id/btn_ganho_cadastro_salvar"
+                    android:id="@+id/btn_usuario_cadastro_continuar"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="8dp"
@@ -243,7 +244,7 @@
                     android:layout_marginRight="8dp"
                     android:backgroundTint="@color/secondary_color"
                     android:backgroundTintMode="add"
-                    android:text="@string/btn_ganho_cadastro_salvar"
+                    android:text="@string/btn_usuario_cadastro_continuar"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/white"
                     app:strokeColor="@color/border_color"

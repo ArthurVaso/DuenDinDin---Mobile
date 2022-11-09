@@ -69,7 +69,7 @@
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
     <string name="msg_categoria_listagem_dados">ESSAS SÃO SUAS CATEGORIAS</string>
-        <!-- Item Categoria -->
+    <!-- Item Categoria -->
     <string name="txt_categoria_item_nome">Nome da Categoria - Fixo ou Variável</string>
     <string name="txt_categoria_item_descricao">Descrição</string>
     <string name="txt_categoria_item_periodo">Periodo de recorrência</string>
@@ -164,12 +164,12 @@
     <string name="txt_gasto_cadastro_subtitulo">Dados da Gasto</string>
     <string name="txt_gasto_cadastro_nome">NOME *</string>
     <string name="hint_gasto_cadastro_nome">Conta de Água</string>
-    <string name="txt_gasto_cadastro_data_de_vencimento">DATA DO VENCIMENTO</string>
+    <string name="txt_gasto_cadastro_data_de_vencimento">DATA DO VENCIMENTO *</string>
     <string name="hint_gasto_cadastro_data_venc">dd/mm/aaaa</string>
     <string name="txt_gasto_cadastro_descricao">DESCRIÇÃO</string>
     <string name="hint_gasto_cadastro_descricao">Descrição</string>
     <string name="txt_gasto_cadastro_categoria">CATEGORIA *</string>
-    <string name="txt_gasto_cadastro_valor">VALOR</string>
+    <string name="txt_gasto_cadastro_valor">VALOR *</string>
     <string name="hint_gasto_cadastro_valor">11,34</string>
     <string name="btn_gasto_cadastro_salvar">Salvar</string>
     <string name="msg_data_venc_invalida">Data de vencimento inválida!</string>
@@ -179,12 +179,12 @@
     <string name="txt_ganho_cadastro_subtitulo">Dados da Ganho</string>
     <string name="txt_ganho_cadastro_nome">NOME *</string>
     <string name="hint_ganho_cadastro_nome">Freelance</string>
-    <string name="txt_ganho_cadastro_data_de_recebimento">DATA DO RECEBIMENTO</string>
+    <string name="txt_ganho_cadastro_data_de_recebimento">DATA DO RECEBIMENTO *</string>
     <string name="hint_ganho_cadastro_data_receb">dd/mm/aaaa</string>
     <string name="txt_ganho_cadastro_descricao">DESCRIÇÃO</string>
     <string name="hint_ganho_cadastro_descricao">Descrição</string>
     <string name="txt_ganho_cadastro_categoria">CATEGORIA *</string>
-    <string name="txt_ganho_cadastro_valor">VALOR</string>
+    <string name="txt_ganho_cadastro_valor">VALOR *</string>
     <string name="hint_ganho_cadastro_valor">11,34</string>
     <string name="btn_ganho_cadastro_salvar">Salvar</string>
     <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
@@ -212,8 +212,8 @@
 
     <!-- Tab Bar -->
     <string name="txt_bottom_nav_home">Home</string>
-    <string name="txt_bottom_nav_calendario">Calendário</string>
-    <string name="txt_bottom_nav_recebimentos">Recebimentos</string>
+    <string name="txt_bottom_nav_gastos">Vencimentos</string>
+    <string name="txt_bottom_nav_ganhos">Recebimento</string>
     <string name="txt_bottom_nav_categorias">Categorias</string>
     <string name="txt_bottom_nav_perfil">Perfil</string>
 
@@ -234,6 +234,8 @@
     <string name="txt_recuperar_senha_nova_senha">NOVA SENHA</string>
     <string name="txt_recuperar_senha_confirmar_senha">CONFIRMAR SENHA</string>
     <string name="btn_finalizar">FINALIZAR</string>
+
+    <string name="spinner_selecione_uma_opcao">Selecione uma opção</string>
 
 
 </resources>

@@ -6,7 +6,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,12 +45,7 @@ public class RecuperarSenhaEnviaEmailActivity extends AppCompatActivity {
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                Intent intent = new Intent(RecuperarSenhaEnviaEmailActivity.this, UsuarioEntrarActivity.class);
-                startActivity(intent);
-
-
+                onBackPressed();
             }
         });
 
@@ -60,15 +54,17 @@ public class RecuperarSenhaEnviaEmailActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtEmail.getText().toString().trim().isEmpty()) {
-            txtEmail.setError("Preencha o campo email");
+            Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "Preencha o campo Email", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString()).matches()) {
-            txtEmail.setError("Preencha um email válido");
+            Toast.makeText(RecuperarSenhaEnviaEmailActivity.this, "Informe um Email válido", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else {
-            txtEmail.setError(null);
         }
         return isValid;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }
