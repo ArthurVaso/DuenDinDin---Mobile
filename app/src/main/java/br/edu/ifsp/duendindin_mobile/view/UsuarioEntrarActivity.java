@@ -1,10 +1,8 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -12,19 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Observable;
+
 import br.edu.ifsp.duendindin_mobile.R;
-import br.edu.ifsp.duendindin_mobile.model.CEP;
 import br.edu.ifsp.duendindin_mobile.model.Login;
-import br.edu.ifsp.duendindin_mobile.model.Usuario;
 import br.edu.ifsp.duendindin_mobile.model.UsuarioComToken;
-import br.edu.ifsp.duendindin_mobile.service.CEPService;
 import br.edu.ifsp.duendindin_mobile.service.LoginService;
-import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,7 +34,6 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
     private ImageView imgSetaVoltar;
     private TextInputEditText txtEmail;
     private TextInputEditText txtSenha;
-    private TextView txtEsqueceuSenha;
     private Retrofit retrofitAPI;
     private UsuarioComToken usuario = new UsuarioComToken();
 
@@ -59,36 +53,18 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
         btnEntrar = findViewById(R.id.btn_usuario_entrar);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View view) {
                 if (validate()) {
                     realizarLogin();
-                    //Toast.makeText(UsuarioEntrarActivity.this, "login efetuado com sucesso", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UsuarioEntrarActivity.this, HomeActivity.class);
-                    startActivity(intent);
                 }
-
             }
         });
-
 
         imgSetaVoltar = findViewById(R.id.seta_voltar);
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
-            }
-        });
-
-        txtEsqueceuSenha = findViewById(R.id.txt_esqueceu_senha);
-        txtEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(UsuarioEntrarActivity.this, RecuperarSenhaEnviaEmailActivity.class);
-                startActivity(intent);
-
-
             }
         });
 
@@ -105,20 +81,22 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
 
         //passando os dados para o serviço
         Call<UsuarioComToken> call = loginService.login(login);
-
         //colocando a requisição na fila para execução
         call.enqueue(new Callback<UsuarioComToken>() {
             @Override
             public void onResponse(Call<UsuarioComToken> call, Response<UsuarioComToken> response) {
 
                 if (response.isSuccessful()) {
-
+                    Log.d("teste", "caiu no issuccessful");
                     usuario.setUsuario(response.body().getUsuario());
                     usuario.setToken(response.body().getToken());
                     Toast.makeText(getApplicationContext(), "Login efetuado com sucesso \n"
                             + "\nEmail: " + usuario.getUsuario().getEmail()
                             + "\nCep: " + usuario.getUsuario().getCep()
                             + "\nToken: " + usuario.getToken(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(UsuarioEntrarActivity.this, HomeActivity.class);
+                    startActivity(intent);
+
 
 
                 } else {
@@ -132,7 +110,6 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
     private boolean validate() {
