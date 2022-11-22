@@ -13,13 +13,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import br.edu.ifsp.duendindin_mobile.R;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
+
+    private final String URL_API = "http://localhost:5011/";
 
     private Button btnCadastrar;
     private ImageView imgSetaVoltar;
     private TextInputEditText txtEmail;
     private TextInputEditText txtSenha;
+    private Retrofit retrofitAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,11 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
 
         txtEmail = findViewById(R.id.txt_edit_usuario_cadastro_email);
         txtSenha = findViewById(R.id.txt_edit_senha);
+
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
 
         btnCadastrar = findViewById(R.id.btn_usuario_cadastro_cadastrar);
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +60,8 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
 
     }
 

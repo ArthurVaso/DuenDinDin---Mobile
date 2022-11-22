@@ -1,5 +1,7 @@
 package br.edu.ifsp.duendindin_mobile.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Usuario {
@@ -8,22 +10,28 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private Date data_nascimento;
+    @SerializedName("data_nascimento")
+    private Date dataNascimento;
+    private String cep;
     private String cidade;
     private String estado;
+    @SerializedName("jwt")
+    private String token;
 
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nome, String email, String senha, Date data_nascimento, String cidade, String estado) {
+    public Usuario(Integer id, String nome, String email, String senha, Date dataNascimento, String cep, String cidade, String estado, String token) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.data_nascimento = data_nascimento;
+        this.dataNascimento = dataNascimento;
+        this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
+        this.token = token;
     }
 
     public Integer getId() {
@@ -58,12 +66,20 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Date getData_nascimento() {
-        return data_nascimento;
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setData_nascimento(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getCidade() {
@@ -80,5 +96,13 @@ public class Usuario {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

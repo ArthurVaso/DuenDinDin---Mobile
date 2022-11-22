@@ -19,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Calendar;
 
 import br.edu.ifsp.duendindin_mobile.R;
-import br.edu.ifsp.duendindin_mobile.api.RESTService;
+import br.edu.ifsp.duendindin_mobile.service.CEPService;
 import br.edu.ifsp.duendindin_mobile.model.CEP;
 import br.edu.ifsp.duendindin_mobile.utils.Mascara;
 import retrofit2.Call;
@@ -30,8 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
 
-    //link api cep
-    private final String URL_VIACEP = "https://viacep.com.br/ws/";
+    private final String URL_API = "http://localhost:5011/";
 
     private Button btnContinuar;
     private ImageView imgSetaVoltar;
@@ -44,7 +43,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private TextInputEditText edtRendaFixa;
 
-    private Retrofit retrofitCEP;
+    private Retrofit retrofitAPI;
 
 
     @Override
@@ -97,8 +96,8 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         edtCep.addTextChangedListener(Mascara.insert(Mascara.MASCARA_CEP, edtCep));
 
         //configura os recursos do retrofit
-        retrofitCEP = new Retrofit.Builder()
-                .baseUrl(URL_VIACEP)                                //endereço do webservice
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
                 .addConverterFactory(GsonConverterFactory.create()) //conversor
                 .build();
 
@@ -142,10 +141,10 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         sCep = sCep.replaceAll("[.-]+", "");
 
         //instanciando a interface
-        RESTService restService = retrofitCEP.create(RESTService.class);
+        CEPService CEPService = retrofitAPI.create(CEPService.class);
 
         //passando os dados para consulta
-        Call<CEP> call = restService.consultarCEP(sCep);
+        Call<CEP> call = CEPService.consultarCEP(sCep);
 
         //colocando a requisição na fila para execução
         call.enqueue(new Callback<CEP>() {
