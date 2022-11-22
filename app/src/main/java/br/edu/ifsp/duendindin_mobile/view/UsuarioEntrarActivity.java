@@ -3,6 +3,7 @@ package br.edu.ifsp.duendindin_mobile.view;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -20,6 +21,7 @@ import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.CEP;
 import br.edu.ifsp.duendindin_mobile.model.Login;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
+import br.edu.ifsp.duendindin_mobile.model.UsuarioComToken;
 import br.edu.ifsp.duendindin_mobile.service.CEPService;
 import br.edu.ifsp.duendindin_mobile.service.LoginService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
@@ -39,6 +41,7 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
     private TextInputEditText txtSenha;
     private TextView txtEsqueceuSenha;
     private Retrofit retrofitAPI;
+    private UsuarioComToken usuario = new UsuarioComToken();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +61,17 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View view) {
-                //realizarLogin();
                 if (validate()) {
 
-                    Toast.makeText(UsuarioEntrarActivity.this, "login efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                    realizarLogin();
+                    //Toast.makeText(UsuarioEntrarActivity.this, "login efetuado com sucesso", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(UsuarioEntrarActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
 
             }
         });
+
 
         imgSetaVoltar = findViewById(R.id.seta_voltar);
         imgSetaVoltar.setOnClickListener(new View.OnClickListener() {
@@ -93,55 +97,43 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
 
     private void realizarLogin() {
 
-        Login login = new Login("israel@gmail.com", "123456");
-//        login.setEmail(txtEmail.getText().toString().trim());
-//        login.setSenha(txtSenha.getText().toString().trim());
+        Login login = new Login();
+        login.setEmail(txtEmail.getText().toString().trim());
+        login.setSenha(txtSenha.getText().toString().trim());
 
         //instanciando a interface
         LoginService loginService = retrofitAPI.create(LoginService.class);
 
         //passando os dados para o serviço
-        Call<Usuario> call = loginService.login(login);
+        Call<UsuarioComToken> call = loginService.login(login);
 
         //colocando a requisição na fila para execução
-        call.enqueue(new Callback<Usuario>() {
+        call.enqueue(new Callback<UsuarioComToken>() {
             @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+            public void onResponse(Call<UsuarioComToken> call, Response<UsuarioComToken> response) {
 
-                runOnUiThread(() -> {
-                    AlertDialog alertDialog = new AlertDialog.Builder(UsuarioEntrarActivity.this).create();
-                    alertDialog.setTitle("DuenDinDin");
-                    alertDialog.setIcon(android.R.drawable.ic_dialog_info);
-                    alertDialog.setMessage("code: " + response.code() + "\nmsg: " + response.message());
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
-                });
                 if (response.isSuccessful()) {
-                    //Usuario usuario = response.body();
-//                        usuario.setId(response.body().getId());
-//                        usuario.setNome(response.body().getNome());
-//                        usuario.setEmail(response.body().getEmail());
-//                        usuario.setToken(response.body().getToken());
+
+                    usuario.setUsuario(response.body().getUsuario());
+                    usuario.setToken(response.body().getToken());
                     Toast.makeText(getApplicationContext(), "Login efetuado com sucesso \n"
-                            + "\nToken: " + response.body().getToken(), Toast.LENGTH_LONG).show();
+                            + "\nEmail: " + usuario.getUsuario().getEmail()
+                            + "\nCep: " + usuario.getUsuario().getCep()
+                            + "\nToken: " + usuario.getToken(), Toast.LENGTH_LONG).show();
+
 
                 } else {
-
-                    Toast.makeText(getApplicationContext(), "Ocorreu um erro ao realizar login." + response.message(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Ocorreu um erro ao realizar login." + response.errorBody(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
+            public void onFailure(Call<UsuarioComToken> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Ocorreu outro erro ao fazer login." + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
+
 
 
     private boolean validate() {

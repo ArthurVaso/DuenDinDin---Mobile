@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
 
-    private final String URL_API = "http://localhost:5011/";
+    private final String URL_API = "http://192.168.0.106:5011/";
 
     private Button btnCadastrar;
     private ImageView imgSetaVoltar;
