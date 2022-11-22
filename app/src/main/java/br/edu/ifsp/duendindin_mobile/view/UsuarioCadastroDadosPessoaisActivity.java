@@ -22,6 +22,7 @@ import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.service.CEPService;
 import br.edu.ifsp.duendindin_mobile.model.CEP;
 import br.edu.ifsp.duendindin_mobile.utils.Mascara;
+import br.edu.ifsp.duendindin_mobile.utils.URLAPI;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
 
-    private final String URL_API = "http://192.168.0.106:5011/";
+    private final String URL_API = new URLAPI().baseUrl;
 
     private Button btnContinuar;
     private ImageView imgSetaVoltar;

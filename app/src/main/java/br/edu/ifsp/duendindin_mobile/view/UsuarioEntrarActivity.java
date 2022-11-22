@@ -13,13 +13,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
+import java.io.IOException;
 import java.util.Observable;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.Login;
 import br.edu.ifsp.duendindin_mobile.model.UsuarioComToken;
 import br.edu.ifsp.duendindin_mobile.service.LoginService;
+import br.edu.ifsp.duendindin_mobile.utils.Message;
+import br.edu.ifsp.duendindin_mobile.utils.URLAPI;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UsuarioEntrarActivity extends AppCompatActivity {
 
-    private final String URL_API = "http://192.168.0.106:5011/";
+    private final String URL_API = new URLAPI().baseUrl;
 
     private Button btnEntrar;
     private ImageView imgSetaVoltar;
@@ -67,7 +72,6 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
     }
 
     private void realizarLogin() {
@@ -87,20 +91,25 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
             public void onResponse(Call<UsuarioComToken> call, Response<UsuarioComToken> response) {
 
                 if (response.isSuccessful()) {
-                    Log.d("teste", "caiu no issuccessful");
                     usuario.setUsuario(response.body().getUsuario());
                     usuario.setToken(response.body().getToken());
                     Toast.makeText(getApplicationContext(), "Login efetuado com sucesso \n"
                             + "\nEmail: " + usuario.getUsuario().getEmail()
-                            + "\nCep: " + usuario.getUsuario().getCep()
                             + "\nToken: " + usuario.getToken(), Toast.LENGTH_LONG).show();
+
                     Intent intent = new Intent(UsuarioEntrarActivity.this, HomeActivity.class);
                     startActivity(intent);
-
-
-
                 } else {
-                    Toast.makeText(getApplicationContext(), "Ocorreu um erro ao realizar login." + response.errorBody(), Toast.LENGTH_LONG).show();
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(getApplicationContext(), "Ocorreu um erro ao realizar login.  \n" + msg.getMensagem(), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -110,7 +119,6 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private boolean validate() {
         boolean isValid = true;
