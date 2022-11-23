@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-
+        pref.edit().clear().commit();
         btnCadastrar = findViewById(R.id.btn_main_cadastrar);
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        pref.edit().clear().commit();
         super.onDestroy();
     }
 }
