@@ -1,7 +1,9 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -23,6 +25,8 @@ import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.Login;
 import br.edu.ifsp.duendindin_mobile.model.UsuarioComToken;
 import br.edu.ifsp.duendindin_mobile.service.LoginService;
+import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
+import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
 import br.edu.ifsp.duendindin_mobile.utils.Message;
 import br.edu.ifsp.duendindin_mobile.utils.URLAPI;
 import retrofit2.Call;
@@ -41,11 +45,14 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
     private TextInputEditText txtSenha;
     private Retrofit retrofitAPI;
     private UsuarioComToken usuario = new UsuarioComToken();
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_entrar);
+
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
 
         txtEmail = findViewById(R.id.txt_edit_usuario_entrar_email);
         txtSenha = findViewById(R.id.txt_edit_usuario_entrar_senha);
@@ -72,9 +79,26 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String token = pref.getString("token", "");
+        new CustomMessageDialog("Token: " + token, UsuarioEntrarActivity.this);
     }
 
     private void realizarLogin() {
+        CustomProgressDialog dialog = new CustomProgressDialog(
+                UsuarioEntrarActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
+        dialog.show();
+
 
         Login login = new Login();
         login.setEmail(txtEmail.getText().toString().trim());
@@ -93,13 +117,21 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     usuario.setUsuario(response.body().getUsuario());
                     usuario.setToken(response.body().getToken());
-                    Toast.makeText(getApplicationContext(), "Login efetuado com sucesso \n"
-                            + "\nEmail: " + usuario.getUsuario().getEmail()
-                            + "\nToken: " + usuario.getToken(), Toast.LENGTH_LONG).show();
+
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("token", usuario.getToken());
+                    editor.commit();
+
+//                    Toast.makeText(getApplicationContext(), "Login efetuado com sucesso \n"
+//                            + "\nEmail: " + usuario.getUsuario().getEmail()
+//                            + "\nToken: " + usuario.getToken(), Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+
 
                     Intent intent = new Intent(UsuarioEntrarActivity.this, HomeActivity.class);
                     startActivity(intent);
                 } else {
+
                     String errorBody = null;
                     Message msg = new Message();
                     try {
@@ -109,13 +141,18 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(getApplicationContext(), "Ocorreu um erro ao realizar login.  \n" + msg.getMensagem(), Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                    new CustomMessageDialog("Ocorreu um erro ao realizar login.  \n" + msg.getMensagem(), UsuarioEntrarActivity.this);
+                    //Toast.makeText(getApplicationContext(), "Ocorreu um erro ao realizar login.  \n" + msg.getMensagem(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<UsuarioComToken> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Ocorreu outro erro ao fazer login." + t.getMessage(), Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+                new CustomMessageDialog("Ocorreu outro erro ao fazer login.", UsuarioEntrarActivity.this);
+                Log.d("UsuarioEntrarActivity", t.getMessage());
+                //Toast.makeText(getApplicationContext(), "Ocorreu outro erro ao fazer login." + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -123,13 +160,13 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtEmail.getText().toString().trim().isEmpty()) {
-            Toast.makeText(UsuarioEntrarActivity.this, "Preencha o campo Email!", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("Preencha o campo Email!", UsuarioEntrarActivity.this);
             isValid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString()).matches()) {
-            Toast.makeText(UsuarioEntrarActivity.this, "Informe um Email válido!", Toast.LENGTH_LONG).show();
-            isValid = false;
+            new CustomMessageDialog("Informe um Email válido!", UsuarioEntrarActivity.this);
+           isValid = false;
         } else if (txtSenha.getText().toString().trim().isEmpty()) {
-            Toast.makeText(UsuarioEntrarActivity.this, "Preencha o campo Senha!", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("Preencha o campo Senha!", UsuarioEntrarActivity.this);
             isValid = false;
         }
         return isValid;
