@@ -91,13 +91,13 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
     }
 
     private void realizarLogin() {
-        CustomProgressDialog dialog = new CustomProgressDialog(
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
                 UsuarioEntrarActivity.this,
                 "DuenDinDin",
                 "Aguarde...",
                 false
         );
-        dialog.show();
+        progressDialog.show();
 
 
         Login login = new Login();
@@ -121,12 +121,8 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("token", usuario.getToken());
                     editor.commit();
-
-//                    Toast.makeText(getApplicationContext(), "Login efetuado com sucesso \n"
-//                            + "\nEmail: " + usuario.getUsuario().getEmail()
-//                            + "\nToken: " + usuario.getToken(), Toast.LENGTH_LONG).show();
-                    dialog.dismiss();
-
+                    Toast.makeText(getApplicationContext(), "Login efetuado com sucesso!", Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
 
                     Intent intent = new Intent(UsuarioEntrarActivity.this, HomeActivity.class);
                     startActivity(intent);
@@ -141,7 +137,7 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    dialog.dismiss();
+                    progressDialog.dismiss();
                     new CustomMessageDialog("Ocorreu um erro ao realizar login.  \n" + msg.getMensagem(), UsuarioEntrarActivity.this);
                     //Toast.makeText(getApplicationContext(), "Ocorreu um erro ao realizar login.  \n" + msg.getMensagem(), Toast.LENGTH_LONG).show();
                 }
@@ -149,10 +145,9 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UsuarioComToken> call, Throwable t) {
-                dialog.dismiss();
-                new CustomMessageDialog("Ocorreu outro erro ao fazer login.", UsuarioEntrarActivity.this);
+                progressDialog.dismiss();
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), UsuarioEntrarActivity.this);
                 Log.d("UsuarioEntrarActivity", t.getMessage());
-                //Toast.makeText(getApplicationContext(), "Ocorreu outro erro ao fazer login." + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
