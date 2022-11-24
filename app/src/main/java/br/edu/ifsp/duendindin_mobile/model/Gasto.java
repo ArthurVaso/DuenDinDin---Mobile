@@ -11,12 +11,13 @@ public class Gasto {
     private Date vencimento;
     private Double valor;
     private String descricao;
-    private Date dataPagamento;
+    private Boolean tipo;
+    private Boolean pago;
 
     public Gasto() {
     }
 
-    public Gasto(Integer id, Integer categoriaId, String nome, Boolean recorrencia, Date vencimento, Double valor, String descricao, Date dataPagamento) {
+    public Gasto(Integer id, Integer categoriaId, String nome, Boolean recorrencia, Date vencimento, Double valor, String descricao, Boolean tipo, Boolean pago) {
         this.id = id;
         this.categoriaId = categoriaId;
         this.nome = nome;
@@ -24,15 +25,12 @@ public class Gasto {
         this.vencimento = vencimento;
         this.valor = valor;
         this.descricao = descricao;
-        this.dataPagamento = dataPagamento;
+        this.tipo = tipo;
+        this.pago = pago;
     }
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getCategoriaId() {
@@ -83,12 +81,20 @@ public class Gasto {
         this.descricao = descricao;
     }
 
-    public Date getDataPagamento() {
-        return dataPagamento;
+    public Boolean getTipo() {
+        return tipo;
     }
 
-    public void setDataPagamento(Date dataPagamento) {
-        this.dataPagamento = dataPagamento;
+    public void setTipo(Boolean tipo) {
+        this.tipo = tipo;
+    }
+
+    public Boolean getPago() {
+        return pago;
+    }
+
+    public void setPago(Boolean pago) {
+        this.pago = pago;
     }
 }
 

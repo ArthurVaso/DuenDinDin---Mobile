@@ -69,7 +69,7 @@
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
     <string name="msg_categoria_listagem_dados">ESSAS SÃO SUAS CATEGORIAS</string>
-        <!-- Item Categoria -->
+    <!-- Item Categoria -->
     <string name="txt_categoria_item_nome">Nome da Categoria - Fixo ou Variável</string>
     <string name="txt_categoria_item_descricao">Descrição</string>
     <string name="txt_categoria_item_periodo">Periodo de recorrência</string>
@@ -212,8 +212,8 @@
 
     <!-- Tab Bar -->
     <string name="txt_bottom_nav_home">Home</string>
-    <string name="txt_bottom_nav_calendario">Calendário</string>
-    <string name="txt_bottom_nav_recebimentos">Recebimentos</string>
+    <string name="txt_bottom_nav_gastos">Vencimentos</string>
+    <string name="txt_bottom_nav_ganhos">Recebimento</string>
     <string name="txt_bottom_nav_categorias">Categorias</string>
     <string name="txt_bottom_nav_perfil">Perfil</string>
 

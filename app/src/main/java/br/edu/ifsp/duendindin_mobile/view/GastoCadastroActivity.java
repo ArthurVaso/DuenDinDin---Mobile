@@ -150,8 +150,6 @@ public class GastoCadastroActivity extends AppCompatActivity {
     @Override
     public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onPostCreate(savedInstanceState, persistentState);
-
-
     }
 
     private boolean validate() {

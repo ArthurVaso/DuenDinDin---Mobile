@@ -60,7 +60,7 @@ public class GanhoCadastroActivity extends AppCompatActivity {
         imgSetaVoltar = findViewById(R.id.seta_voltar);
 
         //ArrayList<Categoria> listaCategoria = response.json()
-        ArrayList<String> listaTeste = new ArrayList<String>();
+        ArrayList<String> listaTeste = new ArrayList<>();
         listaTeste.add(getString(R.string.spinner_selecione_uma_opcao));
         //for each item: listaCategoria
         //listaTeste.add(item.getNome());
