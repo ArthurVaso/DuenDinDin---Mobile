@@ -1,7 +1,9 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import br.edu.ifsp.duendindin_mobile.R;
+import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -28,15 +31,15 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnAdicionarVencimentos;
     private Button btnAdicionarCategoria;
     private Button btnVerPerfil;
-
     private HIChartView hcGrafico;
-
     private BottomNavigationView bnvHome;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
 
         btnAdicionarRecebimentos = findViewById(R.id.btn_home_adicionar_recebimentos);
         btnAdicionarVencimentos = findViewById(R.id.btn_home_adicionar_vencimentos);
@@ -89,6 +92,9 @@ public class HomeActivity extends AppCompatActivity {
         options.setSeries(new ArrayList<>(Collections.singletonList(series)));
         hcGrafico.setOptions(options);
 
+        String token = pref.getString("token", "");
+        new CustomMessageDialog("Token: " + token, HomeActivity.this);
+
     }
 
     @Override
@@ -117,6 +123,8 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        //pref.edit().clear().commit();
         super.onBackPressed();
+
     }
 }

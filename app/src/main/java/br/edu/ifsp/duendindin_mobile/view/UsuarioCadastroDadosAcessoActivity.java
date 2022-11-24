@@ -13,12 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import br.edu.ifsp.duendindin_mobile.R;
+import br.edu.ifsp.duendindin_mobile.utils.URLAPI;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
 
-    private final String URL_API = "http://localhost:5011/";
+    private final String URL_API = new URLAPI().baseUrl;
 
     private Button btnCadastrar;
     private ImageView imgSetaVoltar;

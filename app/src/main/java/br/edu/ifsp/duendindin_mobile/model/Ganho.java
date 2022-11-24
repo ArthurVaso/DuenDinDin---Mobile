@@ -11,13 +11,13 @@ public class Ganho {
     private Double valor;
     private String descricao;
     private Boolean recorrencia;
-    private String tipo;
+    private Boolean tipo;
 
     public Ganho() {
 
     }
 
-    public Ganho(Integer id, Integer categoriaId, String nome, Date data, Double valor, String descricao, Boolean recorrencia, String tipo) {
+    public Ganho(Integer id, Integer categoriaId, String nome, Date data, Double valor, String descricao, Boolean recorrencia, Boolean tipo) {
         this.id = id;
         this.categoriaId = categoriaId;
         this.nome = nome;
@@ -81,11 +81,11 @@ public class Ganho {
         this.recorrencia = recorrencia;
     }
 
-    public String getTipo() {
+    public Boolean getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Boolean tipo) {
         this.tipo = tipo;
     }
 }
