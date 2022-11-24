@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -18,7 +19,7 @@ public interface UsuarioService {
     Call<Usuario> cadastrarUsuario(@Body Usuario usuario);
 
     //consultar usuario
-    @GET("user/{usuarioID}/")
+    @GET("user/{usuarioId}/")
     Call<Usuario> consultarUsuario(@Header("x-access-token") String token,
                                    @Path("usuarioId") Integer id);
 

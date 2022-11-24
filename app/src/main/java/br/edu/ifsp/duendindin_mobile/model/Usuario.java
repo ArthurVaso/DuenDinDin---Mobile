@@ -15,14 +15,11 @@ public class Usuario {
     private String cep;
     private String cidade;
     private String estado;
-    @SerializedName("jwt")
-    private String token;
-
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nome, String email, String senha, Date dataNascimento, String cep, String cidade, String estado, String token) {
+    public Usuario(Integer id, String nome, String email, String senha, Date dataNascimento, String cep, String cidade, String estado) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -31,7 +28,6 @@ public class Usuario {
         this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
-        this.token = token;
     }
 
     public Integer getId() {
@@ -93,13 +89,5 @@ public class Usuario {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 }
