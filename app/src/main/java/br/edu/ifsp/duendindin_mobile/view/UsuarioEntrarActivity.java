@@ -87,7 +87,8 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         String token = pref.getString("token", "");
-        new CustomMessageDialog("Token: " + token, UsuarioEntrarActivity.this);
+        int usuarioId = pref.getInt("usuarioId", 0);
+        new CustomMessageDialog("Token: " + token + "\nUsuarioID: " + usuarioId, UsuarioEntrarActivity.this);
     }
 
     private void realizarLogin() {
@@ -120,6 +121,7 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("token", usuario.getToken());
+                    editor.putInt("usuarioId", usuario.getUsuario().getId());
                     editor.commit();
                     Toast.makeText(getApplicationContext(), "Login efetuado com sucesso!", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
