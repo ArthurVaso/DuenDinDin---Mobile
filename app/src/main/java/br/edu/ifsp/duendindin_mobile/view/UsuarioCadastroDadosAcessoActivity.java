@@ -77,7 +77,6 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
 //função para teste do usuario sendo enviado entre activities

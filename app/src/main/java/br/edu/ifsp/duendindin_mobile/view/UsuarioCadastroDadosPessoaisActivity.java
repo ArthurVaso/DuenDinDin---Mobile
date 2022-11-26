@@ -122,7 +122,9 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (validate()) {
                     usuario.setNome(edtNome.getText().toString());
-                    usuario.setDataNascimento(txtDataNasc.getText().toString());
+                    String data[] = txtDataNasc.getText().toString().split("/");
+                    String dataNasc = data[2] + "-" + data[1] + "-" + data[0];
+                    usuario.setDataNascimento(dataNasc);
                     usuario.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
                     usuario.setEstado(edtEstado.getText().toString());
                     usuario.setCidade(edtCidade.getText().toString());
@@ -199,6 +201,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
             return;
         }
         txtDataNasc.setText(diaS + "/" + (mesS + 1) + "/" + anoS);
+
 
     }
 
