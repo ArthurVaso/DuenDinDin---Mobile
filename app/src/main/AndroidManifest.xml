@@ -46,6 +46,9 @@
             android:name=".view.UsuarioCadastroDadosPessoaisActivity"
             android:exported="false" />
         <activity
+            android:name=".view.UsuarioAlterarActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.CategoriaCadastroActivity"
             android:exported="false" />
         <activity

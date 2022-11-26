@@ -2,24 +2,27 @@ package br.edu.ifsp.duendindin_mobile.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     private Integer id;
     private String nome;
     private String email;
     private String senha;
     @SerializedName("data_nascimento")
-    private Date dataNascimento;
+    private String dataNascimento;
     private String cep;
     private String cidade;
     private String estado;
+    @SerializedName("renda_fixa")
+    private Double rendaFixa;
+
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nome, String email, String senha, Date dataNascimento, String cep, String cidade, String estado) {
+    public Usuario(Integer id, String nome, String email, String senha, String dataNascimento, String cep, String cidade, String estado) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -30,10 +33,13 @@ public class Usuario {
         this.estado = estado;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
-
 
     public String getNome() {
         return nome;
@@ -59,11 +65,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -89,5 +95,13 @@ public class Usuario {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Double getRendaFixa() {
+        return rendaFixa;
+    }
+
+    public void setRendaFixa(Double rendaFixa) {
+        this.rendaFixa = rendaFixa;
     }
 }

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -19,6 +20,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Calendar;
 
 import br.edu.ifsp.duendindin_mobile.R;
+import br.edu.ifsp.duendindin_mobile.model.Usuario;
+import br.edu.ifsp.duendindin_mobile.model.UsuarioComToken;
 import br.edu.ifsp.duendindin_mobile.service.CEPService;
 import br.edu.ifsp.duendindin_mobile.model.CEP;
 import br.edu.ifsp.duendindin_mobile.utils.Mascara;
@@ -43,6 +46,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private TextView txtEsqueciCEP;
     private DatePickerDialog datePickerDialog;
     private TextInputEditText edtRendaFixa;
+    private Usuario usuario = new Usuario();
 
     private Retrofit retrofitAPI;
 
@@ -118,7 +122,14 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validate()) {
+                    usuario.setNome(edtNome.getText().toString());
+                    usuario.setDataNascimento(txtDataNasc.getText().toString());
+                    usuario.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
+                    usuario.setEstado(edtEstado.getText().toString());
+                    usuario.setCidade(edtCidade.getText().toString());
+                    usuario.setRendaFixa( Double.parseDouble(edtRendaFixa.getText().toString()));
                     Intent intent = new Intent(UsuarioCadastroDadosPessoaisActivity.this, UsuarioCadastroDadosAcessoActivity.class);
+                    intent.putExtra("Usuario", usuario);
                     startActivity(intent);
                 }
             }
@@ -183,7 +194,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
                 idade--;
             }
         }
-        if (idade > 110 || idade < 10) {
+        if (idade < 18) {
             txtDataNasc.setText("");
             Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, R.string.msg_data_nasc_invalida, Toast.LENGTH_LONG).show();
             return;

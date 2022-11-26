@@ -3,7 +3,6 @@ package br.edu.ifsp.duendindin_mobile.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
@@ -18,11 +17,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
-import br.edu.ifsp.duendindin_mobile.model.UsuarioComToken;
-import br.edu.ifsp.duendindin_mobile.service.LoginService;
+import br.edu.ifsp.duendindin_mobile.model.UsuarioRetorno;
 import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
 import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
@@ -40,8 +39,19 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
     private Retrofit retrofitAPI;
     private SharedPreferences pref;
+    private UsuarioRetorno usuarioRetorno = new UsuarioRetorno();
     private Usuario usuario = new Usuario();
     private String token = "";
+
+    private TextView txtMsgHello;
+    private TextView txtNome;
+    private TextView txtDataNasc;
+    private TextView txtCep;
+    private TextView txtEstado;
+    private TextView txtCidade;
+    private TextView txtEmail;
+    private TextView txtRendaFixa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +61,9 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
         ImageButton btnEditUsuario = findViewById(R.id.img_usuario_perfil_edit);
         btnEditUsuario.setOnClickListener(view -> {
-            startActivity(new Intent(UsuarioPerfilActivity.this, UsuarioCadastroDadosPessoaisActivity.class));
+            Intent intent = new Intent(UsuarioPerfilActivity.this, UsuarioAlterarActivity.class);
+            intent.putExtra("usuario", (Serializable) usuario);
+            startActivity(intent);
         });
 
         TextView txtRedefinir = findViewById(R.id.msg_usuario_perfil_esqueceu_sua_senha);
@@ -59,8 +71,16 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
             startActivity(new Intent(UsuarioPerfilActivity.this, RecuperarSenhaEnviaEmailActivity.class));
         });
 
+        txtMsgHello = findViewById(R.id.msg_usario_perfil);
+        txtNome = findViewById(R.id.txt_usuario_perfil_edit_nome_completo);
+        txtDataNasc = findViewById(R.id.txt_usuario_perfil_edit_data_de_nascimento);
+        txtCep = findViewById(R.id.txt_usuario_perfil_edit_CEP);
+        txtEstado = findViewById(R.id.txt_usuario_perfil_edit_estado);
+        txtCidade = findViewById(R.id.txt_usuario_perfil_edit_cidade);
+        txtEmail = findViewById(R.id.txt_usuario_perfil_edit_email);
+        txtRendaFixa = findViewById(R.id.txt_usuario_perfil_edit_salario);
+
         token = pref.getString("token", "");
-//        new CustomMessageDialog("Token: " + token, UsuarioPerfilActivity.this);
     }
 
     @Override
@@ -90,13 +110,13 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        CustomProgressDialog dialog = new CustomProgressDialog(
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
                 UsuarioPerfilActivity.this,
                 "DuenDinDin",
                 "Aguarde...",
                 false
         );
-        dialog.show();
+        progressDialog.show();
 
         retrofitAPI = new Retrofit.Builder()
                 .baseUrl(URL_API)                                //endereço do webservice
@@ -107,19 +127,32 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
         //passando os dados para o serviço
-        Call<Usuario> call = usuarioService.consultarUsuario(token, 2);
-        call.enqueue(new Callback<Usuario>() {
+        Call<UsuarioRetorno> call = usuarioService.consultarUsuario(token, 2);
+        call.enqueue(new Callback<UsuarioRetorno>() {
             @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+            public void onResponse(Call<UsuarioRetorno> call, Response<UsuarioRetorno> response) {
                 if (response.isSuccessful()) {
-                    usuario = response.body();
-                    Log.d("Usuario", "Usuario: " + usuario);
+                    usuarioRetorno = response.body();
+                    usuario = usuarioRetorno.getUsuario();
 
-                    Log.d("Usuario", "Nome: " + response.body().getNome());
-                    Log.d("Usuario","Email: " + response.body().getEmail());
-                    Log.d("Usuario","DataNasc: " + response.body().getDataNascimento());
+                    String usuarioNome = usuario.getNome();
+                    String usuarioDataNasc = usuario.getDataNascimento();
+                    String usuarioCep = usuario.getCep();
+                    String usuarioEstado = usuario.getEstado();
+                    String usuarioCidade = usuario.getCidade();
+                    String usuarioEmail = usuario.getEmail();
+                    Double usuarioRenda = usuario.getRendaFixa();
 
-                    dialog.dismiss();
+                    txtMsgHello.setText("Olá, " + usuarioNome);
+                    txtNome.setText(usuarioNome);
+                    txtDataNasc.setText(usuarioDataNasc);
+                    txtCep.setText(usuarioCep);
+                    txtEstado.setText(usuarioEstado);
+                    txtCidade.setText(usuarioCidade);
+                    txtEmail.setText(usuarioEmail);
+                    txtRendaFixa.setText("Salário");
+
+                    progressDialog.dismiss();
                 } else {
                     String errorBody = null;
                     Message msg = new Message();
@@ -130,7 +163,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    dialog.dismiss();
+                    progressDialog.dismiss();
 
                     Log.d("Usuario", "Usuário não encontrado.");
                     new CustomMessageDialog("Ocorreu um erro ao consultar os dados do Usuário.  \n" + msg.getMensagem(), UsuarioPerfilActivity.this);
@@ -138,10 +171,10 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-                dialog.dismiss();
-                new CustomMessageDialog("Ocorreu outro erro ao consultar os dados do Usuário.", UsuarioPerfilActivity.this);
-                Log.d("Usuario", t.getMessage());
+            public void onFailure(Call<UsuarioRetorno> call, Throwable t) {
+                progressDialog.dismiss();
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), UsuarioPerfilActivity.this);
+
             }
         });
     }

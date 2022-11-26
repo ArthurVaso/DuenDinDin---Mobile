@@ -18,7 +18,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/seta_voltar"
+            android:id="@+id/seta_voltar_alterar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/txt_usuario_cadastro_titulo"
+                    android:text="@string/txt_usuario_alterar_titulo"
                     android:textColor="@color/border_color"
                     android:textSize="36sp" />
 
@@ -82,7 +82,7 @@
                     android:textColor="@color/black" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_nome_usuario"
+                    android:id="@+id/edt_nome_usuario_alterar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -106,7 +106,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_data_nasc_usuario"
+                    android:id="@+id/txt_data_nasc_usuario_alterar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -142,7 +142,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/txt_esqueci_cep"
+                        android:id="@+id/txt_esqueci_cep_alterar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -155,7 +155,7 @@
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_cep"
+                    android:id="@+id/edt_cep_usuario_alterar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -165,7 +165,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/edt_usuario_cadastro_cep"
                     android:inputType="number"
-                    android:maxLength="8"
+                    android:maxLength="20"
                     android:textColorHint="@color/border_color" />
 
                 <TextView
@@ -177,18 +177,18 @@
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black" />
 
-                <Spinner
-                    android:id="@+id/sp_uf"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_estado_usuario_alterar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
-                    android:background="@drawable/spinner_background"
-                    android:entries="@array/spUf"
+                    android:background="@drawable/item_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="Estado"
                     android:minHeight="48dp"
-                    app:boxStrokeColor="@color/secondary_color" />
-
+                    android:textColorHint="@color/border_color" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -198,17 +198,18 @@
                     android:text="@string/txt_usuario_cadastro_cidade"
                     android:textColor="@color/black" />
 
-                <Spinner
-                    android:id="@+id/sp_cidade"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_cidade_usuario_alterar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
-                    android:background="@drawable/spinner_background"
-                    android:entries="@array/spCidade"
+                    android:background="@drawable/item_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="Cidade"
                     android:minHeight="48dp"
-                    app:boxStrokeColor="@color/secondary_color" />
+                    android:textColorHint="@color/border_color" />
 
 
                 <TextView
@@ -222,7 +223,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_renda_usuario"
+                    android:id="@+id/edt_renda_usuario_alterar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -236,7 +237,7 @@
                     android:textColorHint="@color/border_color" />
 
                 <Button
-                    android:id="@+id/btn_usuario_cadastro_continuar"
+                    android:id="@+id/btn_usuario_alterar_atualizar"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="8dp"
@@ -244,7 +245,7 @@
                     android:layout_marginRight="8dp"
                     android:backgroundTint="@color/secondary_color"
                     android:backgroundTintMode="add"
-                    android:text="@string/btn_usuario_cadastro_continuar"
+                    android:text="@string/btn_usuario_editar_atualizar"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/white"
                     app:strokeColor="@color/border_color"
