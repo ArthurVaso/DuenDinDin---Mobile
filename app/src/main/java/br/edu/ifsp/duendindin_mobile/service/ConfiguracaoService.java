@@ -23,7 +23,7 @@ public interface ConfiguracaoService {
     Call<List<Configuracao>> retornarTodasConfiguracaos(@Header("x-access-token") String token);
 
     //atualizar configuracao
-    @PUT("setting/configuracaoId")
+    @PUT("setting/{configuracaoId}")
     Call<Configuracao> atualizarConfiguracaoUsuario(@Header("x-access-token") String token,
                                               @Path("configuracaoId") Integer configId,
                                               @Body Configuracao configuracao);
