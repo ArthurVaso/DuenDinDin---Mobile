@@ -50,7 +50,7 @@
     <string name="hint_usuario_cadastro_estado">Selecione uma opção</string>
     <string name="txt_usuario_cadastro_renda_fixa">RENDA FIXA</string>
     <string name="hint_usuario_cadastro_renda">2000,00</string>
-    <string name="txt_usuario_cadastro_data_de_nascimento">DATA DE NASCIMENTO</string>
+    <string name="txt_usuario_cadastro_data_de_nascimento">DATA DE NASCIMENTO *</string>
     <string name="hint_usuario_cadastro_data_nasc">dd/mm/aaaa</string>
     <string name="txt_usuario_cadastro_cidade">CIDADE</string>
     <string name="txt_usuario_cadastro_email">E-MAIL *</string>
@@ -59,7 +59,7 @@
     <string name="hint_usuario_cadastro_senha">***********</string>
     <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
     <string name="msg_data_nasc_invalida">Data inválida! você deve ter mais que 18 anos!</string>
-    <string name="txt_usuario_cadastro_cep">CEP</string>
+    <string name="txt_usuario_cadastro_cep">CEP *</string>
     <string name="txt_usuario_cadastro_esqueci_cep">Esqueci o CEP</string>
     <string name="edt_usuario_cadastro_cep">Informe o CEP</string>
 

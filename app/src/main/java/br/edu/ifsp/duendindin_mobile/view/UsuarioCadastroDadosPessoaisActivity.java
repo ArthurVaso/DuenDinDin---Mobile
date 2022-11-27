@@ -24,6 +24,7 @@ import br.edu.ifsp.duendindin_mobile.model.Usuario;
 import br.edu.ifsp.duendindin_mobile.model.UsuarioComToken;
 import br.edu.ifsp.duendindin_mobile.service.CEPService;
 import br.edu.ifsp.duendindin_mobile.model.CEP;
+import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
 import br.edu.ifsp.duendindin_mobile.utils.Mascara;
 import br.edu.ifsp.duendindin_mobile.utils.URLAPI;
 import retrofit2.Call;
@@ -128,7 +129,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
                     usuario.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
                     usuario.setEstado(edtEstado.getText().toString());
                     usuario.setCidade(edtCidade.getText().toString());
-                    usuario.setRendaFixa( Double.parseDouble(edtRendaFixa.getText().toString()));
+                    usuario.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString().replaceAll(",", ".")));
                     Intent intent = new Intent(UsuarioCadastroDadosPessoaisActivity.this, UsuarioCadastroDadosAcessoActivity.class);
                     intent.putExtra("Usuario", usuario);
                     startActivity(intent);
@@ -162,25 +163,25 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<CEP> call, @NonNull Response<CEP> response) {
                 if (response.isSuccessful()) {
-                    if (response.code()==200 && response.body().getUf() != null) { //OK - CEP EXISTE
+                    if (response.code() == 200 && response.body().getUf() != null) { //OK - CEP EXISTE
                         CEP cep = response.body();
                         edtEstado.setText(cep.getUf());
                         edtCidade.setText(cep.getLocalidade());
-                        Toast.makeText(getApplicationContext(), "CEP consultado com sucesso", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "CEP consultado com sucesso!", Toast.LENGTH_LONG).show();
                     } else if (response.code() == 200 && response.body().getUf() == null) { // OK - CEP NÃO EXISTE
-                        Toast.makeText(getApplicationContext(), "CEP inválido! Tente novamente.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "CEP inválido! Digite um CEP existente!", Toast.LENGTH_LONG).show();
                     } else if (response.code() == 400) { //BAD REQUEST - CODE 400
-                        Toast.makeText(getApplicationContext(), "Ocorreu um erro ao tentar consultar o CEP.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Ocorreu um erro ao consultar o CEP informado.", Toast.LENGTH_LONG).show();
                     }
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Ocorreu outro erro ao tentar consultar o CEP.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Ocorreu um erro ao consultar o CEP.", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<CEP> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Ocorreu um erro ao tentar consultar o CEP. Erro: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                new CustomMessageDialog("Ocorreu um erro ao tentar consultar o CEP. \nErro: " + t.getMessage(), UsuarioCadastroDadosPessoaisActivity.this);
             }
         });
     }
@@ -197,7 +198,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         }
         if (idade < 18) {
             txtDataNasc.setText("");
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, R.string.msg_data_nasc_invalida, Toast.LENGTH_LONG).show();
+            new CustomMessageDialog(getString(R.string.msg_data_nasc_invalida), UsuarioCadastroDadosPessoaisActivity.this);
             return;
         }
         txtDataNasc.setText(diaS + "/" + (mesS + 1) + "/" + anoS);
@@ -208,15 +209,23 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
 
-        isValid = validateCep(); // chamando a validação do cep
-
+        //isValid = validateCep();
         if (edtNome.getText().toString().trim().isEmpty()) {
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O campo Nome deve ser preenchido!", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("O campo Nome deve ser preenchido!", UsuarioCadastroDadosPessoaisActivity.this);
             isValid = false;
-        } else if (edtNome.getText().toString().trim().length() > 30) {
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O campo Nome não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
+        }  else if (edtNome.getText().toString().trim().length() > 30) {
+            new CustomMessageDialog("O campo Nome não deve ter mais de 30 caracteres!", UsuarioCadastroDadosPessoaisActivity.this);
             isValid = false;
+        } else if (txtDataNasc.getText().toString().trim().isEmpty() || txtDataNasc.getText().toString().trim().length() < 10) {
+            new CustomMessageDialog("O campo Data de Nascimento deve ser preenchido!", UsuarioCadastroDadosPessoaisActivity.this);
+            isValid = false;
+        } else if (edtEstado.getText().toString().trim().isEmpty() || edtCidade.getText().toString().trim().isEmpty()) {
+            new CustomMessageDialog("Digite um CEP existente para que o Estado e a Cidade sejam preenchidos!", UsuarioCadastroDadosPessoaisActivity.this);
+            isValid = false;
+        } else if (isValid) {
+            isValid = validateCep(); // chamando a validação do cep
         }
+
         return isValid;
     }
 
@@ -225,11 +234,11 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
 
         if (edtCep.getText().toString().trim().isEmpty()) {
             edtCep.setError("");
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "Digite um CEP válido.", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("Digite um CEP válido!", UsuarioCadastroDadosPessoaisActivity.this);
             isValid = false;
         } else if (edtCep.getText().toString().trim().length() != 10) {
             edtCep.setError("");
-            Toast.makeText(UsuarioCadastroDadosPessoaisActivity.this, "O CEP deve possuir 8 dígitos!", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("O CEP deve possuir 8 dígitos!", UsuarioCadastroDadosPessoaisActivity.this);
             isValid = false;
         } else {
             edtCep.setError(null);
