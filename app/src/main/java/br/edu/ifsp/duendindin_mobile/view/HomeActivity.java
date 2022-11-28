@@ -14,10 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.highsoft.highcharts.common.HIColor;
+import com.highsoft.highcharts.common.hichartsclasses.HIBar;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HIPlotOptions;
+import com.highsoft.highcharts.common.hichartsclasses.HISubtitle;
 import com.highsoft.highcharts.common.hichartsclasses.HITitle;
+import com.highsoft.highcharts.common.hichartsclasses.HITooltip;
+import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
+import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.core.HIChartView;
 
 import java.util.ArrayList;
@@ -90,15 +97,61 @@ public class HomeActivity extends AppCompatActivity {
         chart.setType("column");
 
         HITitle title = new HITitle();
-        title.setText("Gráfico 1");
+        title.setText("Seu Balanço Mensal");
 
-        HIColumn series = new HIColumn();
-        series.setData(new ArrayList<>(Arrays.asList(77.4, 63.2, 50.3, 48.5, 0.3)));
+        HISubtitle subtitle = new HISubtitle();
+        subtitle.setText("Out - Nov");
+
+        final HIYAxis hiyAxis = new HIYAxis();
+        hiyAxis.setMin(0);
+        hiyAxis.setTitle(new HITitle());
+        hiyAxis.getTitle().setText("Valores (R$)");
+
+        final HIXAxis hixAxis = new HIXAxis();
+        ArrayList categories = new ArrayList<>();
+        categories.add("Gastos x Ganhos");
+        hixAxis.setCategories(categories);
+
+        HITooltip tooltip = new HITooltip();
+        tooltip.setHeaderFormat("<span style=\"font-size:15px\">{point.key}</span><table>");
+        tooltip.setPointFormat("<tr><td style=\"color:{series.color};padding:0\">{series.name}: </td>" + "<td style=\"padding:0\"><b>{point.y}</b></td></tr>");
+        tooltip.setFooterFormat("</talble>");
+        tooltip.setShared(true);
+        tooltip.setUseHTML(true);
+
+        HIPlotOptions plotOptions = new HIPlotOptions();
+        plotOptions.setColumn(new HIColumn());
+        plotOptions.getColumn().setPointPadding(0.2);
+        plotOptions.getColumn().setBorderWidth(0);
+
+        HIColumn seriesGastos = new HIColumn();
+        HIColumn seriesGanhos = new HIColumn();
+
+        seriesGastos.setColor(HIColor.initWithRGB(255, 0, 0)); // red
+        seriesGastos.setName("Gastos totais");
+        ArrayList gastosData = new ArrayList<>();
+        gastosData.add(250);
+        seriesGastos.setData(gastosData);
+
+        seriesGanhos.setColor(HIColor.initWithRGB(0, 0, 255)); // blue
+        seriesGanhos.setName("Ganhos totais");
+        ArrayList ganhosData = new ArrayList<>();
+        ganhosData.add(1550);
+        seriesGanhos.setData(ganhosData);
+
+        ArrayList series = new ArrayList<>();
+        series.add(seriesGastos);
+        series.add(seriesGanhos);
 
         HIOptions options = new HIOptions();
         options.setChart(chart);
         options.setTitle(title);
-        options.setSeries(new ArrayList<>(Collections.singletonList(series)));
+        options.setSubtitle(subtitle);
+        options.setYAxis(new ArrayList(){{add(hiyAxis);}});
+        options.setXAxis(new ArrayList(){{add(hixAxis);}});
+        options.setTooltip(tooltip);
+        options.setPlotOptions(plotOptions);
+        options.setSeries(series);
         hcGrafico.setOptions(options);
 
         preencherRecyclerViews();
