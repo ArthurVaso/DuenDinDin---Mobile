@@ -30,14 +30,14 @@ public interface CategoriaService {
     Call<List<Categoria>> retornarTodasCategorias(@Header("x-access-token") String token);
 
     //atualizar categoria
-    @PUT("category/usuarioId/categoriaId")
+    @PUT("category/{usuarioId}/{categoriaId}")
     Call<Categoria> atualizarCategoriaUsuario(@Header("x-access-token") String token,
                                    @Path("usuarioId") Integer userId,
                                    @Path("categoriaId") Integer categoryId,
                                    @Body Categoria categoria);
 
     //deletar categoria
-    @DELETE("category/usuarioId/categoriaId")
+    @DELETE("category/{usuarioId}/{categoriaId}")
     Call<Categoria> deletarCategoriaUsuario(@Header("x-access-token") String token,
                                              @Path("usuarioId") Integer userId,
                                              @Path("categoriaId") Integer categoryId);

@@ -34,7 +34,7 @@
     <!--    TEXTOS DOS DADOS FINANCEIROS-->
     <string name="txt_usuario_perfil_financeiro">Financeiro:</string>
     <string name="txt_usuario_perfil_salario">SALÁRIO</string>
-    <string name="txt_usuario_perfil_edit_salario">R$2000,00</string>
+    <string name="txt_usuario_perfil_edit_salario">R$2000.00</string>
     <string name="txt_usuario_perfil_limite_de_gasto">LIMITE DE GASTO</string>
     <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
     <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
@@ -49,8 +49,8 @@
     <string name="txt_usuario_cadastro_estado">ESTADO</string>
     <string name="hint_usuario_cadastro_estado">Selecione uma opção</string>
     <string name="txt_usuario_cadastro_renda_fixa">RENDA FIXA</string>
-    <string name="hint_usuario_cadastro_renda">2000,00</string>
-    <string name="txt_usuario_cadastro_data_de_nascimento">DATA DE NASCIMENTO</string>
+    <string name="hint_usuario_cadastro_renda">2000.00</string>
+    <string name="txt_usuario_cadastro_data_de_nascimento">DATA DE NASCIMENTO *</string>
     <string name="hint_usuario_cadastro_data_nasc">dd/mm/aaaa</string>
     <string name="txt_usuario_cadastro_cidade">CIDADE</string>
     <string name="txt_usuario_cadastro_email">E-MAIL *</string>
@@ -59,7 +59,7 @@
     <string name="hint_usuario_cadastro_senha">***********</string>
     <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
     <string name="msg_data_nasc_invalida">Data inválida! você deve ter mais que 18 anos!</string>
-    <string name="txt_usuario_cadastro_cep">CEP</string>
+    <string name="txt_usuario_cadastro_cep">CEP *</string>
     <string name="txt_usuario_cadastro_esqueci_cep">Esqueci o CEP</string>
     <string name="edt_usuario_cadastro_cep">Informe o CEP</string>
 

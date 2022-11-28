@@ -146,18 +146,19 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
     private boolean validate() {
         boolean isValid = true;
         if (txtEmail.getText().toString().trim().isEmpty()) {
-            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "Preencha o campo Email", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("Preencha o campo Email", UsuarioCadastroDadosAcessoActivity.this);
             isValid = false;
         } else if (txtEmail.getText().toString().trim().length() > 30) {
-            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "O campo Email não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("O campo Email não deve ter mais de 30 caracteres!", UsuarioCadastroDadosAcessoActivity.this);
             isValid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString()).matches()) {
-            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "Informe um email válido", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("Informe um email válido", UsuarioCadastroDadosAcessoActivity.this);
             isValid = false;
         } else if (txtSenha.getText().toString().trim().isEmpty()) {
-            Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "O campo Senha não pode estar vazio!", Toast.LENGTH_LONG).show();
+            new CustomMessageDialog("O campo Senha não pode estar vazio!", UsuarioCadastroDadosAcessoActivity.this);
             isValid = false;
         } else if (txtSenha.getText().toString().trim().length() > 50) {
+            new CustomMessageDialog("O campo Senha não deve ter mais de 50 caracteres!", UsuarioCadastroDadosAcessoActivity.this);
             Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "O campo Senha não deve ter mais de 50 caracteres!", Toast.LENGTH_LONG).show();
             isValid = false;
         }
