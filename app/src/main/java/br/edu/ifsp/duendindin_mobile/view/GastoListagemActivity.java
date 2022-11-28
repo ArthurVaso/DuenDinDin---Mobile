@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.adapter.GastosAdapter;
+import br.edu.ifsp.duendindin_mobile.model.Gasto;
 
 public class GastoListagemActivity extends AppCompatActivity {
 
@@ -28,10 +30,14 @@ public class GastoListagemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listagem_gasto);
 
         rvGastos = findViewById(R.id.rv_gasto);
-        ArrayList<String> listGastos = new ArrayList();
-        listGastos.add("Academia");
-        listGastos.add("Presente");
-        listGastos.add("Uber");
+        ArrayList<Gasto> listGastos = new ArrayList();
+
+        Gasto g1 = new Gasto(1, 5, "Academia Outubro", true, new Date(2022, 10, 30), 100.00, "Paguei a academia de outubro.", false, true);
+        Gasto g2 = new Gasto(2, 5, "Presente Cunhado", false, new Date(2022, 11, 19), 120.00, "Comprei o presente do meu cunhado.", true, false);
+        Gasto g3 = new Gasto(3, 5, "Uber", false, new Date(2022, 11, 27), 30.00, "Uber ida e volta pra academia.", false, true);
+        listGastos.add(g1);
+        listGastos.add(g2);
+        listGastos.add(g3);
 
         rvGastos.setLayoutManager(new LinearLayoutManager(this));
         GastosAdapter gastosAdapter = new GastosAdapter(this.getLayoutInflater(), listGastos);

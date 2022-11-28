@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.adapter.GanhosAdapter;
+import br.edu.ifsp.duendindin_mobile.model.Ganho;
 
 public class GanhoListagemActivity extends AppCompatActivity {
 
@@ -28,10 +30,13 @@ public class GanhoListagemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listagem_ganho);
 
         rvGanhos = findViewById(R.id.rv_ganhos);
-        ArrayList<String> listGanhos = new ArrayList();
-        listGanhos.add("Salário");
-        listGanhos.add("Presente");
-        listGanhos.add("Bico");
+        ArrayList<Ganho> listGanhos = new ArrayList();
+        Ganho g1 = new Ganho(1, 4, "Salário Outubro", new Date(2022, 10, 5), 1000.00, "Esse é meu salário de outubro", true, true);
+        Ganho g2 = new Ganho(2, 1, "Presente do meu avô", new Date(2022, 11, 15), 50.00, "Meu avô me ajudou na vaquinha", false, false);
+        Ganho g3 = new Ganho(3, 2, "Freela Tio", new Date(2022, 10, 27), 500.00, "Fiz um Freela pra empresa do meu tio", false, true);
+        listGanhos.add(g1);
+        listGanhos.add(g2);
+        listGanhos.add(g3);
 
         rvGanhos.setLayoutManager(new LinearLayoutManager(this));
         GanhosAdapter ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), listGanhos);

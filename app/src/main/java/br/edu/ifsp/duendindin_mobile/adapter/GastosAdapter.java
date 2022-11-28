@@ -20,10 +20,10 @@ import br.edu.ifsp.duendindin_mobile.model.Gasto;
 
 public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder> {
 
-    private ArrayList<String> gastos;
+    private ArrayList<Gasto> gastos;
     private LayoutInflater inflater;
 
-    public GastosAdapter(LayoutInflater inflater, ArrayList<String> gastos) {
+    public GastosAdapter(LayoutInflater inflater, ArrayList<Gasto> gastos) {
         this.inflater = inflater;
         this.gastos = gastos;
     }
@@ -47,15 +47,23 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull GastosAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        String gasto = gastos.get(position);
-        holder.nome.setText(gasto+" - R$ valor");
-        holder.descricao.setText("Descriçãoooooo");
+        Gasto gasto = gastos.get(position);
+        String valor = String.format( "%.2f", gasto.getValor());
+        holder.nome.setText(gasto.getNome()+" - R$ "+ valor);
+        holder.descricao.setText(gasto.getDescricao());
         holder.position = position;
+        holder.cbxPago.setChecked(gasto.getPago());
 
         holder.cbxPago.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "SELECTED", Toast.LENGTH_SHORT).show();
+                if (holder.cbxPago.isChecked()){
+                    gasto.setPago(true);
+                    Toast.makeText(view.getContext(), "Esse gasto foi pago!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(view.getContext(), "Esse gasto ainda não foi pago!", Toast.LENGTH_SHORT).show();
+                    gasto.setPago(false);
+                }
             }
         });
     }

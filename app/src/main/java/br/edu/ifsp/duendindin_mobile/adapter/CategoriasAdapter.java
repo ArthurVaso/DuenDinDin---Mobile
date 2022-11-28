@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +17,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import br.edu.ifsp.duendindin_mobile.R;
+import br.edu.ifsp.duendindin_mobile.model.Categoria;
+import br.edu.ifsp.duendindin_mobile.view.CategoriaAlterarActivity;
 
 public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.ViewHolder> {
 
-    private ArrayList<String> categorias;
+    private ArrayList<Categoria> categorias;
     private LayoutInflater inflater;
 
 
-    public CategoriasAdapter(LayoutInflater inflater, ArrayList<String> categorias) {
+    public CategoriasAdapter(LayoutInflater inflater, ArrayList<Categoria> categorias) {
         this.inflater = inflater;
         this.categorias = categorias;
     }
@@ -36,7 +41,6 @@ public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.Vi
 
         categoriasViewHolder.nome = itemCategoria.findViewById(R.id.textView);
         categoriasViewHolder.descricao = itemCategoria.findViewById(R.id.textView2);
-        categoriasViewHolder.periodoRecorrencia = itemCategoria.findViewById(R.id.textView3);
 
         categoriasViewHolder.imgEdit = itemCategoria.findViewById(R.id.imageButton);
         categoriasViewHolder.imgDelete = itemCategoria.findViewById(R.id.imageButton2);
@@ -47,22 +51,42 @@ public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.Vi
 
     @Override
     public void onBindViewHolder(CategoriasAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        String categoria = categorias.get(position);
-        holder.nome.setText(categoria+" - Fixo ou Variável");
-        holder.descricao.setText("Descriçãoooooo");
-        holder.periodoRecorrencia.setText("Periodo de recorrênciaaaaa");
+        Categoria categoria = categorias.get(position);
+        holder.nome.setText(categoria.getNome());
+        holder.descricao.setText(categoria.getDescricao());
         holder.position = position;
 
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "EDIT", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(holder.view.getContext(), CategoriaAlterarActivity.class);
+                intent.putExtra("categoria", categoria);
+                holder.view.getContext().startActivity(intent);
             }
         });
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "DELETE", Toast.LENGTH_SHORT).show();
+                AlertDialog alertDialog = new AlertDialog.Builder(holder.view.getContext()).create();
+                alertDialog.setTitle("DuenDinDin");
+                alertDialog.setIcon(android.R.drawable.ic_dialog_info);
+                alertDialog.setMessage("Deseja mesmo excluir essa categoria?");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "SIM",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                int position = categorias.indexOf(categoria);
+                                categorias.remove(position);
+                                notifyItemRemoved(position);
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NÃO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
             }
         });
     }

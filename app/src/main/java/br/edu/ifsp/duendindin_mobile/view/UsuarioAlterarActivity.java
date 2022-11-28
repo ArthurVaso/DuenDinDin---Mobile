@@ -25,7 +25,6 @@ import java.util.Calendar;
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.CEP;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
-import br.edu.ifsp.duendindin_mobile.model.UsuarioRetorno;
 import br.edu.ifsp.duendindin_mobile.service.CEPService;
 import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
@@ -46,7 +45,7 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
     private Retrofit retrofitAPI;
     private SharedPreferences pref;
     private String token = "";
-
+    private int usuarioId = 0;
 
     private Button btnContinuar;
     private ImageView imgSetaVoltar;
@@ -155,7 +154,9 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
 
         usuarioPerfil = (Usuario) getIntent().getSerializableExtra("usuario");
         edtNome.setText(usuarioPerfil.getNome());
-        txtDataNasc.setText(usuarioPerfil.getDataNascimento());
+        String data[] = usuarioPerfil.getDataNascimento().split("-");
+        String dataNasc = data[2] + "/" + data[1] + "/" + data[0];
+        txtDataNasc.setText(dataNasc);
         String cep = usuarioPerfil.getCep();
         cep = "13.503-255";
         edtCep.setText(cep);
@@ -164,6 +165,7 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
         edtRendaFixa.setText("1000");
 
         token = pref.getString("token", "");
+        usuarioId = pref.getInt("usuarioId", 0);
 
     }
 
@@ -214,7 +216,9 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
         );
 
         usuarioPerfil.setNome(edtNome.getText().toString());
-        usuarioPerfil.setDataNascimento(txtDataNasc.getText().toString());
+        String data[] = txtDataNasc.getText().toString().split("/");
+        String dataNasc = data[2] + "-" + data[1] + "-" + data[0];
+        usuarioPerfil.setDataNascimento(dataNasc);
         usuarioPerfil.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
         usuarioPerfil.setEstado(edtEstado.getText().toString());
         usuarioPerfil.setCidade(edtCidade.getText().toString());
@@ -228,10 +232,10 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
         //instanciando a interface
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
-        Call<Usuario> call = usuarioService.atualizarUsuario(token, 2, usuarioPerfil);
-        call.enqueue(new Callback<Usuario>() {
+        Call<String> call = usuarioService.atualizarUsuario(token, usuarioId, usuarioPerfil);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
 
                 if (response.isSuccessful()) {
                     progressDialog.dismiss();
@@ -246,18 +250,16 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
                     Message msg = new Message();
                     try {
                         errorBody = response.errorBody().string();
-                        Gson gson = new Gson(); // conversor
-                        msg = gson.fromJson(errorBody, Message.class);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     progressDialog.dismiss();
-                    new CustomMessageDialog("Ocorreu um erro ao realizar a atualização.  \n" + msg.getMensagem(), UsuarioAlterarActivity.this);
+                    new CustomMessageDialog("Ocorreu um erro ao realizar a atualização.  \n" + errorBody, UsuarioAlterarActivity.this);
                 }
             }
 
             @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 progressDialog.dismiss();
                 new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), UsuarioAlterarActivity.this);
 

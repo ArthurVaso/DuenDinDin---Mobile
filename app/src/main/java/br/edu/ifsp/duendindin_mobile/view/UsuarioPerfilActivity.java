@@ -21,7 +21,6 @@ import java.io.Serializable;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
-import br.edu.ifsp.duendindin_mobile.model.UsuarioRetorno;
 import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
 import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
@@ -39,9 +38,9 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
     private Retrofit retrofitAPI;
     private SharedPreferences pref;
-    private UsuarioRetorno usuarioRetorno = new UsuarioRetorno();
     private Usuario usuario = new Usuario();
     private String token = "";
+    private int usuarioId;
 
     private TextView txtMsgHello;
     private TextView txtNome;
@@ -81,6 +80,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
         txtRendaFixa = findViewById(R.id.txt_usuario_perfil_edit_salario);
 
         token = pref.getString("token", "");
+        usuarioId = pref.getInt("usuarioId", 0);
     }
 
     @Override
@@ -127,16 +127,17 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
         //passando os dados para o serviço
-        Call<UsuarioRetorno> call = usuarioService.consultarUsuario(token, 2);
-        call.enqueue(new Callback<UsuarioRetorno>() {
+        Call<Usuario> call = usuarioService.consultarUsuario(token, usuarioId);
+        call.enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(Call<UsuarioRetorno> call, Response<UsuarioRetorno> response) {
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()) {
-                    usuarioRetorno = response.body();
-                    usuario = usuarioRetorno.getUsuario();
+                    usuario = response.body();
 
                     String usuarioNome = usuario.getNome();
                     String usuarioDataNasc = usuario.getDataNascimento();
+                    String data[] = usuarioDataNasc.split("-");
+                    usuarioDataNasc = data[2] + "/" + data[1] + "/" + data[0];
                     String usuarioCep = usuario.getCep();
                     String usuarioEstado = usuario.getEstado();
                     String usuarioCidade = usuario.getCidade();
@@ -150,7 +151,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
                     txtEstado.setText(usuarioEstado);
                     txtCidade.setText(usuarioCidade);
                     txtEmail.setText(usuarioEmail);
-                    txtRendaFixa.setText("Salário");
+                    txtRendaFixa.setText("1000");
 
                     progressDialog.dismiss();
                 } else {
@@ -171,7 +172,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UsuarioRetorno> call, Throwable t) {
+            public void onFailure(Call<Usuario> call, Throwable t) {
                 progressDialog.dismiss();
                 new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), UsuarioPerfilActivity.this);
 

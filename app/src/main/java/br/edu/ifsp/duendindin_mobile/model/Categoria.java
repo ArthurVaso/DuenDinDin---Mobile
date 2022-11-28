@@ -1,8 +1,9 @@
 package br.edu.ifsp.duendindin_mobile.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Categoria {
+public class Categoria implements Serializable {
     private Integer id;
     private Integer usuarioId;
     private String nome;

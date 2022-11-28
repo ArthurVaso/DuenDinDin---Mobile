@@ -3,7 +3,6 @@ package br.edu.ifsp.duendindin_mobile.service;
 import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
-import br.edu.ifsp.duendindin_mobile.model.UsuarioRetorno;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -20,7 +19,7 @@ public interface UsuarioService {
 
     //consultar usuario
     @GET("user/{usuarioId}/")
-    Call<UsuarioRetorno> consultarUsuario(@Header("x-access-token") String token,
+    Call<Usuario> consultarUsuario(@Header("x-access-token") String token,
                                           @Path("usuarioId") Integer id);
 
     //consultar todos os usuarios
@@ -29,7 +28,7 @@ public interface UsuarioService {
 
     //atualizar usuário
     @PUT("user/{usuarioId}/")
-    Call<Usuario> atualizarUsuario(@Header("x-access-token") String token,
+    Call<String> atualizarUsuario(@Header("x-access-token") String token,
                                           @Path("usuarioId") Integer id,
                                           @Body Usuario usuario);
 

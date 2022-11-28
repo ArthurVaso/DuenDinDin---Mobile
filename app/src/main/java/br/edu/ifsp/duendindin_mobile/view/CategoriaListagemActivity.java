@@ -3,6 +3,8 @@ package br.edu.ifsp.duendindin_mobile.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.adapter.CategoriasAdapter;
+import br.edu.ifsp.duendindin_mobile.model.Categoria;
 
 public class CategoriaListagemActivity extends AppCompatActivity {
 
@@ -26,15 +29,31 @@ public class CategoriaListagemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listagem_categoria);
 
         rvCategorias = findViewById(R.id.rv_categorias);
-        ArrayList<String> listCategorias = new ArrayList();
-        listCategorias.add("Pessoal");
-        listCategorias.add("Salário");
-        listCategorias.add("Viagem");
+        ArrayList<Categoria> listCategorias = new ArrayList();
+        Categoria c1 = new Categoria(1, 1, "Vaquinha", "Vou guardar para ajudar uma família no Natal.");
+        Categoria c2 = new Categoria(2, 1, "Reserva de Emergência", "Essa é minha reserva de emergência :).");
+        Categoria c3 = new Categoria(3, 1, "Viagem Final de Ano", "Conhecer alguma cidade nova no final de ano.");
+        Categoria c4 = new Categoria(4, 1, "Meus Salários", "Onde deixo meu salário todo mês!");
+        Categoria c5 = new Categoria(5, 1, "Meus Gastos", "Onde deixo meus gastos todo mês!");
+
+        listCategorias.add(c1);
+        listCategorias.add(c2);
+        listCategorias.add(c3);
+        listCategorias.add(c4);
+        listCategorias.add(c5);
 
         rvCategorias.setLayoutManager(new LinearLayoutManager(this));
         CategoriasAdapter categoriasAdapter = new CategoriasAdapter(this.getLayoutInflater(), listCategorias);
         rvCategorias.setAdapter(categoriasAdapter);
 
+        Button btnNovaCategoria = findViewById(R.id.btn_categoria_listagem_nova_categoria);
+        btnNovaCategoria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CategoriaListagemActivity.this, CategoriaCadastroActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
