@@ -157,7 +157,7 @@ public class HomeActivity extends AppCompatActivity {
         preencherRecyclerViews();
 
         String token = pref.getString("token", "");
-        new CustomMessageDialog("Token: " + token, HomeActivity.this);
+//        new CustomMessageDialog("Token: " + token, HomeActivity.this);
 
     }
 
@@ -167,8 +167,8 @@ public class HomeActivity extends AppCompatActivity {
         Gasto vp1 = new Gasto(1, 5, "Academia Outubro", true, new Date(2022, 10, 30), 100.00, "Paguei a academia de outubro.", false, true);
         listVencimentosPróximos.add(vp1);
         rvVencimentosProximos.setLayoutManager(new LinearLayoutManager(this));
-        GastosAdapter vencimentosProximosAdapter = new GastosAdapter(this.getLayoutInflater(), listVencimentosPróximos);
-        rvVencimentosProximos.setAdapter(vencimentosProximosAdapter);
+//        GastosAdapter vencimentosProximosAdapter = new GastosAdapter(this.getLayoutInflater(), listVencimentosPróximos);
+//        rvVencimentosProximos.setAdapter(vencimentosProximosAdapter);
 
         RecyclerView rvGastos = findViewById(R.id.rv_outras_opcoes_gastos);
         ArrayList<Gasto> listGastos = new ArrayList();
@@ -179,8 +179,8 @@ public class HomeActivity extends AppCompatActivity {
         listGastos.add(g2);
         listGastos.add(g3);
         rvGastos.setLayoutManager(new LinearLayoutManager(this));
-        GastosAdapter gastosAdapter = new GastosAdapter(this.getLayoutInflater(), listGastos);
-        rvGastos.setAdapter(gastosAdapter);
+//        GastosAdapter gastosAdapter = new GastosAdapter(this.getLayoutInflater(), listGastos);
+//        rvGastos.setAdapter(gastosAdapter);
 
         RecyclerView rvGanhos = findViewById(R.id.rv_outras_opcoes_ganhos);
         ArrayList<Ganho> listGanhos = new ArrayList();
@@ -191,8 +191,8 @@ public class HomeActivity extends AppCompatActivity {
         listGanhos.add(gn2);
         listGanhos.add(gn3);
         rvGanhos.setLayoutManager(new LinearLayoutManager(this));
-        GanhosAdapter ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), listGanhos);
-        rvGanhos.setAdapter(ganhosAdapter);
+//        GanhosAdapter ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), listGanhos);
+//        rvGanhos.setAdapter(ganhosAdapter);
 
         RecyclerView rvCategorias = findViewById(R.id.rv_outras_opcoes_categorias);
         ArrayList<Categoria> listCategorias = new ArrayList();

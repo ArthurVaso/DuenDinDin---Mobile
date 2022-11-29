@@ -22,7 +22,7 @@ public interface CategoriaService {
 
     //consultar categoria por usuario
     @GET("category/all/{usuarioId}/")
-    Call<Categoria> retornarCategoriaUsuario(@Header("x-access-token") String token,
+    Call<List<Categoria>> retornarCategoriaUsuario(@Header("x-access-token") String token,
                                    @Path("usuarioId") Integer id);
 
     //consultar todas as categorias

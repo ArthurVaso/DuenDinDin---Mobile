@@ -1,45 +1,70 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.adapter.GanhosAdapter;
 import br.edu.ifsp.duendindin_mobile.model.Ganho;
+import br.edu.ifsp.duendindin_mobile.model.GanhoRetorno;
+import br.edu.ifsp.duendindin_mobile.model.Usuario;
+import br.edu.ifsp.duendindin_mobile.service.GanhoService;
+import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
+import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
+import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
+import br.edu.ifsp.duendindin_mobile.utils.Message;
+import br.edu.ifsp.duendindin_mobile.utils.URLAPI;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GanhoListagemActivity extends AppCompatActivity {
 
-    RecyclerView rvGanhos;
+    private final String URL_API = new URLAPI().baseUrl;
+
+    private RecyclerView rvGanhos;
+    private TextView txtMsgUsuario;
+
+    private Retrofit retrofitAPI;
+    private SharedPreferences pref;
+    private Usuario usuario = new Usuario();
+    private String token = "";
+    private int usuarioId;
+    private List<GanhoRetorno> listGanhos = new ArrayList<>();
+    private GanhosAdapter ganhosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_ganho);
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
 
         rvGanhos = findViewById(R.id.rv_ganhos);
-        ArrayList<Ganho> listGanhos = new ArrayList();
-        Ganho g1 = new Ganho(1, 4, "Salário Outubro", new Date(2022, 10, 5), 1000.00, "Esse é meu salário de outubro", true, true);
-        Ganho g2 = new Ganho(2, 1, "Presente do meu avô", new Date(2022, 11, 15), 50.00, "Meu avô me ajudou na vaquinha", false, false);
-        Ganho g3 = new Ganho(3, 2, "Freela Tio", new Date(2022, 10, 27), 500.00, "Fiz um Freela pra empresa do meu tio", false, true);
-        listGanhos.add(g1);
-        listGanhos.add(g2);
-        listGanhos.add(g3);
+        txtMsgUsuario = findViewById(R.id.msg_usario_listagem_ganho);
 
         rvGanhos.setLayoutManager(new LinearLayoutManager(this));
-        GanhosAdapter ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), listGanhos);
+        ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), (ArrayList<GanhoRetorno>) listGanhos);
         rvGanhos.setAdapter(ganhosAdapter);
 
         Button btnNovoRecebimento = findViewById(R.id.btn_ganho_listagem_novo_recebimento);
@@ -50,6 +75,9 @@ public class GanhoListagemActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        token = pref.getString("token", "");
+        usuarioId = pref.getInt("usuarioId", 0);
     }
 
     @Override
@@ -73,6 +101,86 @@ public class GanhoListagemActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
+                GanhoListagemActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
+        progressDialog.show();
+
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
+
+        UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
+
+        Call<Usuario> callUsuario = usuarioService.consultarUsuario(token, usuarioId);
+        callUsuario.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if (response.isSuccessful()){
+                    usuario = response.body();
+                    txtMsgUsuario.setText("Olá, "+usuario.getNome());
+                } else {
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    new CustomMessageDialog("Ocorreu um erro ao consultar seus dados.  \n" + msg.getMensagem(), GanhoListagemActivity.this);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+
+            }
+        });
+
+        //instanciando a interface
+        GanhoService ganhoService = retrofitAPI.create(GanhoService.class);
+
+        Call<List<GanhoRetorno>> call = ganhoService.retornarGanhoUsuario(token, usuarioId);
+        call.enqueue(new Callback<List<GanhoRetorno>>() {
+            @Override
+            public void onResponse(Call<List<GanhoRetorno>> call, Response<List<GanhoRetorno>> response) {
+                if(response.isSuccessful()){
+                    listGanhos = response.body();
+                    rvGanhos.setAdapter(new GanhosAdapter(GanhoListagemActivity.this.getLayoutInflater(), (ArrayList<GanhoRetorno>) listGanhos));
+                    progressDialog.dismiss();
+                } else {
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+                    new CustomMessageDialog("Ocorreu um erro ao consultar seus ganhos.  \n" + msg.getMensagem(), GanhoListagemActivity.this);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GanhoRetorno>> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
+
     }
 
     @Override

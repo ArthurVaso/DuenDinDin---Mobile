@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +16,14 @@ import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.Gasto;
+import br.edu.ifsp.duendindin_mobile.model.GastoRetorno;
 
 public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder> {
 
-    private ArrayList<Gasto> gastos;
+    private ArrayList<GastoRetorno> gastos;
     private LayoutInflater inflater;
 
-    public GastosAdapter(LayoutInflater inflater, ArrayList<Gasto> gastos) {
+    public GastosAdapter(LayoutInflater inflater, ArrayList<GastoRetorno> gastos) {
         this.inflater = inflater;
         this.gastos = gastos;
     }
@@ -47,25 +47,26 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull GastosAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Gasto gasto = gastos.get(position);
-        String valor = String.format( "%.2f", gasto.getValor());
-        holder.nome.setText(gasto.getNome()+" - R$ "+ valor);
-        holder.descricao.setText(gasto.getDescricao());
-        holder.position = position;
-        holder.cbxPago.setChecked(gasto.getPago());
+        GastoRetorno gastoRetorno = gastos.get(position);
+//        String valor = String.format( "%.2f", gasto.getValor());
+//        holder.nome.setText(gasto.getNome()+" - R$ "+ valor);
+//        holder.descricao.setText(gasto.getDescricao());
+//        holder.cbxPago.setChecked(gasto.getPago());
 
-        holder.cbxPago.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (holder.cbxPago.isChecked()){
-                    gasto.setPago(true);
-                    Toast.makeText(view.getContext(), "Esse gasto foi pago!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(view.getContext(), "Esse gasto ainda não foi pago!", Toast.LENGTH_SHORT).show();
-                    gasto.setPago(false);
-                }
-            }
-        });
+        holder.position = position;
+
+//        holder.cbxPago.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (holder.cbxPago.isChecked()){
+//                    gasto.setPago(true);
+//                    Toast.makeText(view.getContext(), "Esse gasto foi pago!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(view.getContext(), "Esse gasto ainda não foi pago!", Toast.LENGTH_SHORT).show();
+//                    gasto.setPago(false);
+//                }
+//            }
+//        });
     }
 
     @Override

@@ -88,7 +88,7 @@ public class UsuarioEntrarActivity extends AppCompatActivity {
         super.onStart();
         String token = pref.getString("token", "");
         int usuarioId = pref.getInt("usuarioId", 0);
-        new CustomMessageDialog("Token: " + token + "\nUsuarioID: " + usuarioId, UsuarioEntrarActivity.this);
+//        new CustomMessageDialog("Token: " + token + "\nUsuarioID: " + usuarioId, UsuarioEntrarActivity.this);
     }
 
     private void realizarLogin() {

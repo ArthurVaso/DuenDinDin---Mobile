@@ -3,6 +3,7 @@ package br.edu.ifsp.duendindin_mobile.service;
 import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.model.Gasto;
+import br.edu.ifsp.duendindin_mobile.model.GastoRetorno;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -30,8 +31,8 @@ public interface GastoService {
 
     //consultar gasto por usuario
     @GET("expense/user/{usuarioId}/")
-    Call<Gasto> retornarGastoUsuario(@Header("x-access-token") String token,
-                                     @Path("usuarioId") Integer id);
+    Call<List<GastoRetorno>> retornarGastoUsuario(@Header("x-access-token") String token,
+                                                  @Path("usuarioId") Integer id);
 
     //consultar gasto por categoria
     @GET("expense/category/{categoriaId}/")

@@ -1,49 +1,69 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.adapter.CategoriasAdapter;
 import br.edu.ifsp.duendindin_mobile.model.Categoria;
+import br.edu.ifsp.duendindin_mobile.model.Usuario;
+import br.edu.ifsp.duendindin_mobile.service.CategoriaService;
+import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
+import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
+import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
+import br.edu.ifsp.duendindin_mobile.utils.Message;
+import br.edu.ifsp.duendindin_mobile.utils.URLAPI;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CategoriaListagemActivity extends AppCompatActivity {
 
-    RecyclerView rvCategorias;
+    private final String URL_API = new URLAPI().baseUrl;
+
+    private RecyclerView rvCategorias;
+    private TextView txtMsgUsuario;
+
+    private Retrofit retrofitAPI;
+    private SharedPreferences pref;
+    private Usuario usuario = new Usuario();
+    private String token = "";
+    private int usuarioId;
+    private List<Categoria> listCategorias = new ArrayList<>();
+    private CategoriasAdapter categoriasAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_categoria);
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
 
         rvCategorias = findViewById(R.id.rv_categorias);
-        ArrayList<Categoria> listCategorias = new ArrayList();
-        Categoria c1 = new Categoria(1, 1, "Vaquinha", "Vou guardar para ajudar uma família no Natal.");
-        Categoria c2 = new Categoria(2, 1, "Reserva de Emergência", "Essa é minha reserva de emergência :).");
-        Categoria c3 = new Categoria(3, 1, "Viagem Final de Ano", "Conhecer alguma cidade nova no final de ano.");
-        Categoria c4 = new Categoria(4, 1, "Meus Salários", "Onde deixo meu salário todo mês!");
-        Categoria c5 = new Categoria(5, 1, "Meus Gastos", "Onde deixo meus gastos todo mês!");
-
-        listCategorias.add(c1);
-        listCategorias.add(c2);
-        listCategorias.add(c3);
-        listCategorias.add(c4);
-        listCategorias.add(c5);
+        txtMsgUsuario = findViewById(R.id.msg_usuario_categoria);
 
         rvCategorias.setLayoutManager(new LinearLayoutManager(this));
-        CategoriasAdapter categoriasAdapter = new CategoriasAdapter(this.getLayoutInflater(), listCategorias);
+        categoriasAdapter = new CategoriasAdapter(this.getLayoutInflater(), (ArrayList<Categoria>) listCategorias);
         rvCategorias.setAdapter(categoriasAdapter);
 
         Button btnNovaCategoria = findViewById(R.id.btn_categoria_listagem_nova_categoria);
@@ -54,6 +74,9 @@ public class CategoriaListagemActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        token = pref.getString("token", "");
+        usuarioId = pref.getInt("usuarioId", 0);
     }
 
     @Override
@@ -77,6 +100,86 @@ public class CategoriaListagemActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
+                CategoriaListagemActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
+        progressDialog.show();
+
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
+
+        UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
+
+        Call<Usuario> callUsuario = usuarioService.consultarUsuario(token, usuarioId);
+        callUsuario.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if (response.isSuccessful()){
+                    usuario = response.body();
+                    txtMsgUsuario.setText("Olá, "+usuario.getNome());
+                } else {
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    new CustomMessageDialog("Ocorreu um erro ao consultar seus dados.  \n" + msg.getMensagem(), CategoriaListagemActivity.this);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+
+            }
+        });
+
+        //instanciando a interface
+        CategoriaService categoriaService = retrofitAPI.create(CategoriaService.class);
+
+        Call<List<Categoria>> call = categoriaService.retornarCategoriaUsuario(token, usuarioId);
+        call.enqueue(new Callback<List<Categoria>>() {
+            @Override
+            public void onResponse(Call<List<Categoria>> call, Response<List<Categoria>> response) {
+                if(response.isSuccessful()){
+                    listCategorias = response.body();
+                    rvCategorias.setAdapter(new CategoriasAdapter(CategoriaListagemActivity.this.getLayoutInflater(), (ArrayList<Categoria>) listCategorias));
+                    progressDialog.dismiss();
+                } else {
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+                    new CustomMessageDialog("Ocorreu um erro ao consultar suas categorias.  \n" + msg.getMensagem(), CategoriaListagemActivity.this);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Categoria>> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
+
     }
 
     @Override

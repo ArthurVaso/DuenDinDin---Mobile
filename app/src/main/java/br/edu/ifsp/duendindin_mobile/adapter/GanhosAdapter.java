@@ -15,13 +15,14 @@ import java.util.ArrayList;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.Ganho;
+import br.edu.ifsp.duendindin_mobile.model.GanhoRetorno;
 
 public class GanhosAdapter extends RecyclerView.Adapter<GanhosAdapter.ViewHolder> {
 
-    private ArrayList<Ganho> ganhos;
+    private ArrayList<GanhoRetorno> ganhos;
     private LayoutInflater inflater;
 
-    public GanhosAdapter(LayoutInflater inflater, ArrayList<Ganho> ganhos) {
+    public GanhosAdapter(LayoutInflater inflater, ArrayList<GanhoRetorno> ganhos) {
         this.inflater = inflater;
         this.ganhos = ganhos;
     }
@@ -43,12 +44,11 @@ public class GanhosAdapter extends RecyclerView.Adapter<GanhosAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull GanhosAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Ganho ganho = ganhos.get(position);
-        String valor = String.format( "%.2f", ganho.getValor());
-        holder.nome.setText(ganho.getNome()+" - R$ "+ valor);
-        holder.descricao.setText(ganho.getDescricao());
+        GanhoRetorno ganhoRetorno = ganhos.get(position);
+//        String valor = String.format( "%.2f", ganho.getValor());
+//        holder.nome.setText(ganho.getNome()+" - R$ "+ valor);
+//        holder.descricao.setText(ganho.getDescricao());
         holder.position = position;
-
     }
 
     @Override

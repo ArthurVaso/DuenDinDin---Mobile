@@ -70,7 +70,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
             startActivity(new Intent(UsuarioPerfilActivity.this, RecuperarSenhaEnviaEmailActivity.class));
         });
 
-        txtMsgHello = findViewById(R.id.msg_usario_perfil);
+        txtMsgHello = findViewById(R.id.msg_usuario_perfil);
         txtNome = findViewById(R.id.txt_usuario_perfil_edit_nome_completo);
         txtDataNasc = findViewById(R.id.txt_usuario_perfil_edit_data_de_nascimento);
         txtCep = findViewById(R.id.txt_usuario_perfil_edit_CEP);
