@@ -20,17 +20,13 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.R;
-import br.edu.ifsp.duendindin_mobile.adapter.GanhosAdapter;
 import br.edu.ifsp.duendindin_mobile.adapter.GastosAdapter;
-import br.edu.ifsp.duendindin_mobile.model.GanhoRetorno;
 import br.edu.ifsp.duendindin_mobile.model.Gasto;
 import br.edu.ifsp.duendindin_mobile.model.GastoRetorno;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
-import br.edu.ifsp.duendindin_mobile.service.GanhoService;
 import br.edu.ifsp.duendindin_mobile.service.GastoService;
 import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
@@ -56,7 +52,8 @@ public class GastoListagemActivity extends AppCompatActivity {
     private Usuario usuario = new Usuario();
     private String token = "";
     private int usuarioId;
-    private List<GastoRetorno> listGastos = new ArrayList<>();
+    private List<GastoRetorno> listGastosRetorno = new ArrayList<>();
+    private List<Gasto> listGastos = new ArrayList<>();
     private GastosAdapter gastosAdapter;
 
     @Override
@@ -69,7 +66,7 @@ public class GastoListagemActivity extends AppCompatActivity {
         txtMsgUsuario = findViewById(R.id.msg_usario_listagem_gasto);
 
         rvGastos.setLayoutManager(new LinearLayoutManager(this));
-        gastosAdapter = new GastosAdapter(this.getLayoutInflater(), (ArrayList<GastoRetorno>) listGastos);
+        gastosAdapter = new GastosAdapter(this.getLayoutInflater(), (ArrayList<Gasto>) listGastos);
         rvGastos.setAdapter(gastosAdapter);
 
         Button btnNovoVencimento = findViewById(R.id.btn_gasto_listagem_novo_vencimento);
@@ -162,8 +159,15 @@ public class GastoListagemActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<GastoRetorno>> call, Response<List<GastoRetorno>> response) {
                 if(response.isSuccessful()){
-                    listGastos = response.body();
-                    rvGastos.setAdapter(new GastosAdapter(GastoListagemActivity.this.getLayoutInflater(), (ArrayList<GastoRetorno>) listGastos));
+                    listGastosRetorno = response.body();
+                    List<Gasto> gastos = new ArrayList<>();
+                    for (GastoRetorno gastoRetorno : listGastosRetorno){
+                        gastos = gastoRetorno.getListGastos();
+                        for (Gasto g : gastos){
+                            listGastos.add(g);
+                        }
+                    }
+                    rvGastos.setAdapter(new GastosAdapter(GastoListagemActivity.this.getLayoutInflater(), (ArrayList<Gasto>) listGastos));
                     progressDialog.dismiss();
                 } else {
                     String errorBody = null;

@@ -1,23 +1,26 @@
 package br.edu.ifsp.duendindin_mobile.model;
 
-import java.util.Date;
+import com.google.gson.annotations.SerializedName;
 
 public class Gasto {
 
     private Integer id;
+    @SerializedName("categoriaID")
     private Integer categoriaId;
     private String nome;
+    @SerializedName("recorrente")
     private Boolean recorrencia;
-    private Date vencimento;
+    @SerializedName("data")
+    private String vencimento;
     private Double valor;
     private String descricao;
-    private Boolean tipo;
+    private String tipo;
     private Boolean pago;
 
     public Gasto() {
     }
 
-    public Gasto(Integer id, Integer categoriaId, String nome, Boolean recorrencia, Date vencimento, Double valor, String descricao, Boolean tipo, Boolean pago) {
+    public Gasto(Integer id, Integer categoriaId, String nome, Boolean recorrencia, String vencimento, Double valor, String descricao, String tipo, Boolean pago) {
         this.id = id;
         this.categoriaId = categoriaId;
         this.nome = nome;
@@ -57,11 +60,11 @@ public class Gasto {
         this.recorrencia = recorrencia;
     }
 
-    public Date getVencimento() {
+    public String getVencimento() {
         return vencimento;
     }
 
-    public void setVencimento(Date vencimento) {
+    public void setVencimento(String vencimento) {
         this.vencimento = vencimento;
     }
 
@@ -81,11 +84,11 @@ public class Gasto {
         this.descricao = descricao;
     }
 
-    public Boolean getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Boolean tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

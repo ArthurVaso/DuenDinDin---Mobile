@@ -26,6 +26,8 @@ import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.adapter.GanhosAdapter;
 import br.edu.ifsp.duendindin_mobile.model.Ganho;
 import br.edu.ifsp.duendindin_mobile.model.GanhoRetorno;
+import br.edu.ifsp.duendindin_mobile.model.Gasto;
+import br.edu.ifsp.duendindin_mobile.model.GastoRetorno;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
 import br.edu.ifsp.duendindin_mobile.service.GanhoService;
 import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
@@ -51,7 +53,8 @@ public class GanhoListagemActivity extends AppCompatActivity {
     private Usuario usuario = new Usuario();
     private String token = "";
     private int usuarioId;
-    private List<GanhoRetorno> listGanhos = new ArrayList<>();
+    private List<GanhoRetorno> listGanhosRetorno = new ArrayList<>();
+    private List<Ganho> listGanhos = new ArrayList<>();
     private GanhosAdapter ganhosAdapter;
 
     @Override
@@ -64,7 +67,7 @@ public class GanhoListagemActivity extends AppCompatActivity {
         txtMsgUsuario = findViewById(R.id.msg_usario_listagem_ganho);
 
         rvGanhos.setLayoutManager(new LinearLayoutManager(this));
-        ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), (ArrayList<GanhoRetorno>) listGanhos);
+        ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), (ArrayList<Ganho>) listGanhos);
         rvGanhos.setAdapter(ganhosAdapter);
 
         Button btnNovoRecebimento = findViewById(R.id.btn_ganho_listagem_novo_recebimento);
@@ -157,8 +160,15 @@ public class GanhoListagemActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<GanhoRetorno>> call, Response<List<GanhoRetorno>> response) {
                 if(response.isSuccessful()){
-                    listGanhos = response.body();
-                    rvGanhos.setAdapter(new GanhosAdapter(GanhoListagemActivity.this.getLayoutInflater(), (ArrayList<GanhoRetorno>) listGanhos));
+                    listGanhosRetorno = response.body();
+                    List<Ganho> ganhos = new ArrayList<>();
+                    for (GanhoRetorno ganhoRetorno : listGanhosRetorno){
+                        ganhos = ganhoRetorno.getListGanhos();
+                        for (Ganho g : ganhos){
+                            listGanhos.add(g);
+                        }
+                    }
+                    rvGanhos.setAdapter(new GanhosAdapter(GanhoListagemActivity.this.getLayoutInflater(), (ArrayList<Ganho>) listGanhos));
                     progressDialog.dismiss();
                 } else {
                     String errorBody = null;

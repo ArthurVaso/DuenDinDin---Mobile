@@ -19,10 +19,10 @@ import br.edu.ifsp.duendindin_mobile.model.GanhoRetorno;
 
 public class GanhosAdapter extends RecyclerView.Adapter<GanhosAdapter.ViewHolder> {
 
-    private ArrayList<GanhoRetorno> ganhos;
+    private ArrayList<Ganho> ganhos;
     private LayoutInflater inflater;
 
-    public GanhosAdapter(LayoutInflater inflater, ArrayList<GanhoRetorno> ganhos) {
+    public GanhosAdapter(LayoutInflater inflater, ArrayList<Ganho> ganhos) {
         this.inflater = inflater;
         this.ganhos = ganhos;
     }
@@ -37,6 +37,7 @@ public class GanhosAdapter extends RecyclerView.Adapter<GanhosAdapter.ViewHolder
 
         ganhosViewHolder.nome = itemGanho.findViewById(R.id.textView);
         ganhosViewHolder.descricao = itemGanho.findViewById(R.id.textView2);
+        ganhosViewHolder.data = itemGanho.findViewById(R.id.textView3);
 
         return ganhosViewHolder;
 
@@ -44,10 +45,15 @@ public class GanhosAdapter extends RecyclerView.Adapter<GanhosAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull GanhosAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        GanhoRetorno ganhoRetorno = ganhos.get(position);
-//        String valor = String.format( "%.2f", ganho.getValor());
-//        holder.nome.setText(ganho.getNome()+" - R$ "+ valor);
-//        holder.descricao.setText(ganho.getDescricao());
+        Ganho ganho = ganhos.get(position);
+        String valor = String.format( "%.2f", ganho.getValor());
+        holder.nome.setText(ganho.getNome()+" - R$ "+ valor);
+        holder.descricao.setText(ganho.getDescricao());
+        String ganhoVencimento = ganho.getData();
+        String data[] = ganhoVencimento.split("-");
+        ganhoVencimento = data[2] + "/" + data[1] + "/" + data[0];
+        holder.data.setText(ganhoVencimento);
+
         holder.position = position;
     }
 
@@ -59,7 +65,7 @@ public class GanhosAdapter extends RecyclerView.Adapter<GanhosAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         View view;
-        TextView nome, descricao;
+        TextView nome, descricao, data;
         int position;
 
         public ViewHolder(@NonNull View itemView) {

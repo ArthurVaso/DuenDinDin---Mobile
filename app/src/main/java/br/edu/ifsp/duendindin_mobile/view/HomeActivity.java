@@ -9,13 +9,14 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 import com.highsoft.highcharts.common.HIColor;
-import com.highsoft.highcharts.common.hichartsclasses.HIBar;
 import com.highsoft.highcharts.common.hichartsclasses.HIChart;
 import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
 import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
@@ -27,10 +28,10 @@ import com.highsoft.highcharts.common.hichartsclasses.HIXAxis;
 import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.core.HIChartView;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.adapter.CategoriasAdapter;
@@ -38,10 +39,26 @@ import br.edu.ifsp.duendindin_mobile.adapter.GanhosAdapter;
 import br.edu.ifsp.duendindin_mobile.adapter.GastosAdapter;
 import br.edu.ifsp.duendindin_mobile.model.Categoria;
 import br.edu.ifsp.duendindin_mobile.model.Ganho;
+import br.edu.ifsp.duendindin_mobile.model.GanhoRetorno;
 import br.edu.ifsp.duendindin_mobile.model.Gasto;
+import br.edu.ifsp.duendindin_mobile.model.GastoRetorno;
+import br.edu.ifsp.duendindin_mobile.service.CategoriaService;
+import br.edu.ifsp.duendindin_mobile.service.GanhoService;
+import br.edu.ifsp.duendindin_mobile.service.GastoService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
+import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
+import br.edu.ifsp.duendindin_mobile.utils.Message;
+import br.edu.ifsp.duendindin_mobile.utils.URLAPI;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private final String URL_API = new URLAPI().baseUrl;
+    private Retrofit retrofitAPI;
 
     private Button btnAdicionarRecebimentos;
     private Button btnAdicionarVencimentos;
@@ -49,7 +66,29 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnVerPerfil;
     private HIChartView hcGrafico;
     private BottomNavigationView bnvHome;
+
+    private RecyclerView rvGanhos;
+    private List<GanhoRetorno> listGanhosRetorno = new ArrayList<>();
+    private List<Ganho> listGanhos = new ArrayList<>();
+    private GanhosAdapter ganhosAdapter;
+
+    private RecyclerView rvGastos;
+    private List<GastoRetorno> listGastosRetorno = new ArrayList<>();
+    private List<Gasto> listGastos = new ArrayList<>();
+    private GastosAdapter gastosAdapter;
+
+    private RecyclerView rvVencimentosProximos;
+    private List<GastoRetorno> listProximosGastosRetorno = new ArrayList<>();
+    private List<Gasto> listProximosGastos = new ArrayList<>();
+    private GastosAdapter proximosGastosAdapter;
+
+    private RecyclerView rvCategorias;
+    private List<Categoria> listCategorias = new ArrayList<>();
+    private CategoriasAdapter categoriasAdapter;
+
     private SharedPreferences pref;
+    private String token = "";
+    private int usuarioId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +131,15 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         hcGrafico = findViewById(R.id.hc_graficos);
+        criarGraficos();
 
+        preencherRecyclerViews();
+
+        token = pref.getString("token", "");
+        usuarioId = pref.getInt("usuarioId", 0);
+    }
+
+    private void criarGraficos () {
         HIChart chart = new HIChart();
         chart.setType("column");
 
@@ -153,61 +200,27 @@ public class HomeActivity extends AppCompatActivity {
         options.setPlotOptions(plotOptions);
         options.setSeries(series);
         hcGrafico.setOptions(options);
-
-        preencherRecyclerViews();
-
-        String token = pref.getString("token", "");
-//        new CustomMessageDialog("Token: " + token, HomeActivity.this);
-
     }
 
     private void preencherRecyclerViews() {
-        RecyclerView rvVencimentosProximos = findViewById(R.id.rv_vencimentos_proximos);
-        ArrayList<Gasto> listVencimentosPróximos = new ArrayList();
-        Gasto vp1 = new Gasto(1, 5, "Academia Outubro", true, new Date(2022, 10, 30), 100.00, "Paguei a academia de outubro.", false, true);
-        listVencimentosPróximos.add(vp1);
+        rvVencimentosProximos = findViewById(R.id.rv_vencimentos_proximos);
         rvVencimentosProximos.setLayoutManager(new LinearLayoutManager(this));
-//        GastosAdapter vencimentosProximosAdapter = new GastosAdapter(this.getLayoutInflater(), listVencimentosPróximos);
-//        rvVencimentosProximos.setAdapter(vencimentosProximosAdapter);
+        proximosGastosAdapter = new GastosAdapter(this.getLayoutInflater(), (ArrayList<Gasto>) listProximosGastos);
+        rvVencimentosProximos.setAdapter(proximosGastosAdapter);
 
-        RecyclerView rvGastos = findViewById(R.id.rv_outras_opcoes_gastos);
-        ArrayList<Gasto> listGastos = new ArrayList();
-        Gasto g1 = new Gasto(1, 5, "Academia Outubro", true, new Date(2022, 10, 30), 100.00, "Paguei a academia de outubro.", false, true);
-        Gasto g2 = new Gasto(2, 5, "Presente Cunhado", false, new Date(2022, 11, 19), 120.00, "Comprei o presente do meu cunhado.", true, false);
-        Gasto g3 = new Gasto(3, 5, "Uber", false, new Date(2022, 11, 27), 20.00, "Paguei o uber pra rodoviária.", false, true);
-        listGastos.add(g1);
-        listGastos.add(g2);
-        listGastos.add(g3);
+        rvGastos = findViewById(R.id.rv_outras_opcoes_gastos);
         rvGastos.setLayoutManager(new LinearLayoutManager(this));
-//        GastosAdapter gastosAdapter = new GastosAdapter(this.getLayoutInflater(), listGastos);
-//        rvGastos.setAdapter(gastosAdapter);
+        gastosAdapter = new GastosAdapter(this.getLayoutInflater(), (ArrayList<Gasto>) listGastos);
+        rvGastos.setAdapter(gastosAdapter);
 
-        RecyclerView rvGanhos = findViewById(R.id.rv_outras_opcoes_ganhos);
-        ArrayList<Ganho> listGanhos = new ArrayList();
-        Ganho gn1 = new Ganho(1, 4, "Salário Outubro", new Date(2022, 10, 5), 1000.00, "Esse é meu salário de outubro", true, true);
-        Ganho gn2 = new Ganho(2, 1, "Presente do meu avô", new Date(2022, 11, 15), 50.00, "Meu avô me ajudou na vaquinha", false, false);
-        Ganho gn3 = new Ganho(3, 2, "Freela Tio", new Date(2022, 10, 27), 500.00, "Fiz um Freela pra empresa do meu tio", false, true);
-        listGanhos.add(gn1);
-        listGanhos.add(gn2);
-        listGanhos.add(gn3);
+        rvGanhos = findViewById(R.id.rv_outras_opcoes_ganhos);
         rvGanhos.setLayoutManager(new LinearLayoutManager(this));
-//        GanhosAdapter ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), listGanhos);
-//        rvGanhos.setAdapter(ganhosAdapter);
+        ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), (ArrayList<Ganho>) listGanhos);
+        rvGanhos.setAdapter(ganhosAdapter);
 
-        RecyclerView rvCategorias = findViewById(R.id.rv_outras_opcoes_categorias);
-        ArrayList<Categoria> listCategorias = new ArrayList();
-        Categoria c1 = new Categoria(1, 1, "Vaquinha", "Vou guardar para ajudar uma família no Natal.");
-        Categoria c2 = new Categoria(2, 1, "Reserva de Emergência", "Essa é minha reserva de emergência :).");
-        Categoria c3 = new Categoria(3, 1, "Viagem Final de Ano", "Conhecer alguma cidade nova no final de ano.");
-        Categoria c4 = new Categoria(4, 1, "Meus Salários", "Onde deixo meu salário todo mês!");
-        Categoria c5 = new Categoria(5, 1, "Meus Gastos", "Onde deixo meus gastos todo mês!");
-        listCategorias.add(c1);
-        listCategorias.add(c2);
-        listCategorias.add(c3);
-        listCategorias.add(c4);
-        listCategorias.add(c5);
+        rvCategorias = findViewById(R.id.rv_outras_opcoes_categorias);
         rvCategorias.setLayoutManager(new LinearLayoutManager(this));
-        CategoriasAdapter categoriasAdapter = new CategoriasAdapter(this.getLayoutInflater(), listCategorias);
+        categoriasAdapter = new CategoriasAdapter(this.getLayoutInflater(), (ArrayList<Categoria>) listCategorias);
         rvCategorias.setAdapter(categoriasAdapter);
     }
 
@@ -231,6 +244,134 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(new Intent(HomeActivity.this, UsuarioPerfilActivity.class));
                 }
                 return false;
+            }
+        });
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
+                HomeActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
+        progressDialog.show();
+
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
+
+        //instanciando a interface
+        GanhoService ganhoService = retrofitAPI.create(GanhoService.class);
+
+        Call<List<GanhoRetorno>> callGanho = ganhoService.retornarGanhoUsuario(token, usuarioId);
+        callGanho.enqueue(new Callback<List<GanhoRetorno>>() {
+            @Override
+            public void onResponse(Call<List<GanhoRetorno>> callGanho, Response<List<GanhoRetorno>> response) {
+                if(response.isSuccessful()){
+                    listGanhosRetorno = response.body();
+                    List<Ganho> ganhos = new ArrayList<>();
+                    for (GanhoRetorno ganhoRetorno : listGanhosRetorno){
+                        ganhos = ganhoRetorno.getListGanhos();
+                        for (Ganho g : ganhos){
+                            listGanhos.add(g);
+                        }
+                    }
+                    rvGanhos.setAdapter(new GanhosAdapter(HomeActivity.this.getLayoutInflater(), (ArrayList<Ganho>) listGanhos));
+                    progressDialog.dismiss();
+                } else {
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+                    new CustomMessageDialog("Ocorreu um erro ao consultar seus ganhos.  \n" + msg.getMensagem(), HomeActivity.this);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GanhoRetorno>> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
+
+        //instanciando a interface
+        GastoService gastoService = retrofitAPI.create(GastoService.class);
+
+        Call<List<GastoRetorno>> callGasto = gastoService.retornarGastoUsuario(token, usuarioId);
+        callGasto.enqueue(new Callback<List<GastoRetorno>>() {
+            @Override
+            public void onResponse(Call<List<GastoRetorno>> callGasto, Response<List<GastoRetorno>> response) {
+                if(response.isSuccessful()){
+                    listGastosRetorno = response.body();
+                    List<Gasto> gastos = new ArrayList<>();
+                    for (GastoRetorno gastoRetorno : listGastosRetorno){
+                        gastos = gastoRetorno.getListGastos();
+                        for (Gasto g : gastos){
+                            listGastos.add(g);
+                        }
+                    }
+                    rvGastos.setAdapter(new GastosAdapter(HomeActivity.this.getLayoutInflater(), (ArrayList<Gasto>) listGastos));
+                    progressDialog.dismiss();
+                } else {
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+                    new CustomMessageDialog("Ocorreu um erro ao consultar seus gastos.  \n" + msg.getMensagem(), HomeActivity.this);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GastoRetorno>> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
+
+        //instanciando a interface
+        CategoriaService categoriaService = retrofitAPI.create(CategoriaService.class);
+
+        Call<List<Categoria>> call = categoriaService.retornarCategoriaUsuario(token, usuarioId);
+        call.enqueue(new Callback<List<Categoria>>() {
+            @Override
+            public void onResponse(Call<List<Categoria>> call, Response<List<Categoria>> response) {
+                if(response.isSuccessful()){
+                    listCategorias = response.body();
+                    rvCategorias.setAdapter(new CategoriasAdapter(HomeActivity.this.getLayoutInflater(), (ArrayList<Categoria>) listCategorias));
+                    progressDialog.dismiss();
+                } else {
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+                    new CustomMessageDialog("Ocorreu um erro ao consultar suas categorias.  \n" + msg.getMensagem(), HomeActivity.this);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Categoria>> call, Throwable t) {
+                progressDialog.dismiss();
             }
         });
     }
