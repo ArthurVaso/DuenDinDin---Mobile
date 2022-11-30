@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view."
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/seta_voltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:src="@drawable/icon_setinha_voltar"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textSize="36sp"
+            android:fontFamily="@font/comfortaa_regular"
+            android:textColor="@color/border_color"
+            android:text="@string/txt_usuario_entrar_titulo"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_edit_usuario_entrar_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/item_background"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColorHint="@color/border_color" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_edit_usuario_entrar_senha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/item_background"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_usuario_cadastro_senha"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColorHint="@color/border_color" />
+
+
+        <Button
+            android:id="@+id/btn_usuario_entrar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/btn_usuario_entrar_login"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/secondary_color"
+            android:backgroundTintMode="add"
+            app:strokeColor="@color/border_color"
+            app:strokeWidth="2dp"/>
+
+        <TextView
+            android:id="@+id/txt_esqueceu_senha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:text="@string/txt_usuario_entrar_esqueceu_senha"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/secondary_color" />
+    </LinearLayout>
+
+
+</LinearLayout>

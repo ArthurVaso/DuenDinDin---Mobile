@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/txt_bottom_nav_home"
+        android:icon="@drawable/img_home_button"
+        android:id="@+id/bottom_nav_menu_home"/>
+    <item android:title="@string/txt_bottom_nav_gastos"
+        android:icon="@drawable/img_calendar_button"
+        android:id="@+id/bottom_nav_menu_gastos"/>
+    <item android:title="@string/txt_bottom_nav_ganhos"
+        android:icon="@drawable/img_money_button"
+        android:id="@+id/bottom_nav_menu_ganhos"/>
+    <item android:title="@string/txt_bottom_nav_categorias"
+        android:icon="@drawable/img_list_button"
+        android:id="@+id/bottom_nav_menu_category"/>
+    <item android:title="@string/txt_bottom_nav_perfil"
+        android:icon="@drawable/img_profile_button"
+        android:id="@+id/bottom_nav_menu_profile"/>
+</menu>

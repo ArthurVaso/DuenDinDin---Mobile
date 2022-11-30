@@ -4,38 +4,46 @@
     <string name="msg_usuario_perfil">Olá, Duen Din Din!</string>
     <string name="msg_usuario_perfil_dados">ESSES SÃO SEUS DADOS</string>
 
-    <string name="msg_usuario_perfil">Olá, Duen Din Din!</string>
-    <string name="msg_usuario_perfil_dados">ESSES SÃO SEUS DADOS</string>
-
     <!-- Tela inicial -->
     <string name="btn_main_entrar">ENTRE</string>
     <string name="btn_main_cadastrar">CADASTRE-SE</string>
 
-    <!-- Tela cadastro e alteração de usuário -->
+    <!--    TEXTOS DOS DADOS PESSOAIS-->
+    <string name="txt_usario_perfil_pessoais">Pessoais:</string>
+    <string name="cd_usuario_perfil_img_edit">Botão para ir para a tela de alteração dos dados do usuário.</string>
 
+    <string name="txt_usuario_perfil_nome_completo">NOME COMPLETO</string>
+    <string name="txt_usuario_perfil_edit_nome_completo">Duen Din Din</string>
+    <string name="txt_usuario_perfil_data_de_nascimento">DATA DE NASCIMENTO</string>
+    <string name="txt_usuario_perfil_edit_data_de_nascimento">01/01/2001</string>
+    <string name="txt_usuario_perfil_CEP">CEP</string>
+    <string name="txt_usuario_perfil_edit_CEP">14801-600</string>
+    <string name="txt_usuario_perfil_estado">ESTADO</string>
+    <string name="txt_usuario_perfil_edit_estado">São Paulo</string>
+    <string name="txt_usuario_perfil_cidade">CIDADE</string>
+    <string name="txt_usuario_perfil_edit_cidade">Araraquara</string>
+
+    <!--    TEXTOS DOS DADOS DE ACESSO-->
+    <string name="txt_usuario_perfil_acesso">Acesso:</string>
     <string name="txt_usuario_perfil_email">EMAIL</string>
     <string name="txt_usuario_perfil_edit_email">duend@dindin.com</string>
     <string name="txt_usuario_perfil_senha">SENHA</string>
     <string name="txt_usuario_perfil_edit_senha">************</string>
-    <string name="msg_usuario_perfil_esqueceu_sua_senha"><u>Esqueceu sua senha?</u></string>
+    <string name="msg_usuario_perfil_esqueceu_sua_senha"><u>Redefinir senha</u></string>
 
     <!--    TEXTOS DOS DADOS FINANCEIROS-->
     <string name="txt_usuario_perfil_financeiro">Financeiro:</string>
-
     <string name="txt_usuario_perfil_salario">SALÁRIO</string>
     <string name="txt_usuario_perfil_edit_salario">R$2000,00</string>
     <string name="txt_usuario_perfil_limite_de_gasto">LIMITE DE GASTO</string>
     <string name="txt_usuario_perfil_edit_limite_de_gasto">Padrão 50, 30 e 20%</string>
+    <string name="txt_usuario_perfil_tooltip_help">Informational Text</string>
+    <string name="cd_usuario_perfil_img_tooltip">Imagem do botão de ajuda sobre o limite de gasto do usuário</string>
 
-<!--    TELA CADASTRO USUARIO-->
-    <string name="btn_usuario_cadastro_continuar">Continuar</string>
-    <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
-    <string name="hint_usuario_cadastro_email">duen@dindin.com</string>
-    <string name="hint_usuario_cadastro_senha">***********</string>
+    <!-- Tela cadastro e alteração de usuário -->
     <string name="txt_usuario_cadastro_titulo">Cadastre-se</string>
     <string name="txt_usuario_cadastro_dados_pessoais_subtitulo">Dados Pessoais</string>
     <string name="txt_usuario_cadastro_dados_acesso_subtitulo">Dados Acesso</string>
-
     <string name="txt_usuario_cadastro_nome_completo">NOME COMPLETO *</string>
     <string name="hint_usuario_cadastro_nome">Duen Din Din</string>
     <string name="txt_usuario_cadastro_estado">ESTADO</string>
@@ -50,16 +58,23 @@
     <string name="txt_usuario_cadastro_senha">SENHA *</string>
     <string name="hint_usuario_cadastro_senha">***********</string>
     <string name="msg_cadastrado_sucesso">Usuário cadastrado com sucesso!</string>
-    <string name="msg_data_invalida">Data de nascimento inválida, idade deve ser maior que 10 anos e menor que 110 anos!</string>
+    <string name="msg_data_nasc_invalida">Data inválida! você deve ter mais que 10 anos!</string>
     <string name="txt_usuario_cadastro_cep">CEP</string>
     <string name="txt_usuario_cadastro_esqueci_cep">Esqueci o CEP</string>
     <string name="edt_usuario_cadastro_cep">Informe o CEP</string>
 
     <string name="btn_usuario_cadastro_continuar">Continuar</string>
     <string name="btn_usuario_cadastro_cadastrar">Cadastrar</string>
+
     <!--    TELA LISTAGEM E EXCLUSÃO DE CATEGORIAS-->
     <string name="msg_categoria_listagem">Olá, Duen Din Din!</string>
-    <string name="msg_categoria_listagem_dados">ESSES SÃO SUAS CATEGORIAS</string>
+    <string name="msg_categoria_listagem_dados">ESSAS SÃO SUAS CATEGORIAS</string>
+    <!-- Item Categoria -->
+    <string name="txt_categoria_item_nome">Nome da Categoria - Fixo ou Variável</string>
+    <string name="txt_categoria_item_descricao">Descrição</string>
+    <string name="txt_categoria_item_periodo">Periodo de recorrência</string>
+    <string name="cd_categoria_item_img_edit">Imagem Button para editar uma categoria</string>
+    <string name="cd_categoria_item_img_remove">Imagem Button para remover uma categoria</string>
 
 
     <!-- nomes das Unidades Federativas do Brasil -->
@@ -100,7 +115,6 @@
         <item>Araraquara</item>
     </string-array>
 
-
     <!-- Tela cadastro e alteração de categoria -->
     <string name="txt_categoria_cadastro_titulo">Cadastro de Categoria</string>
     <string name="txt_categoria_cadastro_subtitulo">Dados da Categoria</string>
@@ -110,10 +124,27 @@
     <string name="hint_categoria_cadastro_descricao">Descrição</string>
     <string name="txt_categoria_cadastro_tipo">TIPO *</string>
     <string name="txt_categoria_cadastro_recorrente">RECORRENTE *</string>
-    <string name="txt_categoria_cadastro_periodo">PERÍODO DE RECORRÊNCIA</string>
-    <string name="hint_categoria_cadastro_periodo">0</string>
 
     <string name="btn_categoria_cadastro_salvar">Salvar</string>
+
+    <!--TELA LISTAGEM GANHOS-->
+    <string name="msg_ganho_listagem">Olá, Duen Din Din!</string>
+    <string name="msg_ganho_listagem_dados">ESSES SÃO TODOS OS SEUS GANHOS</string>
+    <string name="btn_ganho_listagem_novo_recebimento">NOVO RECEBIMENTO</string>
+    <string name="txt_ganho_listagem_data">dd/mm/aaaa</string>
+    <!-- Item Ganho -->
+    <string name="txt_ganho_item_nome">Nome da Conta -R$ valor</string>
+    <string name="txt_ganho_item_descricao">Descrição</string>
+
+    <!--TELA LISTAGEM GASTOS-->
+    <string name="msg_gasto_listagem_dados">ESSES SÃO TODOS OS SEUS GASTOS</string>
+    <string name="btn_gasto_listagem_novo_vencimento">NOVO VENCIMENTO</string>
+    <string name="txt_gasto_listagem_data">dd/mm/aaaa</string>
+    <string name="msg_gasto_listagem">Olá, Duen Din Din!</string>
+    <!-- Item Gasto -->
+    <string name="txt_gasto_item_nome">Nome da Conta -R$ valor</string>
+    <string name="txt_gasto_item_descricao">Descrição</string>
+
     <!-- opções tipo categoria -->
     <string-array name="spTipoCategoria">
         <item>Selecione uma opção...</item>
@@ -127,5 +158,84 @@
         <item>SIM</item>
         <item>NÃO</item>
     </string-array>
+
+    <!-- Tela cadastro e alteração de gasto -->
+    <string name="txt_gasto_cadastro_titulo">Cadastro de Gasto</string>
+    <string name="txt_gasto_cadastro_subtitulo">Dados da Gasto</string>
+    <string name="txt_gasto_cadastro_nome">NOME *</string>
+    <string name="hint_gasto_cadastro_nome">Conta de Água</string>
+    <string name="txt_gasto_cadastro_data_de_vencimento">DATA DO VENCIMENTO *</string>
+    <string name="hint_gasto_cadastro_data_venc">dd/mm/aaaa</string>
+    <string name="txt_gasto_cadastro_descricao">DESCRIÇÃO</string>
+    <string name="hint_gasto_cadastro_descricao">Descrição</string>
+    <string name="txt_gasto_cadastro_categoria">CATEGORIA *</string>
+    <string name="txt_gasto_cadastro_valor">VALOR *</string>
+    <string name="hint_gasto_cadastro_valor">11,34</string>
+    <string name="btn_gasto_cadastro_salvar">Salvar</string>
+    <string name="msg_data_venc_invalida">Data de vencimento inválida!</string>
+
+    <!-- Tela cadastro e alteração de ganho -->
+    <string name="txt_ganho_cadastro_titulo">Cadastro de Ganho</string>
+    <string name="txt_ganho_cadastro_subtitulo">Dados da Ganho</string>
+    <string name="txt_ganho_cadastro_nome">NOME *</string>
+    <string name="hint_ganho_cadastro_nome">Freelance</string>
+    <string name="txt_ganho_cadastro_data_de_recebimento">DATA DO RECEBIMENTO *</string>
+    <string name="hint_ganho_cadastro_data_receb">dd/mm/aaaa</string>
+    <string name="txt_ganho_cadastro_descricao">DESCRIÇÃO</string>
+    <string name="hint_ganho_cadastro_descricao">Descrição</string>
+    <string name="txt_ganho_cadastro_categoria">CATEGORIA *</string>
+    <string name="txt_ganho_cadastro_valor">VALOR *</string>
+    <string name="hint_ganho_cadastro_valor">11,34</string>
+    <string name="btn_ganho_cadastro_salvar">Salvar</string>
+    <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
+
+
+    <!-- opções de categoria de gasto/ganho-->
+    <string-array name="spCategoriaGastoGanho">
+        <item>Selecione uma opção...</item>
+        <item>Categoria 1</item>
+        <item>Categoria 2</item>
+    </string-array>
+
+    <!-- Tela Home -->
+    <string name="txt_home_titulo">Suas Finanças</string>
+    <string name="txt_home_acoes_rapidas">AÇÕES RÁPIDAS</string>
+    <string name="btn_home_adicionar_recebimentos">Adicionar Recebimentos</string>
+    <string name="btn_home_adicionar_vencimentos">Adicionar Vencimentos</string>
+    <string name="btn_home_adicionar_categoria">Adicionar Categoria</string>
+    <string name="btn_home_ver_perfil">Ver Perfil</string>
+    <string name="txt_home_graficos">GRÁFICOS</string>
+    <string name="txt_home_vencimentos_proximos">VENCIMENTOS PRÓXIMOS</string>
+    <string name="txt_home_outras_opcoes">OUTRAS OPÇÕES</string>
+    <string name="txt_home_todos_os_vencimentos">Todos os Vencimentos</string>
+    <string name="btn_categoria_listagem_nova_categoria">Nova Categoria</string>
+
+    <!-- Tab Bar -->
+    <string name="txt_bottom_nav_home">Home</string>
+    <string name="txt_bottom_nav_gastos">Vencimentos</string>
+    <string name="txt_bottom_nav_ganhos">Recebimento</string>
+    <string name="txt_bottom_nav_categorias">Categorias</string>
+    <string name="txt_bottom_nav_perfil">Perfil</string>
+
+    <!-- TELA ENTRAR-->
+    <string name="txt_usuario_entrar_titulo">Entrar</string>
+    <string name="btn_usuario_entrar_login">ENTRAR</string>
+    <string name="txt_usuario_entrar_esqueceu_senha">Esqueceu sua senha?</string>
+
+    <!-- TELAS RECUPERAR SENHA-->
+    <string name="txt_recuperar_senha_titulo">Recuperar Senha</string>
+    <string name="txt_recuperar_senha_enviar_subtitulo">EM BREVE VOCÊ RECEBERÁ UM E-MAIL PARA RECUPERAÇÃO DE SENHA.</string>
+    <string name="hint_email">duen@dindin.com</string>
+    <string name="btn_enviar">ENVIAR</string>
+
+    <string name="txt_recuperar_senha_proximo_subtitulo">INFORME O CÓDIGO QUE FOI ENVIADO PARA O SEU E-MAIL.</string>
+    <string name="btn_proximo">PRÓXIMO</string>
+    <string name="txt_recuperar_senha_finalizar_subtitulo">DIGITE A NOVA SENHA</string>
+    <string name="txt_recuperar_senha_nova_senha">NOVA SENHA</string>
+    <string name="txt_recuperar_senha_confirmar_senha">CONFIRMAR SENHA</string>
+    <string name="btn_finalizar">FINALIZAR</string>
+
+    <string name="spinner_selecione_uma_opcao">Selecione uma opção</string>
+
 
 </resources>
