@@ -111,7 +111,6 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Categoria cadastrada com sucesso!", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
 
-
                     Log.d("Categoria", "ID: " + response.body().getId().toString());
                     Log.d("Categoria", "UsuarioID: " + response.body().getUsuarioId().toString());
                     Log.d("Categoria", "Nome: " + response.body().getNome());

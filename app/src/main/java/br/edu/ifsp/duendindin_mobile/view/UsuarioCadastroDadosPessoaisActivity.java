@@ -17,7 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
@@ -62,21 +64,45 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         edtNome = findViewById(R.id.edt_nome_usuario);
         edtRendaFixa = findViewById(R.id.edt_renda_usuario);
         txtDataNasc = findViewById(R.id.txt_data_nasc_usuario);
+        Calendar dataSelecionada = Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
+                dataSelecionada.set(Calendar.YEAR, ano);
+                dataSelecionada.set(Calendar.MONTH, mes);
+                dataSelecionada.set(Calendar.DAY_OF_MONTH, dia);
+
+                updateCalendar(dia, mes, ano);
+            }
+
+            private void updateCalendar(int diaS, int mesS, int anoS) {
+                int idade = 0;
+                idade = anoAtual - anoS;
+                if (mesS > mesAtual) {
+                    idade--;
+                } else if (mesAtual == mesS) {
+                    if (diaS > diaAtual) {
+                        idade--;
+                    }
+                }
+                if (idade < 18) {
+                    txtDataNasc.setText("");
+                    new CustomMessageDialog(getString(R.string.msg_data_nasc_invalida), UsuarioCadastroDadosPessoaisActivity.this);
+                    return;
+                }
+                String Format = "dd/MM/yyyy";
+                SimpleDateFormat sdf = new SimpleDateFormat(Format, Locale.getDefault());
+                txtDataNasc.setText(sdf.format(dataSelecionada.getTime()));
+            }
+        };
         txtDataNasc.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                datePickerDialog = new DatePickerDialog(UsuarioCadastroDadosPessoaisActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int ano,
-                                                  int mes, int dia) {
-                                Calendar dataSelecionada = Calendar.getInstance();
-                                dataSelecionada.set(ano, mes, dia);
-                                calcularIdade(dia, mes, ano, diaAtual, mesAtual, anoAtual);
-                            }
-                        }, anoAtual, mesAtual, diaAtual);
-                datePickerDialog.show();
+            public void onClick(View view) {
+                new DatePickerDialog(UsuarioCadastroDadosPessoaisActivity.this, date,
+                        dataSelecionada.get(Calendar.YEAR),
+                        dataSelecionada.get(Calendar.MONTH),
+                        dataSelecionada.get(Calendar.DAY_OF_MONTH))
+                        .show();
             }
         });
 
@@ -184,26 +210,6 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
                 new CustomMessageDialog("Ocorreu um erro ao tentar consultar o CEP. \nErro: " + t.getMessage(), UsuarioCadastroDadosPessoaisActivity.this);
             }
         });
-    }
-
-    private void calcularIdade(int diaS, int mesS, int anoS, int diaAtual, int mesAtual, int anoAtual) {
-        int idade = 0;
-        idade = anoAtual - anoS;
-        if (mesS > mesAtual) {
-            idade--;
-        } else if (mesAtual == mesS) {
-            if (diaS > diaAtual) {
-                idade--;
-            }
-        }
-        if (idade < 18) {
-            txtDataNasc.setText("");
-            new CustomMessageDialog(getString(R.string.msg_data_nasc_invalida), UsuarioCadastroDadosPessoaisActivity.this);
-            return;
-        }
-        txtDataNasc.setText(diaS + "/" + (mesS + 1) + "/" + anoS);
-
-
     }
 
     private boolean validate() {
