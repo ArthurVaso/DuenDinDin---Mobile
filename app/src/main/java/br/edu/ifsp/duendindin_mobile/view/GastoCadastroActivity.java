@@ -216,13 +216,8 @@ public class GastoCadastroActivity extends AppCompatActivity {
             public void onResponse(Call<Gasto> call, Response<Gasto> response) {
 
                 if (response.isSuccessful()) {
-
                     Toast.makeText(getApplicationContext(), "Gasto cadastrado com sucesso!", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
-
-                    Log.d("Gasto", "ID: " + response.body().getId().toString());
-                    Log.d("Gasto", "Nome: " + response.body().getNome());
-                    Log.d("Gasto", "Descrição: " + response.body().getDescricao());
                     Intent intent = new Intent(GastoCadastroActivity.this, HomeActivity.class);
                     startActivity(intent);
                 } else {
@@ -284,20 +279,21 @@ public class GastoCadastroActivity extends AppCompatActivity {
                                 GastoCadastroActivity.this, android.R.layout.simple_spinner_item, nomeCategorias);
                         spCategoriaAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                         spnCategoria.setAdapter(spCategoriaAdapter);
-                        Toast.makeText(getApplicationContext(), "Categorias retornadas com sucesso!", Toast.LENGTH_LONG).show();
 
-                        listaCategoria.forEach(categoria -> {
-                            Log.d("Categoria", "ID: " + categoria.getId().toString());
-                            Log.d("Categoria", "UsuarioID: " + categoria.getUsuarioId().toString());
-                            Log.d("Categoria", "Nome: " + categoria.getNome());
-                            Log.d("Categoria", "Descrição: " + categoria.getDescricao());
-                        });
+//                        Toast.makeText(getApplicationContext(), "Categorias retornadas com sucesso!", Toast.LENGTH_LONG).show();
+//
+//                        listaCategoria.forEach(categoria -> {
+//                            Log.d("Categoria", "ID: " + categoria.getId().toString());
+//                            Log.d("Categoria", "UsuarioID: " + categoria.getUsuarioId().toString());
+//                            Log.d("Categoria", "Nome: " + categoria.getNome());
+//                            Log.d("Categoria", "Descrição: " + categoria.getDescricao());
+//                        });
                     } else {
                         ArrayAdapter<String> spCategoriaAdapter = new ArrayAdapter<String>(
                                 GastoCadastroActivity.this, android.R.layout.simple_spinner_item, nomeCategorias);
                         spCategoriaAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                         spnCategoria.setAdapter(spCategoriaAdapter);
-                        Toast.makeText(getApplicationContext(), "nenhuma categoria a ser retornada!", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "nenhuma categoria a ser retornada!", Toast.LENGTH_LONG).show();
                     }
 
                     progressDialog.dismiss();

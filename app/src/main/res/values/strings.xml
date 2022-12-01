@@ -185,7 +185,7 @@
     <string name="hint_ganho_cadastro_descricao">Descrição</string>
     <string name="txt_ganho_cadastro_categoria">CATEGORIA *</string>
     <string name="txt_ganho_cadastro_valor">VALOR *</string>
-    <string name="hint_ganho_cadastro_valor">11,34</string>
+    <string name="hint_ganho_cadastro_valor">11.34</string>
     <string name="btn_ganho_cadastro_salvar">Salvar</string>
     <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
 
