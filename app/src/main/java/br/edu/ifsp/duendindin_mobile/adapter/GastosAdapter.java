@@ -1,10 +1,14 @@
 package br.edu.ifsp.duendindin_mobile.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +19,8 @@ import java.util.ArrayList;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.Gasto;
+import br.edu.ifsp.duendindin_mobile.view.CategoriaAlterarActivity;
+import br.edu.ifsp.duendindin_mobile.view.GastoAlterarActivity;
 
 public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder> {
 
@@ -39,6 +45,9 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder
         gastosViewHolder.data = itemGasto.findViewById(R.id.textView3);
 
         gastosViewHolder.cbxPago = itemGasto.findViewById(R.id.checkBox);
+
+        gastosViewHolder.imgEdit = itemGasto.findViewById(R.id.imageButton5);
+        gastosViewHolder.imgDelete = itemGasto.findViewById(R.id.imageButton6);
 
         return gastosViewHolder;
 
@@ -70,9 +79,41 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder
         String data[] = gastoVencimento.split("-");
         gastoVencimento = data[2] + "/" + data[1] + "/" + data[0];
         holder.data.setText(gastoVencimento);
-
         holder.position = position;
 
+        holder.imgEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder.view.getContext(), GastoAlterarActivity.class);
+                intent.putExtra("gasto", gasto);
+                holder.view.getContext().startActivity(intent);
+            }
+        });
+        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog alertDialog = new AlertDialog.Builder(holder.view.getContext()).create();
+                alertDialog.setTitle("DuenDinDin");
+                alertDialog.setIcon(android.R.drawable.ic_dialog_info);
+                alertDialog.setMessage("Deseja mesmo excluir esse gasto?");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "SIM",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                int position = gastos.indexOf(gasto);
+                                gastos.remove(position);
+                                notifyItemRemoved(position);
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NÃO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
     }
 
     @Override
@@ -85,6 +126,7 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder
         View view;
         TextView nome, descricao, data;
         CheckBox cbxPago;
+        ImageButton imgEdit, imgDelete;
         int position;
 
         public ViewHolder(@NonNull View itemView) {

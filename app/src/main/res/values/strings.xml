@@ -243,6 +243,7 @@
     <string name="txt_home_todas_as_categorias">Categorias</string>
     <string name="btn_categoria_cadastro_alterar">Alterar</string>
     <string name="txt_categoria_alterar_titulo">Edição de Categoria</string>
+    <string name="btn_ganho_alterar">Alterar</string>
 
 
 </resources>
