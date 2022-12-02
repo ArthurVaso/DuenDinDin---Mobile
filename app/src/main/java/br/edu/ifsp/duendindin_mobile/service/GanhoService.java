@@ -53,6 +53,6 @@ public interface GanhoService {
 
     //deletar ganho por ID
     @DELETE("gain/{ganhoId}")
-    Call<Ganho> deletarGanhoUsuario(@Header("x-access-token") String token,
+    Call<String> deletarGanhoUsuario(@Header("x-access-token") String token,
                                             @Path("ganhoId") Integer id);
 }

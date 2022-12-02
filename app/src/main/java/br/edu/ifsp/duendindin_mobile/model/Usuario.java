@@ -1,9 +1,11 @@
 package br.edu.ifsp.duendindin_mobile.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Usuario implements Serializable {
 
     private Integer id;
