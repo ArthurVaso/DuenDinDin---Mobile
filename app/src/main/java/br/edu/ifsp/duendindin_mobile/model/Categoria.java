@@ -2,9 +2,10 @@ package br.edu.ifsp.duendindin_mobile.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Categoria {
+public class Categoria implements Serializable {
     private Integer id;
     @SerializedName("usuarioID")
     private Integer usuarioId;

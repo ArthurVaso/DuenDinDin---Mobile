@@ -238,6 +238,13 @@
     <string name="spinner_selecione_uma_opcao">Selecione uma opção</string>
 
     <string name="msg_erro_comunicacao_servidor">Ocorreu um erro na comunicação com o servidor.</string>
+    <string name="txt_usuario_alterar_titulo">Editar Usuário</string>
+    <string name="btn_usuario_editar_atualizar">Atualizar</string>
+    <string name="txt_home_todos_os_ganhos">Todos os recebimentos</string>
+    <string name="txt_home_todas_as_categorias">Categorias</string>
+    <string name="btn_categoria_cadastro_alterar">Alterar</string>
+    <string name="txt_categoria_alterar_titulo">Edição de Categoria</string>
+    <string name="btn_ganho_alterar">Alterar</string>
 
 
 </resources>

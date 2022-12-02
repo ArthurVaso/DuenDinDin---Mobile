@@ -33,10 +33,13 @@ public class Usuario implements Serializable {
         this.estado = estado;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
-
 
     public String getNome() {
         return nome;

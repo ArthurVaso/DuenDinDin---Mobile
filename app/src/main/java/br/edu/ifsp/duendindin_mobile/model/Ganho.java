@@ -2,7 +2,10 @@ package br.edu.ifsp.duendindin_mobile.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Ganho {
+import java.io.Serializable;
+import java.util.Date;
+
+public class Ganho implements Serializable {
 
     private Integer id;
     @SerializedName("categoriaID")

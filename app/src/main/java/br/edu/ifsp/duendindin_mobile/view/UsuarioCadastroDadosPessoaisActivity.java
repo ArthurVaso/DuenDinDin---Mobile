@@ -50,6 +50,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private TextInputEditText edtRendaFixa;
     private Usuario usuario = new Usuario();
+
     private Retrofit retrofitAPI;
 
 
@@ -222,7 +223,7 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         }  else if (edtNome.getText().toString().trim().length() > 30) {
             new CustomMessageDialog("O campo Nome não deve ter mais de 30 caracteres!", UsuarioCadastroDadosPessoaisActivity.this);
             isValid = false;
-        } else if (txtDataNasc.getText().toString().trim().isEmpty() || txtDataNasc.getText().toString().trim().length() < 10) {
+        } else if (txtDataNasc.getText().toString().trim().isEmpty()) {
             new CustomMessageDialog("O campo Data de Nascimento deve ser preenchido!", UsuarioCadastroDadosPessoaisActivity.this);
             isValid = false;
         } else if (edtEstado.getText().toString().trim().isEmpty() || edtCidade.getText().toString().trim().isEmpty()) {
