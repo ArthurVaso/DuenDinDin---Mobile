@@ -95,7 +95,12 @@ public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return categorias.size();
+
+        if (categorias.size() < 3) {
+            return categorias.size();
+        } else {
+            return 3;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

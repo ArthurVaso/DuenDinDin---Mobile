@@ -24,8 +24,12 @@ import java.util.Calendar;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.CEP;
+import br.edu.ifsp.duendindin_mobile.model.Configuracao;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
+import br.edu.ifsp.duendindin_mobile.model.UsuarioComConfiguracao;
+import br.edu.ifsp.duendindin_mobile.model.UsuarioSemEmail;
 import br.edu.ifsp.duendindin_mobile.service.CEPService;
+import br.edu.ifsp.duendindin_mobile.service.ConfiguracaoService;
 import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
 import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
@@ -59,6 +63,8 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
     private TextInputEditText edtRendaFixa;
 
     private Usuario usuarioPerfil;
+    private UsuarioSemEmail usuarioSemEmail;
+    private UsuarioComConfiguracao usuarioComConfiguracao;
 
 
     @Override
@@ -158,7 +164,7 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
         String dataNasc = data[2] + "/" + data[1] + "/" + data[0];
         txtDataNasc.setText(dataNasc);
         String cep = usuarioPerfil.getCep();
-        cep = "13.503-255";
+        //cep = "13.503-255";
         edtCep.setText(cep);
         edtEstado.setText(usuarioPerfil.getEstado());
         edtCidade.setText(usuarioPerfil.getCidade());
@@ -167,6 +173,45 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
 
+        buscarUsuarioComConfiguracao(token, usuarioId);
+
+    }
+
+    private void buscarUsuarioComConfiguracao(String token, int usuarioId) {
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
+
+        //instanciando a interface
+        UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
+
+        Call<UsuarioComConfiguracao> call =  usuarioService.consultarUsuarioComConfiguracao(token, usuarioId);
+
+        call.enqueue(new Callback<UsuarioComConfiguracao>() {
+            @Override
+            public void onResponse(Call<UsuarioComConfiguracao> call, Response<UsuarioComConfiguracao> response) {
+                if (response.isSuccessful()) {
+                    usuarioComConfiguracao = response.body();
+
+                    edtNome.setText(usuarioComConfiguracao.getNome());
+                    String data[] = usuarioComConfiguracao.getDataNascimento().split("-");
+                    String dataNasc = data[2] + "/" + data[1] + "/" + data[0];
+                    txtDataNasc.setText(dataNasc);
+                    String cep = usuarioComConfiguracao.getCep();
+                    //cep = "13.503-255";
+                    edtCep.setText(cep);
+                    edtEstado.setText(usuarioComConfiguracao.getEstado());
+                    edtCidade.setText(usuarioComConfiguracao.getCidade());
+                    edtRendaFixa.setText(usuarioComConfiguracao.getConfiguracao().getRendaFixa().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UsuarioComConfiguracao> call, Throwable t) {
+
+            }
+        });
     }
 
     private void consultarCEP() {
@@ -215,14 +260,22 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
                 false
         );
 
-        usuarioPerfil.setNome(edtNome.getText().toString());
+        usuarioSemEmail = new UsuarioSemEmail();
+
+        //usuarioPerfil.setNome(edtNome.getText().toString());
+        usuarioSemEmail.setNome(edtNome.getText().toString());
         String data[] = txtDataNasc.getText().toString().split("/");
         String dataNasc = data[2] + "-" + data[1] + "-" + data[0];
-        usuarioPerfil.setDataNascimento(dataNasc);
-        usuarioPerfil.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
-        usuarioPerfil.setEstado(edtEstado.getText().toString());
-        usuarioPerfil.setCidade(edtCidade.getText().toString());
-        usuarioPerfil.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString()));
+        //usuarioPerfil.setDataNascimento(dataNasc);
+        usuarioSemEmail.setDataNascimento(dataNasc);
+        //usuarioPerfil.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
+        usuarioSemEmail.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
+        //usuarioPerfil.setEstado(edtEstado.getText().toString());
+        usuarioSemEmail.setEstado(edtEstado.getText().toString());
+        //usuarioPerfil.setCidade(edtCidade.getText().toString());
+        usuarioSemEmail.setCidade(edtCidade.getText().toString());
+        //usuarioPerfil.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString()));
+        usuarioSemEmail.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString()));
 
         retrofitAPI = new Retrofit.Builder()
                 .baseUrl(URL_API)                                //endereço do webservice
@@ -232,7 +285,8 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
         //instanciando a interface
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
-        Call<String> call = usuarioService.atualizarUsuario(token, usuarioId, usuarioPerfil);
+        Call<String> call = usuarioService.atualizarUsuario(token, usuarioId, usuarioSemEmail);
+        //Call<String> call = usuarioService.atualizarUsuario(token, usuarioId, usuarioPerfil);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
