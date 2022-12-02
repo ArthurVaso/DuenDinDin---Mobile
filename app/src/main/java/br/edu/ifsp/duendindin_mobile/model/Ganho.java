@@ -1,23 +1,28 @@
 package br.edu.ifsp.duendindin_mobile.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Ganho {
+public class Ganho implements Serializable {
 
     private Integer id;
+    @SerializedName("categoriaID")
     private Integer categoriaId;
     private String nome;
-    private Date data;
+    private String data;
     private Double valor;
     private String descricao;
+    @SerializedName("recorrente")
     private Boolean recorrencia;
-    private Boolean tipo;
+    private String tipo;
 
     public Ganho() {
 
     }
 
-    public Ganho(Integer id, Integer categoriaId, String nome, Date data, Double valor, String descricao, Boolean recorrencia, Boolean tipo) {
+    public Ganho(Integer id, Integer categoriaId, String nome, String data, Double valor, String descricao, Boolean recorrencia, String tipo) {
         this.id = id;
         this.categoriaId = categoriaId;
         this.nome = nome;
@@ -49,11 +54,11 @@ public class Ganho {
         this.nome = nome;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -81,11 +86,11 @@ public class Ganho {
         this.recorrencia = recorrencia;
     }
 
-    public Boolean getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Boolean tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 }

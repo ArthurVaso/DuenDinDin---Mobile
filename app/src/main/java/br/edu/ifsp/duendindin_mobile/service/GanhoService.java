@@ -3,6 +3,7 @@ package br.edu.ifsp.duendindin_mobile.service;
 import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.model.Ganho;
+import br.edu.ifsp.duendindin_mobile.model.GanhoRetorno;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -30,8 +31,8 @@ public interface GanhoService {
 
     //consultar ganho por usuario
     @GET("gain/user/{usuarioId}/")
-    Call<Ganho> retornarGanhoUsuario(@Header("x-access-token") String token,
-                                     @Path("usuarioId") Integer id);
+    Call<List<GanhoRetorno>> retornarGanhoUsuario(@Header("x-access-token") String token,
+                                                  @Path("usuarioId") Integer id);
 
     //consultar ganho por categoria
     @GET("gain/category/{categoriaId}/")
