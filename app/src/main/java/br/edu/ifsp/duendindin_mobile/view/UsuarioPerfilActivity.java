@@ -182,6 +182,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(UsuarioPerfilActivity.this, HomeActivity.class));
+        //super.onBackPressed();
     }
 }

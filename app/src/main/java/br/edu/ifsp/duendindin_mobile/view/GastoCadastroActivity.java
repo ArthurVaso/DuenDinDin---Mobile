@@ -171,7 +171,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
         super.onStart();
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
-        nomeCategorias.add("Selecione uma opção,,,");
+        nomeCategorias.add("Selecione uma opção...");
         retornarCategoriasUsuario();
     }
 
@@ -280,14 +280,8 @@ public class GastoCadastroActivity extends AppCompatActivity {
                         spCategoriaAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                         spnCategoria.setAdapter(spCategoriaAdapter);
 
-//                        Toast.makeText(getApplicationContext(), "Categorias retornadas com sucesso!", Toast.LENGTH_LONG).show();
-//
-//                        listaCategoria.forEach(categoria -> {
-//                            Log.d("Categoria", "ID: " + categoria.getId().toString());
-//                            Log.d("Categoria", "UsuarioID: " + categoria.getUsuarioId().toString());
-//                            Log.d("Categoria", "Nome: " + categoria.getNome());
-//                            Log.d("Categoria", "Descrição: " + categoria.getDescricao());
-//                        });
+                        //Toast.makeText(getApplicationContext(), "Categorias retornadas com sucesso!", Toast.LENGTH_LONG).show();
+
                     } else {
                         ArrayAdapter<String> spCategoriaAdapter = new ArrayAdapter<String>(
                                 GastoCadastroActivity.this, android.R.layout.simple_spinner_item, nomeCategorias);

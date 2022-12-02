@@ -1,10 +1,12 @@
 package br.edu.ifsp.duendindin_mobile.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Ganho implements Serializable {
 
     private Integer id;

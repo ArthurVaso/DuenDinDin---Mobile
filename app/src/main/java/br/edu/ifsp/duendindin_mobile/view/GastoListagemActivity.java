@@ -105,10 +105,8 @@ public class GastoListagemActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
 
+    public void listarVencimentos() {
         CustomProgressDialog progressDialog = new CustomProgressDialog(
                 GastoListagemActivity.this,
                 "DuenDinDin",
@@ -168,6 +166,7 @@ public class GastoListagemActivity extends AppCompatActivity {
                         }
                     }
                     rvGastos.setAdapter(new GastosAdapter(GastoListagemActivity.this.getLayoutInflater(), (ArrayList<Gasto>) listGastos));
+
                     progressDialog.dismiss();
                 } else {
                     String errorBody = null;
@@ -189,11 +188,18 @@ public class GastoListagemActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
+    }
 
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        listarVencimentos();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(GastoListagemActivity.this, HomeActivity.class));
+        //super.onBackPressed();
     }
 }

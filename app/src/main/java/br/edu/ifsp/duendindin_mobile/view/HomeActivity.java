@@ -134,6 +134,10 @@ public class HomeActivity extends AppCompatActivity {
         criarGraficos();
 
         preencherRecyclerViews();
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
 
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
@@ -235,7 +239,9 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 CharSequence title = item.getTitle();
                 if ("Vencimentos".equals(title)) {
+
                     startActivity(new Intent(HomeActivity.this, GastoListagemActivity.class));
+
                 } else if ("Recebimento".equals(title)) {
                     startActivity(new Intent(HomeActivity.this, GanhoListagemActivity.class));
                 } else if("Categorias".equals(title)){
@@ -249,9 +255,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+    protected void onResume() {
+        super.onResume();
 
+    }
+
+    private void listarGanhos() {
         CustomProgressDialog progressDialog = new CustomProgressDialog(
                 HomeActivity.this,
                 "DuenDinDin",
@@ -259,11 +268,6 @@ public class HomeActivity extends AppCompatActivity {
                 false
         );
         progressDialog.show();
-
-        retrofitAPI = new Retrofit.Builder()
-                .baseUrl(URL_API)                                //endereço do webservice
-                .addConverterFactory(GsonConverterFactory.create()) //conversor
-                .build();
 
         //instanciando a interface
         GanhoService ganhoService = retrofitAPI.create(GanhoService.class);
@@ -304,6 +308,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void listarGastos() {
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
+                HomeActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
+        progressDialog.show();
         //instanciando a interface
         GastoService gastoService = retrofitAPI.create(GastoService.class);
 
@@ -343,6 +357,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void listarCategorias() {
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
+                HomeActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
+        progressDialog.show();
+
         //instanciando a interface
         CategoriaService categoriaService = retrofitAPI.create(CategoriaService.class);
 
@@ -374,11 +399,20 @@ public class HomeActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
+
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        listarGanhos();
+        listarGastos();
+        listarCategorias();
+
     }
 
     @Override
     public void onBackPressed() {
-        //pref.edit().clear().commit();
         super.onBackPressed();
 
     }

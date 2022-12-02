@@ -184,6 +184,7 @@ public class CategoriaListagemActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(CategoriaListagemActivity.this, HomeActivity.class));
+        //super.onBackPressed();
     }
 }

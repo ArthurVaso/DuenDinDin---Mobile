@@ -1,10 +1,12 @@
 package br.edu.ifsp.duendindin_mobile.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Categoria implements Serializable {
     private Integer id;
     @SerializedName("usuarioID")
