@@ -170,7 +170,7 @@
     <string name="hint_gasto_cadastro_descricao">Descrição</string>
     <string name="txt_gasto_cadastro_categoria">CATEGORIA *</string>
     <string name="txt_gasto_cadastro_valor">VALOR *</string>
-    <string name="hint_gasto_cadastro_valor">11,34</string>
+    <string name="hint_gasto_cadastro_valor">11.34</string>
     <string name="btn_gasto_cadastro_salvar">Salvar</string>
     <string name="msg_data_venc_invalida">Data de vencimento inválida!</string>
 
@@ -185,7 +185,7 @@
     <string name="hint_ganho_cadastro_descricao">Descrição</string>
     <string name="txt_ganho_cadastro_categoria">CATEGORIA *</string>
     <string name="txt_ganho_cadastro_valor">VALOR *</string>
-    <string name="hint_ganho_cadastro_valor">11,34</string>
+    <string name="hint_ganho_cadastro_valor">11.34</string>
     <string name="btn_ganho_cadastro_salvar">Salvar</string>
     <string name="msg_data_receb_invalida">Data de recebimento inválida!</string>
 
@@ -236,6 +236,7 @@
     <string name="btn_finalizar">FINALIZAR</string>
 
     <string name="spinner_selecione_uma_opcao">Selecione uma opção</string>
+
     <string name="msg_erro_comunicacao_servidor">Ocorreu um erro na comunicação com o servidor.</string>
     <string name="txt_usuario_alterar_titulo">Editar Usuário</string>
     <string name="btn_usuario_editar_atualizar">Atualizar</string>

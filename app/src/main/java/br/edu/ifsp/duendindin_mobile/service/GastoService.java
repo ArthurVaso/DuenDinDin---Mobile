@@ -4,11 +4,13 @@ import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.model.Gasto;
 import br.edu.ifsp.duendindin_mobile.model.GastoRetorno;
+import br.edu.ifsp.duendindin_mobile.utils.Message;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -46,13 +48,13 @@ public interface GastoService {
                                              @Path("categoriaId") Integer categoryId);
 
     //atualizar gasto por ID
-    @PUT("expense/{gastoId}")
-    Call<Gasto> atualizarGastoUsuario(@Header("x-access-token") String token,
+    @PATCH("expense/{gastoId}")
+    Call<Message> atualizarGastoUsuario(@Header("x-access-token") String token,
                                       @Path("gastoId") Integer id,
                                       @Body Gasto gasto);
 
     //deletar gasto por ID
     @DELETE("expense/{gastoId}")
-    Call<Gasto> deletarGastoUsuario(@Header("x-access-token") String token,
+    Call<Message> deletarGastoUsuario(@Header("x-access-token") String token,
                                     @Path("gastoId") Integer id);
 }

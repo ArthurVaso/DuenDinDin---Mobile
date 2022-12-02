@@ -195,7 +195,8 @@ public class GanhoListagemActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(GanhoListagemActivity.this, HomeActivity.class));
+        //super.onBackPressed();
     }
 
 
