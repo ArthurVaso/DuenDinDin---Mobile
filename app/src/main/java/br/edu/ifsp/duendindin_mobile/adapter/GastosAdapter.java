@@ -92,15 +92,19 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder
     public void onBindViewHolder(@NonNull GastosAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Gasto gasto = gastos.get(position);
 
-        String valor = String.format( "%.2f", gasto.getValor());
-        holder.nome.setText(gasto.getNome()+" - R$ "+ valor);
+        String valor = String.format("%.2f", gasto.getValor());
+        holder.nome.setText(gasto.getNome() + " - R$ " + valor);
         holder.descricao.setText(gasto.getDescricao());
-        holder.cbxPago.setChecked(gasto.getPago());
+        if (gasto.getPago() != null) {
+            holder.cbxPago.setChecked(gasto.getPago());
+        } else {
+            holder.cbxPago.setChecked(false);
+        }
 
         holder.cbxPago.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.cbxPago.isChecked()){
+                if (holder.cbxPago.isChecked()) {
                     pagarGasto(position, true);
                 } else {
                     pagarGasto(position, false);
@@ -117,9 +121,9 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.ViewHolder
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(holder.view.getContext(), GastoAlterarActivity.class);
+                Intent intent = new Intent(context, GastoAlterarActivity.class);
                 intent.putExtra("gasto", gasto);
-                holder.view.getContext().startActivity(intent);
+                context.startActivity(intent);
             }
         });
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
