@@ -115,8 +115,6 @@ public class GastoAlterarActivity extends AppCompatActivity {
         btnAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if (validate()) {
                     atualizarGasto();
 
