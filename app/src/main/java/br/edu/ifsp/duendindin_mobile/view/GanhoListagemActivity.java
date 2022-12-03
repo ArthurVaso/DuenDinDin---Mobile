@@ -62,6 +62,12 @@ public class GanhoListagemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_ganho);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
+        token = pref.getString("token", "");
+        usuarioId = pref.getInt("usuarioId", 0);
 
         rvGanhos = findViewById(R.id.rv_ganhos);
         txtMsgUsuario = findViewById(R.id.msg_usario_listagem_ganho);
@@ -79,8 +85,7 @@ public class GanhoListagemActivity extends AppCompatActivity {
             }
         });
 
-        token = pref.getString("token", "");
-        usuarioId = pref.getInt("usuarioId", 0);
+
     }
 
     @Override
@@ -110,6 +115,11 @@ public class GanhoListagemActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+        consultarUsuario();
+        consultarGanhos();
+    }
+
+    public void consultarUsuario() {
         CustomProgressDialog progressDialog = new CustomProgressDialog(
                 GanhoListagemActivity.this,
                 "DuenDinDin",
@@ -117,11 +127,6 @@ public class GanhoListagemActivity extends AppCompatActivity {
                 false
         );
         progressDialog.show();
-
-        retrofitAPI = new Retrofit.Builder()
-                .baseUrl(URL_API)                                //endereço do webservice
-                .addConverterFactory(GsonConverterFactory.create()) //conversor
-                .build();
 
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
@@ -131,7 +136,8 @@ public class GanhoListagemActivity extends AppCompatActivity {
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()){
                     usuario = response.body();
-                    txtMsgUsuario.setText("Olá, "+usuario.getNome());
+                    txtMsgUsuario.setText("Olá, " + usuario.getNome());
+                    progressDialog.dismiss();
                 } else {
                     String errorBody = null;
                     Message msg = new Message();
@@ -143,15 +149,25 @@ public class GanhoListagemActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     new CustomMessageDialog("Ocorreu um erro ao consultar seus dados.  \n" + msg.getMensagem(), GanhoListagemActivity.this);
+                    progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
-
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), GanhoListagemActivity.this);
             }
         });
 
+    }
+    public void consultarGanhos() {
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
+                GanhoListagemActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
+        progressDialog.show();
         //instanciando a interface
         GanhoService ganhoService = retrofitAPI.create(GanhoService.class);
 
@@ -188,6 +204,7 @@ public class GanhoListagemActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<GanhoRetorno>> call, Throwable t) {
                 progressDialog.dismiss();
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), GanhoListagemActivity.this);
             }
         });
 

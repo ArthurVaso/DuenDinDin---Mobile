@@ -192,6 +192,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
         gasto.setVencimento(dataVenc);
         gasto.setValor(Double.parseDouble(edtValor.getText().toString()));
         gasto.setDescricao(edtDescricao.getText().toString().trim());
+
         if (spnRecorrente.getSelectedItemPosition() == 1) {
             gasto.setRecorrencia(true);
         } else {
