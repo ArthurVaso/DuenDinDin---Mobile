@@ -1,11 +1,15 @@
 package br.edu.ifsp.duendindin_mobile.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Configuracao {
+public class Configuracao implements Serializable {
 
     private Integer id;
     private Integer usuarioId;
+    @SerializedName("renda_fixa")
     private Double rendaFixa;
     private Double limiteLazer;
     private Double limiteContas;
