@@ -56,6 +56,8 @@ public class GastoListagemActivity extends AppCompatActivity {
     private List<Gasto> listGastos = new ArrayList<>();
     private GastosAdapter gastosAdapter;
 
+    CustomProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,13 +86,20 @@ public class GastoListagemActivity extends AppCompatActivity {
 
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
+
+        progressDialog = new CustomProgressDialog(
+                GastoListagemActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         consultarUsuario();
-        listarVencimentos();
+
     }
 
 
@@ -119,12 +128,7 @@ public class GastoListagemActivity extends AppCompatActivity {
     }
 
     private void consultarUsuario() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GastoListagemActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
+
         progressDialog.show();
 
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
@@ -136,7 +140,7 @@ public class GastoListagemActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     usuario = response.body();
                     txtMsgUsuario.setText("Olá, "+usuario.getNome());
-                    progressDialog.dismiss();
+                    listarVencimentos();
                 } else {
                     String errorBody = null;
                     Message msg = new Message();
@@ -161,14 +165,6 @@ public class GastoListagemActivity extends AppCompatActivity {
     }
 
     private void listarVencimentos() {
-
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GastoListagemActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
-        progressDialog.show();
 
         //instanciando a interface
         GastoService gastoService = retrofitAPI.create(GastoService.class);

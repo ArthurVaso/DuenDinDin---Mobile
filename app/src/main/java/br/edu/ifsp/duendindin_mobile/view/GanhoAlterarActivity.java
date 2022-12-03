@@ -70,6 +70,8 @@ public class GanhoAlterarActivity extends AppCompatActivity {
     List<Categoria> listaCategoria = new ArrayList<Categoria>();
     List<String> nomeCategorias = new ArrayList<String>();
 
+    CustomProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,7 @@ public class GanhoAlterarActivity extends AppCompatActivity {
                 .build();
 
         inicializarComponentes();
+        ganhoAtual = (Ganho) getIntent().getSerializableExtra("ganho");
 
         Calendar dataSelecionada = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -143,8 +146,14 @@ public class GanhoAlterarActivity extends AppCompatActivity {
 
             }
         });
+        progressDialog = new CustomProgressDialog(
+                GanhoAlterarActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
 
-        ganhoAtual = (Ganho) getIntent().getSerializableExtra("ganho");
+
     }
 
     @Override
@@ -185,12 +194,7 @@ public class GanhoAlterarActivity extends AppCompatActivity {
     }
 
     private void atualizarGanho() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GanhoAlterarActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
+
         progressDialog.show();
 
         Ganho ganho = ganhoAtual;
@@ -275,13 +279,6 @@ public class GanhoAlterarActivity extends AppCompatActivity {
     }
 
     private void retornarCategoriasUsuario() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GanhoAlterarActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
-
         progressDialog.show();
 
         //instanciando a interface

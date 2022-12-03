@@ -73,6 +73,7 @@ public class GastoAlterarActivity extends AppCompatActivity {
     List<Categoria> listaCategoria = new ArrayList<Categoria>();
     List<String> nomeCategorias = new ArrayList<String>();
 
+    CustomProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,13 @@ public class GastoAlterarActivity extends AppCompatActivity {
                 .build();
 
         inicializarComponentes();
+
+        progressDialog = new CustomProgressDialog(
+                GastoAlterarActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
 
         Calendar dataSelecionada = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -212,12 +220,7 @@ public class GastoAlterarActivity extends AppCompatActivity {
     }
 
     private void atualizarGasto() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GastoAlterarActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
+
         progressDialog.show();
 
         Gasto gasto = gastoAtual;
@@ -287,13 +290,6 @@ public class GastoAlterarActivity extends AppCompatActivity {
     }
 
     private void retornarCategoriasUsuario() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GastoAlterarActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
-
         progressDialog.show();
 
         //instanciando a interface
