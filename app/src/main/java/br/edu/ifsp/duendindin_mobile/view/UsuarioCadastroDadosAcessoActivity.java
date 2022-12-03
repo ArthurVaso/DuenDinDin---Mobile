@@ -157,8 +157,8 @@ public class UsuarioCadastroDadosAcessoActivity extends AppCompatActivity {
         } else if (txtSenha.getText().toString().trim().isEmpty()) {
             new CustomMessageDialog("O campo Senha não pode estar vazio!", UsuarioCadastroDadosAcessoActivity.this);
             isValid = false;
-        } else if (txtSenha.getText().toString().trim().length() > 50) {
-            new CustomMessageDialog("O campo Senha não deve ter mais de 50 caracteres!", UsuarioCadastroDadosAcessoActivity.this);
+        } else if (txtSenha.getText().toString().trim().length() < 8) {
+            new CustomMessageDialog("O campo Senha não deve ser menor caracteres!", UsuarioCadastroDadosAcessoActivity.this);
             Toast.makeText(UsuarioCadastroDadosAcessoActivity.this, "O campo Senha não deve ter mais de 50 caracteres!", Toast.LENGTH_LONG).show();
             isValid = false;
         }

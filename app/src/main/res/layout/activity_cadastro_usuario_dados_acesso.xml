@@ -81,7 +81,8 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:maxLength="30"
-            android:textColorHint="@color/border_color" />
+            android:textColorHint="@color/border_color"
+            android:maxLines="100"/>
 
 
         <TextView

@@ -76,7 +76,8 @@
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            android:textColorHint="@color/border_color" />
+            android:textColorHint="@color/border_color"
+            android:maxLines="100"/>
 
 
         <Button
