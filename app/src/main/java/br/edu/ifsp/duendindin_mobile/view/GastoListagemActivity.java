@@ -129,6 +129,7 @@ public class GastoListagemActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     usuario = response.body();
                     txtMsgUsuario.setText("Olá, "+usuario.getNome());
+                    progressDialog.dismiss();
                 } else {
                     String errorBody = null;
                     Message msg = new Message();
@@ -139,13 +140,15 @@ public class GastoListagemActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    progressDialog.dismiss();
                     new CustomMessageDialog("Ocorreu um erro ao consultar seus dados.  \n" + msg.getMensagem(), GastoListagemActivity.this);
                 }
             }
 
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
-
+                progressDialog.dismiss();
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), GastoListagemActivity.this);
             }
         });
 
@@ -186,6 +189,8 @@ public class GastoListagemActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<GastoRetorno>> call, Throwable t) {
                 progressDialog.dismiss();
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), GastoListagemActivity.this);
+
             }
         });
     }
