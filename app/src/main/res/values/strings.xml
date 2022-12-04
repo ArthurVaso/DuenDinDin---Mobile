@@ -49,7 +49,7 @@
     <string name="txt_usuario_cadastro_estado">ESTADO</string>
     <string name="hint_usuario_cadastro_estado">Selecione uma opção</string>
     <string name="txt_usuario_cadastro_renda_fixa">RENDA FIXA</string>
-    <string name="hint_usuario_cadastro_renda">2000.00</string>
+    <string name="hint_usuario_cadastro_renda">2000,00</string>
     <string name="txt_usuario_cadastro_data_de_nascimento">DATA DE NASCIMENTO *</string>
     <string name="hint_usuario_cadastro_data_nasc">dd/mm/aaaa</string>
     <string name="txt_usuario_cadastro_cidade">CIDADE</string>

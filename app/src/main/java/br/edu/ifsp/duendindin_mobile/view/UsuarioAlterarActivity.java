@@ -190,7 +190,7 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
                     edtEstado.setText(usuarioComConfiguracao.getEstado());
                     edtCidade.setText(usuarioComConfiguracao.getCidade());
                     BigDecimal formatRendaFixa = new BigDecimal(usuarioComConfiguracao.getConfiguracao().getRendaFixa());
-                    edtRendaFixa.setText(formatRendaFixa.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString());
+                    edtRendaFixa.setText(formatRendaFixa.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString().replace('.', ','));
 
                     progressDialog.dismiss();
 
@@ -350,6 +350,15 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
             isValid = false;
         } else if (edtNome.getText().toString().trim().length() > 30) {
             Toast.makeText(UsuarioAlterarActivity.this, "O campo Nome não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
+            isValid = false;
+        } else if (edtEstado.getText().toString().trim().isEmpty()) {
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Estado deve ser preenchido!", Toast.LENGTH_LONG).show();
+            isValid = false;
+        } else if (edtCidade.getText().toString().trim().isEmpty()) {
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Cidade deve ser preenchido!", Toast.LENGTH_LONG).show();
+            isValid = false;
+        } else if (edtRendaFixa.getText().toString().trim().isEmpty()) {
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Renda Fixa deve ser preenchido!", Toast.LENGTH_LONG).show();
             isValid = false;
         }
         return isValid;

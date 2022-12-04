@@ -163,7 +163,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
                     txtEstado.setText(usuarioEstado);
                     txtCidade.setText(usuarioCidade);
                     txtEmail.setText(usuarioEmail);
-                    txtRendaFixa.setText("R$ " + usuarioRenda.setScale(2, BigDecimal.ROUND_HALF_DOWN));
+                    txtRendaFixa.setText("R$ " + usuarioRenda.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString().replace('.', ','));
                     txtLimiteGasto.setText("Padrão: " + limiteLazer + "% - " + limiteInvestimento + "% - " + limiteConta + "%");
 
                     _email = usuarioEmail;
