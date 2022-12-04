@@ -4,11 +4,13 @@ import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.model.Ganho;
 import br.edu.ifsp.duendindin_mobile.model.GanhoRetorno;
+import br.edu.ifsp.duendindin_mobile.utils.Message;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -46,13 +48,13 @@ public interface GanhoService {
                                              @Path("categoriaId") Integer categoryId);
 
     //atualizar ganho por ID
-    @PUT("gain/{ganhoId}")
-    Call<Ganho> atualizarGanhoUsuario(@Header("x-access-token") String token,
+    @PATCH("gain/{ganhoId}")
+    Call<Message> atualizarGanhoUsuario(@Header("x-access-token") String token,
                                               @Path("ganhoId") Integer id,
                                               @Body Ganho ganho);
 
     //deletar ganho por ID
     @DELETE("gain/{ganhoId}")
-    Call<String> deletarGanhoUsuario(@Header("x-access-token") String token,
-                                            @Path("ganhoId") Integer id);
+    Call<Message> deletarGanhoUsuario(@Header("x-access-token") String token,
+                                      @Path("ganhoId") Integer id);
 }
