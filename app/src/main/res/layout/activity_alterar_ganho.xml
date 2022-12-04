@@ -188,7 +188,6 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/hint_ganho_cadastro_valor"
                     android:inputType="numberDecimal"
-                    android:digits="0123456789,"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
                     />

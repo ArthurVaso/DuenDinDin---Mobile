@@ -72,6 +72,8 @@ public class GastoCadastroActivity extends AppCompatActivity {
     List<Categoria> listaCategoria = new ArrayList<Categoria>();
     List<String> nomeCategorias = new ArrayList<String>();
 
+    CustomProgressDialog progressDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +85,13 @@ public class GastoCadastroActivity extends AppCompatActivity {
                 .build();
 
         inicializarComponentes();
+
+        progressDialog = new CustomProgressDialog(
+                GastoCadastroActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
 
         Calendar dataSelecionada = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -176,12 +185,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
     }
 
     private void cadastrarGasto() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GastoCadastroActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
+
         progressDialog.show();
 
         Gasto gasto = new Gasto();
@@ -192,6 +196,7 @@ public class GastoCadastroActivity extends AppCompatActivity {
         gasto.setVencimento(dataVenc);
         gasto.setValor(Double.parseDouble(edtValor.getText().toString()));
         gasto.setDescricao(edtDescricao.getText().toString().trim());
+
         if (spnRecorrente.getSelectedItemPosition() == 1) {
             gasto.setRecorrencia(true);
         } else {
@@ -247,12 +252,6 @@ public class GastoCadastroActivity extends AppCompatActivity {
 
 
     private void retornarCategoriasUsuario() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GastoCadastroActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
         progressDialog.show();
 
         //instanciando a interface
