@@ -77,7 +77,8 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColorHint="@color/border_color"
-            android:maxLines="100"/>
+            android:maxLines="100"
+            android:maxLength="100" />
 
 
         <Button

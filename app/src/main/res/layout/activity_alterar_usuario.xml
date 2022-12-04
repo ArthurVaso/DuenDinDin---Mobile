@@ -94,7 +94,8 @@
                     android:inputType="textCapWords"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
-                    android:maxLines="100"/>
+                    android:maxLines="100"
+                    android:maxLength="100" />
 
 
                 <TextView
@@ -166,7 +167,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/edt_usuario_cadastro_cep"
                     android:inputType="number"
-                    android:maxLength="20"
+                    android:maxLength="10"
                     android:textColorHint="@color/border_color"
                     android:maxLines="10"
                     app:mask="##.###-###"/>
@@ -192,7 +193,9 @@
                     android:hint="UF"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
-                    android:maxLines="2"/>
+                    android:maxLines="2"
+                    android:maxLength="2"
+                    android:inputType="textCapCharacters"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -214,7 +217,8 @@
                     android:hint="Cidade"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
-                    android:maxLines="50" />
+                    android:maxLines="50"
+                    android:maxLength="50" />
 
 
                 <TextView

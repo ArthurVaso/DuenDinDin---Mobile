@@ -91,7 +91,7 @@
                     android:background="@drawable/item_background"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/hint_usuario_cadastro_nome"
-                    android:maxLength="30"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
@@ -167,8 +167,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/edt_usuario_cadastro_cep"
                     android:inputType="number"
-                    android:maxLength="20"
-                    android:textColorHint="@color/border_color"
+                    android:maxLength="10"
                     android:maxLines="10"
                     app:mask="##.###-###"/>
 
@@ -190,10 +189,11 @@
                     android:layout_marginRight="8dp"
                     android:background="@drawable/item_background"
                     android:fontFamily="@font/roboto_regular"
-                    android:hint="Estado"
+                    android:hint="UF"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
-                    android:maxLines="2" />
+                    android:maxLines="2"
+                    android:maxLength="2" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -215,7 +215,8 @@
                     android:hint="Cidade"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
-                    android:maxLines="50" />
+                    android:maxLines="50"
+                    android:maxLength="50" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -239,8 +240,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:inputType="numberDecimal"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color"
-                    app:mask="#.##"/>
+                    android:textColorHint="@color/border_color" />
 
                 <Button
                     android:id="@+id/btn_usuario_cadastro_continuar"

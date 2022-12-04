@@ -64,7 +64,8 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColorHint="@color/border_color"
-            android:maxLines="100"/>
+            android:maxLines="100"
+            android:maxLength="100" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txt_edit_usuario_entrar_senha"
@@ -79,7 +80,8 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColorHint="@color/border_color"
-            android:maxLines="100"/>
+            android:maxLines="100"
+            android:maxLength="100" />
 
 
         <Button

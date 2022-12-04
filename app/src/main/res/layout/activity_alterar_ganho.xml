@@ -93,7 +93,8 @@
                     android:inputType="textCapWords"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
-                    android:maxLines="100"/>
+                    android:maxLines="100"
+                    android:maxLength="100" />
 
                 <TextView
                     android:id="@+id/txt_categoria_ganho_alterar"
@@ -164,7 +165,8 @@
                     android:hint="@string/hint_ganho_cadastro_descricao"
                     android:minHeight="48dp"
                     android:textColorHint="@color/border_color"
-                    android:maxLines="256"/>
+                    android:maxLines="256"
+                    android:maxLength="256" />
 
                 <TextView
                     android:layout_width="match_parent"

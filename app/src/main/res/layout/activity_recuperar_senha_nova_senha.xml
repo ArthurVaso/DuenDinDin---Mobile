@@ -84,7 +84,8 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColorHint="@color/border_color"
-            android:maxLines="100"/>
+            android:maxLines="100"
+            android:maxLength="100" />
 
 
         <TextView
@@ -106,7 +107,9 @@
             android:fontFamily="@font/roboto_regular"
             android:inputType="textPassword"
             android:minHeight="48dp"
-            android:textColorHint="@color/border_color" />
+            android:textColorHint="@color/border_color"
+            android:maxLines="100"
+            android:maxLength="100" />
 
         <Button
             android:id="@+id/btn_recuperar_senha_finalizar"
