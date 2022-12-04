@@ -54,5 +54,6 @@ dependencies {
     // jackson-annotations
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.2.1'
 
-
+    //MaskEditText
+    implementation 'com.github.egslava:edittext-mask:1.0.6'
 }

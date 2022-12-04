@@ -56,6 +56,7 @@ public class GanhoListagemActivity extends AppCompatActivity {
     private List<GanhoRetorno> listGanhosRetorno = new ArrayList<>();
     private List<Ganho> listGanhos = new ArrayList<>();
     private GanhosAdapter ganhosAdapter;
+    CustomProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,13 @@ public class GanhoListagemActivity extends AppCompatActivity {
         rvGanhos.setLayoutManager(new LinearLayoutManager(this));
         ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), (ArrayList<Ganho>) listGanhos);
         rvGanhos.setAdapter(ganhosAdapter);
+
+        progressDialog = new CustomProgressDialog(
+                GanhoListagemActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
 
         Button btnNovoRecebimento = findViewById(R.id.btn_ganho_listagem_novo_recebimento);
         btnNovoRecebimento.setOnClickListener(new View.OnClickListener() {
@@ -116,16 +124,11 @@ public class GanhoListagemActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 
         consultarUsuario();
-        consultarGanhos();
+
     }
 
     public void consultarUsuario() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GanhoListagemActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
+
         progressDialog.show();
 
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
@@ -137,7 +140,7 @@ public class GanhoListagemActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     usuario = response.body();
                     txtMsgUsuario.setText("Olá, " + usuario.getNome());
-                    progressDialog.dismiss();
+                    consultarGanhos();
                 } else {
                     String errorBody = null;
                     Message msg = new Message();
@@ -161,13 +164,6 @@ public class GanhoListagemActivity extends AppCompatActivity {
 
     }
     public void consultarGanhos() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GanhoListagemActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
-        progressDialog.show();
         //instanciando a interface
         GanhoService ganhoService = retrofitAPI.create(GanhoService.class);
 
