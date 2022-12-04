@@ -176,7 +176,7 @@ public class GanhoCadastroActivity extends AppCompatActivity {
         super.onStart();
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
-        nomeCategorias.add("Selecione uma opção,,,");
+        nomeCategorias.add("Selecione uma opção...");
         retornarCategoriasUsuario();
     }
 
