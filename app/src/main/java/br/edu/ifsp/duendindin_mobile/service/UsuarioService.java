@@ -4,7 +4,8 @@ import java.util.List;
 
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
 import br.edu.ifsp.duendindin_mobile.model.UsuarioComConfiguracao;
-import br.edu.ifsp.duendindin_mobile.model.UsuarioSemEmail;
+import br.edu.ifsp.duendindin_mobile.model.AtualizarUsuario;
+import br.edu.ifsp.duendindin_mobile.utils.Message;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -35,10 +36,9 @@ public interface UsuarioService {
     Call<List<Usuario>> consultarTodosUsuarios(@Header("x-access-token") String token);
 
     //atualizar usuário
-    @PATCH("user/full/{usuarioId}/")
-    Call<String> atualizarUsuario(@Header("x-access-token") String token,
-                                  @Path("usuarioId") Integer id,
-                                  @Body UsuarioSemEmail usuarioSemEmail);
-                                          //@Body Usuario usuario);
+    @PUT("user/full/{usuarioId}")
+    Call<Message> atualizarUsuario(@Header("x-access-token") String token,
+                                   @Path("usuarioId") Integer id,
+                                   @Body AtualizarUsuario atualizarUsuario);
 
 }

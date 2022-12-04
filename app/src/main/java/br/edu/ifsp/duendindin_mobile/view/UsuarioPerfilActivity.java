@@ -18,9 +18,10 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import br.edu.ifsp.duendindin_mobile.R;
-import br.edu.ifsp.duendindin_mobile.model.Usuario;
+import br.edu.ifsp.duendindin_mobile.model.UsuarioComConfiguracao;
 import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
 import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
@@ -38,7 +39,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
     private Retrofit retrofitAPI;
     private SharedPreferences pref;
-    private Usuario usuario = new Usuario();
+    private UsuarioComConfiguracao usuarioComConfiguracao = new UsuarioComConfiguracao();
     private String token = "";
     private int usuarioId;
 
@@ -50,6 +51,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
     private TextView txtCidade;
     private TextView txtEmail;
     private TextView txtRendaFixa;
+    private TextView txtLimiteGasto;
 
 
     @Override
@@ -61,7 +63,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
         ImageButton btnEditUsuario = findViewById(R.id.img_usuario_perfil_edit);
         btnEditUsuario.setOnClickListener(view -> {
             Intent intent = new Intent(UsuarioPerfilActivity.this, UsuarioAlterarActivity.class);
-            intent.putExtra("usuario", (Serializable) usuario);
+            intent.putExtra("usuario", (Serializable) usuarioComConfiguracao);
             startActivity(intent);
         });
 
@@ -78,6 +80,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
         txtCidade = findViewById(R.id.txt_usuario_perfil_edit_cidade);
         txtEmail = findViewById(R.id.txt_usuario_perfil_edit_email);
         txtRendaFixa = findViewById(R.id.txt_usuario_perfil_edit_salario);
+        txtLimiteGasto = findViewById(R.id.txt_usuario_perfil_edit_limite_de_gasto);
 
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
@@ -127,22 +130,26 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
         //passando os dados para o serviço
-        Call<Usuario> call = usuarioService.consultarUsuario(token, usuarioId);
-        call.enqueue(new Callback<Usuario>() {
+        Call<UsuarioComConfiguracao> call = usuarioService.consultarUsuarioComConfiguracao(token, usuarioId);
+        call.enqueue(new Callback<UsuarioComConfiguracao>() {
             @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+            public void onResponse(Call<UsuarioComConfiguracao> call, Response<UsuarioComConfiguracao> response) {
                 if (response.isSuccessful()) {
-                    usuario = response.body();
+                    usuarioComConfiguracao = response.body();
 
-                    String usuarioNome = usuario.getNome();
-                    String usuarioDataNasc = usuario.getDataNascimento();
+                    String usuarioNome = usuarioComConfiguracao.getNome();
+                    String usuarioDataNasc = usuarioComConfiguracao.getDataNascimento();
                     String data[] = usuarioDataNasc.split("-");
                     usuarioDataNasc = data[2] + "/" + data[1] + "/" + data[0];
-                    String usuarioCep = usuario.getCep();
-                    String usuarioEstado = usuario.getEstado();
-                    String usuarioCidade = usuario.getCidade();
-                    String usuarioEmail = usuario.getEmail();
-                    Double usuarioRenda = usuario.getRendaFixa();
+                    String usuarioCep = usuarioComConfiguracao.getCep();
+                    String usuarioEstado = usuarioComConfiguracao.getEstado();
+                    String usuarioCidade = usuarioComConfiguracao.getCidade();
+                    String usuarioEmail = usuarioComConfiguracao.getEmail();
+                    BigDecimal usuarioRenda = new BigDecimal(usuarioComConfiguracao.getConfiguracao().getRendaFixa());
+                    BigDecimal limiteLazer = new BigDecimal(usuarioComConfiguracao.getConfiguracao().getLimiteLazer());
+                    BigDecimal limiteConta = new BigDecimal(usuarioComConfiguracao.getConfiguracao().getLimiteContas());
+                    BigDecimal limiteInvestimento = new BigDecimal(usuarioComConfiguracao.getConfiguracao().getLimiteInvestimento());
+
 
                     txtMsgHello.setText("Olá, " + usuarioNome);
                     txtNome.setText(usuarioNome);
@@ -151,7 +158,8 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
                     txtEstado.setText(usuarioEstado);
                     txtCidade.setText(usuarioCidade);
                     txtEmail.setText(usuarioEmail);
-                    txtRendaFixa.setText("1000");
+                    txtRendaFixa.setText("R$ " + usuarioRenda.setScale(2, BigDecimal.ROUND_HALF_DOWN));
+                    txtLimiteGasto.setText("Padrão: " + limiteLazer + "% - " + limiteInvestimento + "% - " + limiteConta + "%");
 
                     progressDialog.dismiss();
                 } else {
@@ -172,7 +180,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
+            public void onFailure(Call<UsuarioComConfiguracao> call, Throwable t) {
                 progressDialog.dismiss();
                 new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), UsuarioPerfilActivity.this);
 
