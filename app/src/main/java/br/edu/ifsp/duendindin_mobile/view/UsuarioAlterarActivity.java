@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,16 +21,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import br.edu.ifsp.duendindin_mobile.R;
 import br.edu.ifsp.duendindin_mobile.model.CEP;
-import br.edu.ifsp.duendindin_mobile.model.Configuracao;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
 import br.edu.ifsp.duendindin_mobile.model.UsuarioComConfiguracao;
-import br.edu.ifsp.duendindin_mobile.model.UsuarioSemEmail;
+import br.edu.ifsp.duendindin_mobile.model.AtualizarUsuario;
 import br.edu.ifsp.duendindin_mobile.service.CEPService;
-import br.edu.ifsp.duendindin_mobile.service.ConfiguracaoService;
 import br.edu.ifsp.duendindin_mobile.service.UsuarioService;
 import br.edu.ifsp.duendindin_mobile.utils.CustomMessageDialog;
 import br.edu.ifsp.duendindin_mobile.utils.CustomProgressDialog;
@@ -45,6 +45,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class UsuarioAlterarActivity extends AppCompatActivity {
 
     private final String URL_API = new URLAPI().baseUrl;
+
+    private UsuarioService _usuarioService;
 
     private Retrofit retrofitAPI;
     private SharedPreferences pref;
@@ -63,9 +65,7 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
     private TextInputEditText edtRendaFixa;
 
     private Usuario usuarioPerfil;
-    private UsuarioSemEmail usuarioSemEmail;
     private UsuarioComConfiguracao usuarioComConfiguracao;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,9 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
         edtEstado = findViewById(R.id.edt_estado_usuario_alterar);
         edtCidade = findViewById(R.id.edt_cidade_usuario_alterar);
         edtRendaFixa = findViewById(R.id.edt_renda_usuario_alterar);
+        edtCep = findViewById(R.id.edt_cep_usuario_alterar);
+        edtEstado = findViewById(R.id.edt_estado_usuario_alterar);
+        edtCidade = findViewById(R.id.edt_cidade_usuario_alterar);
 
         txtDataNasc = findViewById(R.id.txt_data_nasc_usuario_alterar);
         txtDataNasc.setOnClickListener(new View.OnClickListener() {
@@ -112,12 +115,6 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        edtCep = findViewById(R.id.edt_cep_usuario_alterar);
-        edtEstado = findViewById(R.id.edt_estado_usuario_alterar);
-        edtEstado.setKeyListener(null);
-        edtCidade = findViewById(R.id.edt_cidade_usuario_alterar);
-        edtCidade.setKeyListener(null);
 
         //Aplicando a máscara para CEP
         edtCep.addTextChangedListener(Mascara.insert(Mascara.MASCARA_CEP, edtCep));
@@ -158,36 +155,26 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
 
         });
 
-        usuarioPerfil = (Usuario) getIntent().getSerializableExtra("usuario");
-        edtNome.setText(usuarioPerfil.getNome());
-        String data[] = usuarioPerfil.getDataNascimento().split("-");
-        String dataNasc = data[2] + "/" + data[1] + "/" + data[0];
-        txtDataNasc.setText(dataNasc);
-        String cep = usuarioPerfil.getCep();
-        //cep = "13.503-255";
-        edtCep.setText(cep);
-        edtEstado.setText(usuarioPerfil.getEstado());
-        edtCidade.setText(usuarioPerfil.getCidade());
-        edtRendaFixa.setText("1000");
-
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
 
-        buscarUsuarioComConfiguracao(token, usuarioId);
+        //instanciando a interface
+        _usuarioService = retrofitAPI.create(UsuarioService.class);
 
+        buscarUsuarioComConfiguracao();
     }
 
-    private void buscarUsuarioComConfiguracao(String token, int usuarioId) {
-        retrofitAPI = new Retrofit.Builder()
-                .baseUrl(URL_API)                                //endereço do webservice
-                .addConverterFactory(GsonConverterFactory.create()) //conversor
-                .build();
+    private void buscarUsuarioComConfiguracao() {
 
-        //instanciando a interface
-        UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
+        CustomProgressDialog progressDialog = new CustomProgressDialog(
+                UsuarioAlterarActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
+        progressDialog.show();
 
-        Call<UsuarioComConfiguracao> call =  usuarioService.consultarUsuarioComConfiguracao(token, usuarioId);
-
+        Call<UsuarioComConfiguracao> call = _usuarioService.consultarUsuarioComConfiguracao(token, usuarioId);
         call.enqueue(new Callback<UsuarioComConfiguracao>() {
             @Override
             public void onResponse(Call<UsuarioComConfiguracao> call, Response<UsuarioComConfiguracao> response) {
@@ -199,16 +186,35 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
                     String dataNasc = data[2] + "/" + data[1] + "/" + data[0];
                     txtDataNasc.setText(dataNasc);
                     String cep = usuarioComConfiguracao.getCep();
-                    //cep = "13.503-255";
                     edtCep.setText(cep);
                     edtEstado.setText(usuarioComConfiguracao.getEstado());
                     edtCidade.setText(usuarioComConfiguracao.getCidade());
-                    edtRendaFixa.setText(usuarioComConfiguracao.getConfiguracao().getRendaFixa().toString());
+                    BigDecimal formatRendaFixa = new BigDecimal(usuarioComConfiguracao.getConfiguracao().getRendaFixa());
+                    edtRendaFixa.setText(formatRendaFixa.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString().replace('.', ','));
+
+                    progressDialog.dismiss();
+
+                }else {
+                    String errorBody = null;
+                    Message msg = new Message();
+                    try {
+                        errorBody = response.errorBody().string();
+                        Gson gson = new Gson(); // conversor
+                        msg = gson.fromJson(errorBody, Message.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+
+                    Log.d("UsuarioComConfiguracao", "Por favor, tente novamente mais tarde.");
+                    new CustomMessageDialog("Ocorreu um erro ao consultar os dados do Usuário.  \n" + msg.getMensagem(), UsuarioAlterarActivity.this);
                 }
             }
 
             @Override
             public void onFailure(Call<UsuarioComConfiguracao> call, Throwable t) {
+                progressDialog.dismiss();
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), UsuarioAlterarActivity.this);
 
             }
         });
@@ -229,7 +235,7 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<CEP> call, @NonNull Response<CEP> response) {
                 if (response.isSuccessful()) {
-                    if (response.code()==200 && response.body().getUf() != null) { //OK - CEP EXISTE
+                    if (response.code() == 200 && response.body().getUf() != null) { //OK - CEP EXISTE
                         CEP cep = response.body();
                         edtEstado.setText(cep.getUf());
                         edtCidade.setText(cep.getLocalidade());
@@ -260,40 +266,33 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
                 false
         );
 
-        usuarioSemEmail = new UsuarioSemEmail();
+        AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
 
-        //usuarioPerfil.setNome(edtNome.getText().toString());
-        usuarioSemEmail.setNome(edtNome.getText().toString());
+        atualizarUsuario.setNome(edtNome.getText().toString());
+
         String data[] = txtDataNasc.getText().toString().split("/");
         String dataNasc = data[2] + "-" + data[1] + "-" + data[0];
-        //usuarioPerfil.setDataNascimento(dataNasc);
-        usuarioSemEmail.setDataNascimento(dataNasc);
-        //usuarioPerfil.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
-        usuarioSemEmail.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
-        //usuarioPerfil.setEstado(edtEstado.getText().toString());
-        usuarioSemEmail.setEstado(edtEstado.getText().toString());
-        //usuarioPerfil.setCidade(edtCidade.getText().toString());
-        usuarioSemEmail.setCidade(edtCidade.getText().toString());
-        //usuarioPerfil.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString()));
-        usuarioSemEmail.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString()));
 
-        retrofitAPI = new Retrofit.Builder()
-                .baseUrl(URL_API)                                //endereço do webservice
-                .addConverterFactory(GsonConverterFactory.create()) //conversor
-                .build();
+        atualizarUsuario.setDataNascimento(dataNasc);
 
-        //instanciando a interface
-        UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
+        atualizarUsuario.setCep(edtCep.getText().toString().replaceAll("[.-]+", ""));
 
-        Call<String> call = usuarioService.atualizarUsuario(token, usuarioId, usuarioSemEmail);
-        //Call<String> call = usuarioService.atualizarUsuario(token, usuarioId, usuarioPerfil);
-        call.enqueue(new Callback<String>() {
+        atualizarUsuario.setEstado(edtEstado.getText().toString());
+
+        atualizarUsuario.setCidade(edtCidade.getText().toString());
+
+        atualizarUsuario.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString().replace(",",".")));
+
+
+        Call<Message> call = _usuarioService.atualizarUsuario(token, usuarioId, atualizarUsuario);
+        call.enqueue(new Callback<Message>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Message> call, Response<Message> response) {
 
                 if (response.isSuccessful()) {
+
                     progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Usuario atualizado com sucesso!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), response.body().getMensagem(), Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(UsuarioAlterarActivity.this, UsuarioPerfilActivity.class);
                     startActivity(intent);
@@ -313,7 +312,7 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Message> call, Throwable t) {
                 progressDialog.dismiss();
                 new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), UsuarioAlterarActivity.this);
 
@@ -351,6 +350,15 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
             isValid = false;
         } else if (edtNome.getText().toString().trim().length() > 30) {
             Toast.makeText(UsuarioAlterarActivity.this, "O campo Nome não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
+            isValid = false;
+        } else if (edtEstado.getText().toString().trim().isEmpty()) {
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Estado deve ser preenchido!", Toast.LENGTH_LONG).show();
+            isValid = false;
+        } else if (edtCidade.getText().toString().trim().isEmpty()) {
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Cidade deve ser preenchido!", Toast.LENGTH_LONG).show();
+            isValid = false;
+        } else if (edtRendaFixa.getText().toString().trim().isEmpty()) {
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Renda Fixa deve ser preenchido!", Toast.LENGTH_LONG).show();
             isValid = false;
         }
         return isValid;

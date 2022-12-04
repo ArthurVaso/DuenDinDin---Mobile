@@ -46,13 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginHorizontal="20sp"
-            android:textSize="13sp"
-            android:fontFamily="@font/roboto_bold"
+            android:textSize="20sp"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textAlignment="center"
             android:text="@string/txt_recuperar_senha_finalizar_subtitulo"/>
     </LinearLayout>
 
@@ -111,20 +106,41 @@
             android:maxLines="100"
             android:maxLength="100" />
 
-        <Button
-            android:id="@+id/btn_recuperar_senha_finalizar"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="@string/btn_finalizar"
-            android:textColor="@color/white"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:backgroundTint="@color/secondary_color"
-            android:backgroundTintMode="add"
-            app:strokeColor="@color/border_color"
-            app:strokeWidth="2dp"
-            android:maxLines="100"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/btn_recuperar_senha_voltar"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:backgroundTint="@color/secondary_color"
+                android:backgroundTintMode="add"
+                android:text="@string/btn_voltar"
+                android:textColor="@color/white"
+                app:strokeColor="@color/border_color"
+                app:strokeWidth="2dp" />
+
+            <Button
+                android:id="@+id/btn_recuperar_senha_finalizar"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:text="@string/btn_salvar"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:backgroundTint="@color/secondary_color"
+                android:backgroundTintMode="add"
+                app:strokeColor="@color/border_color"
+                app:strokeWidth="2dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
