@@ -281,7 +281,7 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
 
         atualizarUsuario.setCidade(edtCidade.getText().toString());
 
-        atualizarUsuario.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString()));
+        atualizarUsuario.setRendaFixa(Double.parseDouble(edtRendaFixa.getText().toString().replace(",",".")));
 
 
         Call<Message> call = _usuarioService.atualizarUsuario(token, usuarioId, atualizarUsuario);
