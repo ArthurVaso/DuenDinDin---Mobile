@@ -40,7 +40,9 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
     private Retrofit retrofitAPI;
     private SharedPreferences pref;
     private UsuarioComConfiguracao usuarioComConfiguracao = new UsuarioComConfiguracao();
+
     private String token = "";
+    private String _email;
     private int usuarioId;
 
     private TextView txtMsgHello;
@@ -69,7 +71,10 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
         TextView txtRedefinir = findViewById(R.id.msg_usuario_perfil_esqueceu_sua_senha);
         txtRedefinir.setOnClickListener(view -> {
-            startActivity(new Intent(UsuarioPerfilActivity.this, RecuperarSenhaEnviaEmailActivity.class));
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("email", _email);
+            editor.commit();
+            startActivity(new Intent(UsuarioPerfilActivity.this, RecuperarSenhaNovaSenhaActivity.class));
         });
 
         txtMsgHello = findViewById(R.id.msg_usuario_perfil);
@@ -161,6 +166,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
                     txtRendaFixa.setText("R$ " + usuarioRenda.setScale(2, BigDecimal.ROUND_HALF_DOWN));
                     txtLimiteGasto.setText("Padrão: " + limiteLazer + "% - " + limiteInvestimento + "% - " + limiteConta + "%");
 
+                    _email = usuarioEmail;
                     progressDialog.dismiss();
                 } else {
                     String errorBody = null;

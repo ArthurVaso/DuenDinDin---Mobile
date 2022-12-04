@@ -223,17 +223,19 @@
     <string name="txt_usuario_entrar_esqueceu_senha">Esqueceu sua senha?</string>
 
     <!-- TELAS RECUPERAR SENHA-->
-    <string name="txt_recuperar_senha_titulo">Recuperar Senha</string>
+    <string name="txt_recuperar_senha_titulo">Alterar Senha</string>
     <string name="txt_recuperar_senha_enviar_subtitulo">EM BREVE VOCÊ RECEBERÁ UM E-MAIL PARA RECUPERAÇÃO DE SENHA.</string>
     <string name="hint_email">duen@dindin.com</string>
     <string name="btn_enviar">ENVIAR</string>
 
     <string name="txt_recuperar_senha_proximo_subtitulo">INFORME O CÓDIGO QUE FOI ENVIADO PARA O SEU E-MAIL.</string>
     <string name="btn_proximo">PRÓXIMO</string>
-    <string name="txt_recuperar_senha_finalizar_subtitulo">DIGITE A NOVA SENHA</string>
-    <string name="txt_recuperar_senha_nova_senha">NOVA SENHA</string>
-    <string name="txt_recuperar_senha_confirmar_senha">CONFIRMAR SENHA</string>
+    <string name="txt_recuperar_senha_finalizar_subtitulo">Dados de Acesso</string>
+    <string name="txt_recuperar_senha_nova_senha">SENHA ATUAL</string>
+    <string name="txt_recuperar_senha_confirmar_senha">NOVA SENHA</string>
     <string name="btn_finalizar">FINALIZAR</string>
+    <string name="btn_salvar">SALVAR</string>
+    <string name="btn_voltar">VOLTAR</string>
 
     <string name="spinner_selecione_uma_opcao">Selecione uma opção</string>
 

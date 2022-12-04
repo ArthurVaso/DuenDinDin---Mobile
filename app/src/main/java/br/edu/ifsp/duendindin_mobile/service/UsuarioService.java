@@ -2,6 +2,7 @@ package br.edu.ifsp.duendindin_mobile.service;
 
 import java.util.List;
 
+import br.edu.ifsp.duendindin_mobile.model.AtualizarSenha;
 import br.edu.ifsp.duendindin_mobile.model.Usuario;
 import br.edu.ifsp.duendindin_mobile.model.UsuarioComConfiguracao;
 import br.edu.ifsp.duendindin_mobile.model.AtualizarUsuario;
@@ -40,5 +41,9 @@ public interface UsuarioService {
     Call<Message> atualizarUsuario(@Header("x-access-token") String token,
                                    @Path("usuarioId") Integer id,
                                    @Body AtualizarUsuario atualizarUsuario);
+
+    @PATCH("user")
+    Call<Message> atualizarSenha(@Header("x-access-token") String token,
+                                   @Body AtualizarSenha atualizarSenha);
 
 }
