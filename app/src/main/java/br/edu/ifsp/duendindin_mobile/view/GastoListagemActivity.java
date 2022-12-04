@@ -56,11 +56,17 @@ public class GastoListagemActivity extends AppCompatActivity {
     private List<Gasto> listGastos = new ArrayList<>();
     private GastosAdapter gastosAdapter;
 
+    CustomProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_gasto);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
 
         rvGastos = findViewById(R.id.rv_gasto);
         txtMsgUsuario = findViewById(R.id.msg_usario_listagem_gasto);
@@ -80,7 +86,23 @@ public class GastoListagemActivity extends AppCompatActivity {
 
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
+
+        progressDialog = new CustomProgressDialog(
+                GastoListagemActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
     }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        consultarUsuario();
+
+    }
+
+
 
     @Override
     protected void onStart() {
@@ -105,20 +127,9 @@ public class GastoListagemActivity extends AppCompatActivity {
         });
     }
 
+    private void consultarUsuario() {
 
-    public void listarVencimentos() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GastoListagemActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
         progressDialog.show();
-
-        retrofitAPI = new Retrofit.Builder()
-                .baseUrl(URL_API)                                //endereço do webservice
-                .addConverterFactory(GsonConverterFactory.create()) //conversor
-                .build();
 
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
@@ -129,7 +140,7 @@ public class GastoListagemActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     usuario = response.body();
                     txtMsgUsuario.setText("Olá, "+usuario.getNome());
-                    progressDialog.dismiss();
+                    listarVencimentos();
                 } else {
                     String errorBody = null;
                     Message msg = new Message();
@@ -151,6 +162,9 @@ public class GastoListagemActivity extends AppCompatActivity {
                 new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), GastoListagemActivity.this);
             }
         });
+    }
+
+    private void listarVencimentos() {
 
         //instanciando a interface
         GastoService gastoService = retrofitAPI.create(GastoService.class);
@@ -195,12 +209,7 @@ public class GastoListagemActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
 
-        listarVencimentos();
-    }
 
     @Override
     public void onBackPressed() {

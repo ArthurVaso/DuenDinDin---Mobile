@@ -53,11 +53,17 @@ public class CategoriaListagemActivity extends AppCompatActivity {
     private List<Categoria> listCategorias = new ArrayList<>();
     private CategoriasAdapter categoriasAdapter;
 
+    CustomProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_categoria);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
 
         rvCategorias = findViewById(R.id.rv_categorias);
         txtMsgUsuario = findViewById(R.id.msg_usuario_categoria);
@@ -77,6 +83,12 @@ public class CategoriaListagemActivity extends AppCompatActivity {
 
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
+        progressDialog = new CustomProgressDialog(
+                CategoriaListagemActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
     }
 
     @Override
@@ -106,19 +118,12 @@ public class CategoriaListagemActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                CategoriaListagemActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
+        consultarUsuario();
+    }
+
+    private void consultarUsuario() {
+
         progressDialog.show();
-
-        retrofitAPI = new Retrofit.Builder()
-                .baseUrl(URL_API)                                //endereço do webservice
-                .addConverterFactory(GsonConverterFactory.create()) //conversor
-                .build();
-
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
         Call<Usuario> callUsuario = usuarioService.consultarUsuario(token, usuarioId);
@@ -128,6 +133,7 @@ public class CategoriaListagemActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     usuario = response.body();
                     txtMsgUsuario.setText("Olá, "+usuario.getNome());
+                    consultarCategorias();
                 } else {
                     String errorBody = null;
                     Message msg = new Message();
@@ -141,13 +147,14 @@ public class CategoriaListagemActivity extends AppCompatActivity {
                     new CustomMessageDialog("Ocorreu um erro ao consultar seus dados.  \n" + msg.getMensagem(), CategoriaListagemActivity.this);
                 }
             }
-
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
 
             }
         });
+    }
 
+    private void consultarCategorias() {
         //instanciando a interface
         CategoriaService categoriaService = retrofitAPI.create(CategoriaService.class);
 
@@ -179,12 +186,10 @@ public class CategoriaListagemActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
-
     }
 
     @Override
     public void onBackPressed() {
         startActivity(new Intent(CategoriaListagemActivity.this, HomeActivity.class));
-        //super.onBackPressed();
     }
 }
