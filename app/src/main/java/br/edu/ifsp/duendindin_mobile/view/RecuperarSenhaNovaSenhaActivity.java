@@ -40,6 +40,7 @@ public class RecuperarSenhaNovaSenhaActivity extends AppCompatActivity {
     private String token;
 
     private Button btnFinalizar;
+    private Button btnVoltar;
     private ImageView imgSetaVoltar;
     private TextInputEditText txtSenhaAtual;
     private TextInputEditText txtNovaSenha;
@@ -72,6 +73,12 @@ public class RecuperarSenhaNovaSenhaActivity extends AppCompatActivity {
                 }
 
             }
+        });
+
+        btnVoltar = findViewById(R.id.btn_recuperar_senha_voltar);
+        btnVoltar.setOnClickListener((view) -> {
+                Intent intent = new Intent(RecuperarSenhaNovaSenhaActivity.this, UsuarioPerfilActivity.class);
+                startActivity(intent);
         });
 
         imgSetaVoltar = findViewById(R.id.seta_voltar);
