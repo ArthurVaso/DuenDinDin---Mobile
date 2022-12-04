@@ -8,11 +8,15 @@ import java.util.Date;
 public class Configuracao implements Serializable {
 
     private Integer id;
+    @SerializedName("usuarioID")
     private Integer usuarioId;
     @SerializedName("renda_fixa")
     private Double rendaFixa;
+    @SerializedName("limite_lazer")
     private Double limiteLazer;
+    @SerializedName("limite_contas")
     private Double limiteContas;
+    @SerializedName("limite_investimento")
     private Double limiteInvestimento;
 
 

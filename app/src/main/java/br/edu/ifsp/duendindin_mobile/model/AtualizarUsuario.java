@@ -4,27 +4,33 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class UsuarioSemEmail implements Serializable {
+public class AtualizarUsuario implements Serializable {
 
     private String nome;
+
     @SerializedName("data_nascimento")
     private String dataNascimento;
+
     private String cep;
+
     private String cidade;
+
     private String estado;
+
     @SerializedName("renda_fixa")
     private Double rendaFixa;
 
 
-    public UsuarioSemEmail() {
+    public AtualizarUsuario() {
     }
 
-    public UsuarioSemEmail(String nome, String dataNascimento, String cep, String cidade, String estado) {
+    public AtualizarUsuario(String nome, String dataNascimento, String cep, String cidade, String estado, Double rendaFixa) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
+        this.rendaFixa = rendaFixa;
     }
 
     public String getNome() {
