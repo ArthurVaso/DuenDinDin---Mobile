@@ -54,5 +54,5 @@ dependencies {
     // jackson-annotations
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.2.1'
 
-
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

@@ -96,7 +96,6 @@ public class GastoAlterarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO conferir obrigatoriedade dos campos
                 if (validate()) {
                     Intent intent = new Intent(GastoAlterarActivity.this, HomeActivity.class);
                     startActivity(intent);

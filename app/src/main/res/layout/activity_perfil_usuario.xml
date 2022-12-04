@@ -348,18 +348,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_limite_de_gasto" />
 
-                    <ImageView
-                        android:id="@+id/img_help"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="@string/cd_usuario_perfil_img_tooltip"
-                        android:tooltipText="@string/txt_usuario_perfil_tooltip_help"
-                        app:layout_constraintStart_toEndOf="@+id/txt_usuario_perfil_limite_de_gasto"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_usuario_perfil_edit_salario"
-                        app:srcCompat="@drawable/img_tooltip" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>

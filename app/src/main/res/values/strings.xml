@@ -205,9 +205,9 @@
     <string name="btn_home_adicionar_categoria">Adicionar Categoria</string>
     <string name="btn_home_ver_perfil">Ver Perfil</string>
     <string name="txt_home_graficos">GRÁFICOS</string>
-    <string name="txt_home_vencimentos_proximos">VENCIMENTOS PRÓXIMOS</string>
-    <string name="txt_home_outras_opcoes">OUTRAS OPÇÕES</string>
-    <string name="txt_home_todos_os_vencimentos">Todos os Vencimentos</string>
+    <string name="txt_home_vencimentos_proximos">ÚLTIMO VENCIMENTO CADASTRADO</string>
+    <string name="txt_home_outras_opcoes">MAIS OPÇÕES</string>
+    <string name="txt_home_todos_os_vencimentos">Próximos Vencimentos</string>
     <string name="btn_categoria_listagem_nova_categoria">Nova Categoria</string>
 
     <!-- Tab Bar -->
@@ -240,11 +240,17 @@
     <string name="msg_erro_comunicacao_servidor">Ocorreu um erro na comunicação com o servidor.</string>
     <string name="txt_usuario_alterar_titulo">Editar Usuário</string>
     <string name="btn_usuario_editar_atualizar">Atualizar</string>
-    <string name="txt_home_todos_os_ganhos">Todos os recebimentos</string>
+    <string name="txt_home_todos_os_ganhos">Próximos recebimentos</string>
     <string name="txt_home_todas_as_categorias">Categorias</string>
     <string name="btn_categoria_cadastro_alterar">Alterar</string>
     <string name="txt_categoria_alterar_titulo">Edição de Categoria</string>
     <string name="btn_ganho_alterar">Alterar</string>
-
+    <string name="btn_home_apresentar_grafico">Proporção 50, 30 e 20</string>
+    <string name="btn_home_apresentar_grafico2">Ganhos e Gastos Totais</string>
+    <string name="txt_grafico_apresentar_subtitulo">Seu saldo é de:</string>
+    <string name="dash">-</string>
+    <string name="txt_grafico2_apresentar_subtitulo">Subtítulo Gráfico 2</string>
+    <string name="txt_sobre_o_grafico1">    O gráfico representa a situação do usuário no mês e ano especificado em relação às proporções "ideais" de gastos durante o mês, sendo 50% para gastos fixos; 30% para gastos que não são recorrentes; e, 20% que sobram para investimento.</string>
+    <string name="cd_img_info">TODO</string>
 
 </resources>
