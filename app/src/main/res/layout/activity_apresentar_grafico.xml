@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#E4E1E1"
     android:orientation="vertical"
     tools:context=".view.ApresentarGraficoActivity">
 
@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="10dp"
-        android:background="#A1A39D"
+        android:background="#C6C8C1"
         android:orientation="vertical">
 
         <com.github.mikephil.charting.charts.PieChart

@@ -246,26 +246,33 @@ public class ApresentarGrafico2Activity extends AppCompatActivity {
             barChart.setNoDataText("Por enquanto, nenhum dado está disponível.");
         } else {
             ArrayList<BarEntry> entriesGanhos = new ArrayList<>();
-            entriesGanhos.add(new BarEntry (1, ganhosTotais.intValue()));
+            BarEntry barEntryGanhos = new BarEntry(1, ganhosTotais.floatValue());
+            entriesGanhos.add(barEntryGanhos);
+
             ArrayList<BarEntry> entriesGastos = new ArrayList<>();
-            entriesGastos.add(new BarEntry (2, gastosTotais.intValue()));
+            BarEntry barEntryGastos = new BarEntry(2, gastosTotais.floatValue());
+            entriesGastos.add(barEntryGastos);
 
             List<IBarDataSet> bars = new ArrayList<IBarDataSet>();
 
             BarDataSet datasetGanhos = new BarDataSet(entriesGanhos, "Ganhos");
-            datasetGanhos.setColor(Color.RED);
+            datasetGanhos.setColor(Color.BLUE);
             datasetGanhos.setValueTextSize(15f);
             bars.add(datasetGanhos);
+
             BarDataSet datasetGastos = new BarDataSet(entriesGastos, "Gastos");
-            datasetGastos.setColor(Color.BLUE);
+            datasetGastos.setColor(Color.RED);
             datasetGastos.setValueTextSize(15f);
             bars.add(datasetGastos);
 
             BarData data = new BarData(bars);
             barChart.setData(data);
-            barChart.setFitBars(true);
+            barChart.getAxisRight().setDrawGridLines(false);
+            barChart.getAxisLeft().setDrawGridLines(false);
+            barChart.getXAxis().setDrawGridLines(false);
+            barChart.getXAxis().setDrawLabels(false);
+
             barChart.invalidate();
-            barChart.setPinchZoom(true);
             barChart.getDescription().setEnabled(false);
         }
         progressDialog.dismiss();

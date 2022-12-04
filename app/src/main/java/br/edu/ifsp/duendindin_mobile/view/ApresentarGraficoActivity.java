@@ -21,11 +21,9 @@ import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -85,7 +83,6 @@ public class ApresentarGraficoActivity extends AppCompatActivity {
     private CustomProgressDialog progressDialog;
 
     private int mesInt;
-    private String nomeMes;
     private String mesStr;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -119,11 +116,13 @@ public class ApresentarGraficoActivity extends AppCompatActivity {
                 String resultado2 = String.format("%.2f", gastosNaoRecorrentesTotais);
                 String resultado3 = String.format("%.2f", gastosInvestimentoTotais);
 
-                String textoInformativo = "    O gráfico representa a situação do usuário no mês e ano especificado em relação às proporções "+ "\"ideais\"" + " de gastos durante o mês, sendo 50% para gastos fixos; 30% para gastos que não são recorrentes; e, 20% que sobram para investimento.\n";
+                String textoInformativo = "    O gráfico representa a situação do usuário no mês e ano especificado em relação às proporções "+ "\"ideais\"" + " de gastos durante o mês, sendo 50% para gastos recorrentes; 30% para gastos que não são recorrentes; e, 20% que sobram para investimento.\n";
 
-                String dadosGrafico = "» Seus gastos recorrentes são R$ "+resultado1+" e correspondem à "+percentualGastosFixos+"%. \n" +
-                        "» Seus gastos não recorrentes são R$ "+resultado2+" e correspondem à "+percentualGastosNaoRecorrentes+"%. \n" +
-                        "» O restante para investimentos são R$ "+resultado3+" e correspondem à "+percentualGastosInvestimentos+"%. \n";
+                String dadosGrafico = "» Seus gastos recorrentes são R$ "+resultado1+" e correspondem à ≅ "+percentualGastosFixos+"%. \n" +
+                        "» Seus gastos não recorrentes são R$ "+resultado2+" e correspondem à ≅ "+percentualGastosNaoRecorrentes+"%.";
+
+                if (gastosInvestimentoTotais>0) dadosGrafico += "\n» O restante para investimentos é R$ "+resultado3+" e correspondem à ≅ "+percentualGastosInvestimentos+"%.";
+                else dadosGrafico += "\n» Você não tem saldo suficiente para investimentos.";
 
                 new CustomMessageDialog(textoInformativo +"\n"+ dadosGrafico, ApresentarGraficoActivity.this);
             }
@@ -136,15 +135,9 @@ public class ApresentarGraficoActivity extends AppCompatActivity {
                 false
         );
 
-        String meses[] = {"Janeiro", "Fevereiro",
-                "Março", "Abril", "Maio", "Junho",
-                "Julho", "Agosto", "Setembro", "Outubro",
-                "Novembro", "Dezembro"};
-
         Calendar agora = Calendar.getInstance();
         mesInt = agora.get(Calendar.MONTH);
         mesStr = String.valueOf(mesInt+1);
-        nomeMes = meses[agora.get(Calendar.MONTH)];
     }
 
     @Override
@@ -257,28 +250,20 @@ public class ApresentarGraficoActivity extends AppCompatActivity {
                             }
                         }
                     }
-
                     gastosInvestimentoTotais = ganhosTotais-gastosTotais;
-
                     saldoTotal = ganhosTotais-gastosTotais;
-
-                    if (gastosInvestimentoTotais<0){
-                        gastosInvestimentoTotais=0.0;
-                    }
-
+                    if (gastosInvestimentoTotais<0) gastosInvestimentoTotais=0.0;
                     valorTotal = gastosFixosTotais+gastosNaoRecorrentesTotais+gastosInvestimentoTotais;
-
                     percentualGastosFixos = Math.round(gastosFixosTotais/valorTotal*100);
                     percentualGastosNaoRecorrentes = Math.round(gastosNaoRecorrentesTotais/valorTotal*100);
                     percentualGastosInvestimentos = Math.round(gastosInvestimentoTotais/valorTotal*100);
 
                     String textoSubtitulo = "";
                     String resultado = String.format("%.2f", saldoTotal);
+                    textoSubtitulo = txtSubtitulo.getText()+" R$ "+resultado;
                     if(saldoTotal<0) {
                         txtSubtitulo.setTextColor(Color.RED);
-                        textoSubtitulo = txtSubtitulo.getText()+" - R$ "+resultado;
                     } else {
-                        textoSubtitulo = txtSubtitulo.getText()+" R$ "+resultado;
                     }
                     txtSubtitulo.setText(textoSubtitulo);
 
@@ -312,32 +297,32 @@ public class ApresentarGraficoActivity extends AppCompatActivity {
         } else {
             ArrayList<PieEntry> entries = new ArrayList<>();
 
-            PieEntry pieEntryInvestimento = new PieEntry(gastosInvestimentoTotais.floatValue(), "Investimento: " + percentualGastosInvestimentos + "% (20%)");
-            PieEntry pieEntryNaoRecorrentes = new PieEntry(gastosNaoRecorrentesTotais.floatValue(), "Não Recorrentes: " + percentualGastosNaoRecorrentes + "% (30%)");
-            PieEntry pieEntryRecorrentes = new PieEntry(Float.parseFloat(gastosFixosTotais.toString()), "Recorrentes: " + percentualGastosFixos + "% (50%)");
+            PieEntry pieEntryInvestimento = new PieEntry(gastosInvestimentoTotais.floatValue(), "Investimento: ≅ " + percentualGastosInvestimentos + "% (20%)");
+            PieEntry pieEntryNaoRecorrentes = new PieEntry(gastosNaoRecorrentesTotais.floatValue(), "Não Recorrentes: ≅ " + percentualGastosNaoRecorrentes + "% (30%)");
+            PieEntry pieEntryRecorrentes = new PieEntry(Float.parseFloat(gastosFixosTotais.toString()), "Recorrentes: ≅ " + percentualGastosFixos + "% (50%)");
 
-            if (gastosInvestimentoTotais!=0) {
-                entries.add(pieEntryInvestimento);
-            }
+            if (gastosInvestimentoTotais!=0) entries.add(pieEntryInvestimento);
             entries.add(pieEntryNaoRecorrentes);
             entries.add(pieEntryRecorrentes);
 
+            // vermelho / verde / laranja
+            int[] colors = {Color.rgb(48,115,31), Color.rgb(254, 81, 0), Color.rgb(186,26,26)};
 
             PieDataSet pieDataSet = new PieDataSet(entries, "");
-            pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+            pieDataSet.setColors(colors);
             pieDataSet.setValueTextColor(Color.BLACK);
             pieDataSet.setValueTextSize(16f);
 
             PieData pieData = new PieData(pieDataSet);
             pieChart.setData(pieData);
-            pieChart.setHoleColor(Color.parseColor("#A1A39D"));
+            pieChart.setHoleColor(Color.parseColor("#C6C8C1"));
             pieChart.getDescription().setEnabled(false);
             pieChart.setCenterText("DuenDinDin");
             pieChart.invalidate();
 
             Legend legend = pieChart.getLegend();
 
-            int[] colorClassArray = ColorTemplate.MATERIAL_COLORS;
+            int[] colorClassArray = colors;
             String[] legendName = {"Investimento", "Não Recorrentes", "Recorrentes"};
 
             LegendEntry[] legendEntries = new LegendEntry[3];
