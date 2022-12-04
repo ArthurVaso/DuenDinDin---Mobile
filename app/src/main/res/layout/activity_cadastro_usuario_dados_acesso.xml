@@ -80,8 +80,9 @@
             android:hint="@string/hint_usuario_cadastro_email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            android:maxLength="30"
-            android:textColorHint="@color/border_color" />
+            android:maxLength="100"
+            android:textColorHint="@color/border_color"
+            android:maxLines="100" />
 
 
         <TextView
@@ -101,7 +102,8 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/item_background"
             android:fontFamily="@font/roboto_regular"
-            android:maxLength="50"
+            android:maxLength="100"
+            android:maxLines="100"
             android:hint="@string/hint_usuario_cadastro_senha"
             android:inputType="textPassword"
             android:minHeight="48dp"

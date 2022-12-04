@@ -92,7 +92,9 @@
                     android:hint="@string/hint_ganho_cadastro_nome"
                     android:inputType="textCapWords"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color" />
+                    android:textColorHint="@color/border_color"
+                    android:maxLines="100"
+                    android:maxLength="100" />
 
                 <TextView
                     android:id="@+id/txt_categoria_ganho_alterar"
@@ -162,8 +164,9 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/hint_ganho_cadastro_descricao"
                     android:minHeight="48dp"
-
-                    android:textColorHint="@color/border_color" />
+                    android:textColorHint="@color/border_color"
+                    android:maxLines="256"
+                    android:maxLength="256" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -186,7 +189,8 @@
                     android:hint="@string/hint_ganho_cadastro_valor"
                     android:inputType="numberDecimal"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color" />
+                    android:textColorHint="@color/border_color"
+                    />
 
                 <TextView
                     android:id="@+id/txt_recorrente_ganho_alterar"
