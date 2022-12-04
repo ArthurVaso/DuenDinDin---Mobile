@@ -251,7 +251,7 @@
     <string name="btn_home_apresentar_grafico2">Ganhos e Gastos Totais</string>
     <string name="txt_grafico_apresentar_subtitulo">Seu saldo do mês é de:</string>
     <string name="dash">-</string>
-    <string name="txt_grafico2_apresentar_subtitulo">    O gráfico representa seus ganhos e gastos totais.</string>
+    <string name="txt_grafico2_apresentar_subtitulo">    O gráfico representa seus ganhos e gastos totais do mês.</string>
     <string name="txt_sobre_o_grafico1">    O gráfico representa a situação do usuário no mês e ano especificado em relação às proporções "ideais" de gastos durante o mês, sendo 50% para gastos fixos; 30% para gastos que não são recorrentes; e, 20% que sobram para investimento.</string>
     <string name="cd_img_info">TODO</string>
 
