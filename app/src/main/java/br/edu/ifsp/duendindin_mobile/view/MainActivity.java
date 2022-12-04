@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //TODO tem certeza que deseja finalizar o sistema?
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("DuenDinDin");
         alertDialog.setIcon(android.R.drawable.ic_dialog_info);
