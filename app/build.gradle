@@ -55,4 +55,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.2.1'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //MaskEditText
+    implementation 'com.github.egslava:edittext-mask:1.0.6'
 }

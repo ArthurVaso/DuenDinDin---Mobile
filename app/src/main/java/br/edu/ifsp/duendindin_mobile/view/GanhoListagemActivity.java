@@ -56,12 +56,19 @@ public class GanhoListagemActivity extends AppCompatActivity {
     private List<GanhoRetorno> listGanhosRetorno = new ArrayList<>();
     private List<Ganho> listGanhos = new ArrayList<>();
     private GanhosAdapter ganhosAdapter;
+    CustomProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_ganho);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
+        retrofitAPI = new Retrofit.Builder()
+                .baseUrl(URL_API)                                //endereço do webservice
+                .addConverterFactory(GsonConverterFactory.create()) //conversor
+                .build();
+        token = pref.getString("token", "");
+        usuarioId = pref.getInt("usuarioId", 0);
 
         rvGanhos = findViewById(R.id.rv_ganhos);
         txtMsgUsuario = findViewById(R.id.msg_usario_listagem_ganho);
@@ -69,6 +76,13 @@ public class GanhoListagemActivity extends AppCompatActivity {
         rvGanhos.setLayoutManager(new LinearLayoutManager(this));
         ganhosAdapter = new GanhosAdapter(this.getLayoutInflater(), (ArrayList<Ganho>) listGanhos);
         rvGanhos.setAdapter(ganhosAdapter);
+
+        progressDialog = new CustomProgressDialog(
+                GanhoListagemActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
 
         Button btnNovoRecebimento = findViewById(R.id.btn_ganho_listagem_novo_recebimento);
         btnNovoRecebimento.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +93,7 @@ public class GanhoListagemActivity extends AppCompatActivity {
             }
         });
 
-        token = pref.getString("token", "");
-        usuarioId = pref.getInt("usuarioId", 0);
+
     }
 
     @Override
@@ -110,18 +123,13 @@ public class GanhoListagemActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                GanhoListagemActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
-        progressDialog.show();
+        consultarUsuario();
 
-        retrofitAPI = new Retrofit.Builder()
-                .baseUrl(URL_API)                                //endereço do webservice
-                .addConverterFactory(GsonConverterFactory.create()) //conversor
-                .build();
+    }
+
+    public void consultarUsuario() {
+
+        progressDialog.show();
 
         UsuarioService usuarioService = retrofitAPI.create(UsuarioService.class);
 
@@ -131,7 +139,8 @@ public class GanhoListagemActivity extends AppCompatActivity {
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()){
                     usuario = response.body();
-                    txtMsgUsuario.setText("Olá, "+usuario.getNome());
+                    txtMsgUsuario.setText("Olá, " + usuario.getNome());
+                    consultarGanhos();
                 } else {
                     String errorBody = null;
                     Message msg = new Message();
@@ -143,15 +152,18 @@ public class GanhoListagemActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     new CustomMessageDialog("Ocorreu um erro ao consultar seus dados.  \n" + msg.getMensagem(), GanhoListagemActivity.this);
+                    progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
-
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), GanhoListagemActivity.this);
             }
         });
 
+    }
+    public void consultarGanhos() {
         //instanciando a interface
         GanhoService ganhoService = retrofitAPI.create(GanhoService.class);
 
@@ -188,6 +200,7 @@ public class GanhoListagemActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<GanhoRetorno>> call, Throwable t) {
                 progressDialog.dismiss();
+                new CustomMessageDialog(getString(R.string.msg_erro_comunicacao_servidor), GanhoListagemActivity.this);
             }
         });
 

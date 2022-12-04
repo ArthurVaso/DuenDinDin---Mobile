@@ -42,6 +42,8 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
     String token = "";
     int usuarioId = 0;
 
+    CustomProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,13 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_categoria);
         edtNome = findViewById(R.id.edt_nome_categoria);
         edtDescricao = findViewById(R.id.edt_descricao_categoria);
+
+        progressDialog = new CustomProgressDialog(
+                CategoriaCadastroActivity.this,
+                "DuenDinDin",
+                "Aguarde...",
+                false
+        );
 
         btnSalvar = findViewById(R.id.btn_categoria_cadastro_salvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
@@ -80,17 +89,10 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
         super.onStart();
         token = pref.getString("token", "");
         usuarioId = pref.getInt("usuarioId", 0);
-        //new CustomMessageDialog("Token: " + token + "\nUsuarioID: " + usuarioId, CategoriaCadastroActivity.this);
     }
     private void cadastrarCategoria() {
-        CustomProgressDialog progressDialog = new CustomProgressDialog(
-                CategoriaCadastroActivity.this,
-                "DuenDinDin",
-                "Aguarde...",
-                false
-        );
-        progressDialog.show();
 
+        progressDialog.show();
         Categoria categoria = new Categoria();
         categoria.setUsuarioId(usuarioId);
         categoria.setNome(edtNome.getText().toString().trim());
@@ -110,11 +112,6 @@ public class CategoriaCadastroActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Categoria cadastrada com sucesso!", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
-
-                    Log.d("Categoria", "ID: " + response.body().getId().toString());
-                    Log.d("Categoria", "UsuarioID: " + response.body().getUsuarioId().toString());
-                    Log.d("Categoria", "Nome: " + response.body().getNome());
-                    Log.d("Categoria", "Descrição: " + response.body().getDescricao());
                     Intent intent = new Intent(CategoriaCadastroActivity.this, HomeActivity.class);
                     startActivity(intent);
                 } else {
