@@ -1,5 +1,7 @@
 package br.edu.ifsp.duendindin_mobile.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -151,7 +153,7 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(new Intent(HomeActivity.this, GastoListagemActivity.class));
                 } else if ("Recebimento".equals(title)) {
                     startActivity(new Intent(HomeActivity.this, GanhoListagemActivity.class));
-                } else if("Categorias".equals(title)){
+                } else if ("Categorias".equals(title)) {
                     startActivity(new Intent(HomeActivity.this, CategoriaListagemActivity.class));
                 } else if ("Perfil".equals(title)) {
                     startActivity(new Intent(HomeActivity.this, UsuarioPerfilActivity.class));
@@ -173,6 +175,25 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        AlertDialog alertDialog = new AlertDialog.Builder(HomeActivity.this).create();
+        alertDialog.setTitle("DuenDinDin");
+        alertDialog.setIcon(android.R.drawable.ic_dialog_info);
+        alertDialog.setMessage("Deseja mesmo fazer logout?");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "SIM",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        pref.edit().clear().commit();
+                        startActivity(new Intent(HomeActivity.this, MainActivity.class));
+
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NÃO",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }
