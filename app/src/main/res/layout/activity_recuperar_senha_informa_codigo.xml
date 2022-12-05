@@ -74,7 +74,7 @@
             android:fontFamily="@font/roboto_regular"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            android:textColorHint="@color/border_color" />
+            android:textColorHint="#D2534F4F" />
 
         <Button
             android:id="@+id/btn_recuperar_senha_proximo"

@@ -92,7 +92,7 @@
                     android:hint="@string/hint_gasto_cadastro_nome"
                     android:inputType="textCapWords"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color"
+                    android:textColorHint="#D2534F4F"
                     android:maxLines="100"
                     android:maxLength="100" />
 
@@ -140,7 +140,7 @@
                     android:inputType="none"
                     android:minHeight="48dp"
                     android:textColor="@color/border_color"
-                    android:textColorHint="@color/border_color"
+                    android:textColorHint="#D2534F4F"
                     android:textSize="18sp" />
 
                 <TextView
@@ -164,7 +164,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/hint_gasto_cadastro_descricao"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color"
+                    android:textColorHint="#D2534F4F"
                     android:maxLines="256"
                     android:maxLength="256" />
 
@@ -190,7 +190,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:inputType="numberDecimal"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color"
+                    android:textColorHint="#D2534F4F"
                     />
 
                 <TextView

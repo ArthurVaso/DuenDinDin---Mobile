@@ -63,7 +63,7 @@
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            android:textColorHint="@color/border_color"
+            android:textColorHint="#D2534F4F"
             android:maxLines="100"
             android:maxLength="100" />
 
@@ -79,7 +79,7 @@
             android:hint="@string/hint_usuario_cadastro_senha"
             android:inputType="textPassword"
             android:minHeight="48dp"
-            android:textColorHint="@color/border_color"
+            android:textColorHint="#D2534F4F"
             android:maxLines="100"
             android:maxLength="100" />
 

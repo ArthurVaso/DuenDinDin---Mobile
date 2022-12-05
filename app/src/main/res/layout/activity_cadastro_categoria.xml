@@ -93,7 +93,7 @@
                     android:hint="@string/hint_categoria_cadastro_nome"
                     android:inputType="textCapWords"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color"
+                    android:textColorHint="#D2534F4F"
                     android:maxLines="100"
                     android:maxLength="100" />
 
@@ -119,7 +119,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/hint_categoria_cadastro_descricao"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/border_color"
+                    android:textColorHint="#D2534F4F"
                     android:maxLines="256"
                     android:maxLength="256" />
 

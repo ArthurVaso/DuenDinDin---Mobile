@@ -348,8 +348,8 @@ public class UsuarioAlterarActivity extends AppCompatActivity {
         if (edtNome.getText().toString().trim().isEmpty()) {
             Toast.makeText(UsuarioAlterarActivity.this, "O campo Nome deve ser preenchido!", Toast.LENGTH_LONG).show();
             isValid = false;
-        } else if (edtNome.getText().toString().trim().length() > 30) {
-            Toast.makeText(UsuarioAlterarActivity.this, "O campo Nome não deve ter mais de 30 caracteres!", Toast.LENGTH_LONG).show();
+        } else if (edtNome.getText().toString().trim().length() > 100) {
+            Toast.makeText(UsuarioAlterarActivity.this, "O campo Nome não deve ter mais de 100 caracteres!", Toast.LENGTH_LONG).show();
             isValid = false;
         } else if (edtEstado.getText().toString().trim().isEmpty()) {
             Toast.makeText(UsuarioAlterarActivity.this, "O campo Estado deve ser preenchido!", Toast.LENGTH_LONG).show();

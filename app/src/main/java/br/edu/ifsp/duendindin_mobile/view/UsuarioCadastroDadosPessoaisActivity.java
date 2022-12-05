@@ -220,8 +220,8 @@ public class UsuarioCadastroDadosPessoaisActivity extends AppCompatActivity {
         if (edtNome.getText().toString().trim().isEmpty()) {
             new CustomMessageDialog("O campo Nome deve ser preenchido!", UsuarioCadastroDadosPessoaisActivity.this);
             isValid = false;
-        }  else if (edtNome.getText().toString().trim().length() > 30) {
-            new CustomMessageDialog("O campo Nome não deve ter mais de 30 caracteres!", UsuarioCadastroDadosPessoaisActivity.this);
+        }  else if (edtNome.getText().toString().trim().length() > 100) {
+            new CustomMessageDialog("O campo Nome não deve ter mais de 100 caracteres!", UsuarioCadastroDadosPessoaisActivity.this);
             isValid = false;
         } else if (txtDataNasc.getText().toString().trim().isEmpty()) {
             new CustomMessageDialog("O campo Data de Nascimento deve ser preenchido!", UsuarioCadastroDadosPessoaisActivity.this);
